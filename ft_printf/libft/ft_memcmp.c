@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 20:15:31 by malapoug          #+#    #+#             */
-/*   Updated: 2024/09/27 12:22:00 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:03:19 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	const unsigned char	*ptr1;
 	const unsigned char	*ptr2;
-	size_t			i;
+	size_t				i;
 
 	ptr1 = (const unsigned char *)s1;
 	ptr2 = (const unsigned char *)s2;

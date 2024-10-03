@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:49:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/09/26 13:58:37 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:00:48 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_atoi(const char *str)
 	}
 	while (*str && *str >= '0' && *str <= '9')
 	{
-		res = res *10 + (*str) - '0';
+		res = res * 10 + (*str) - '0';
 		str++;
 	}
 	return (res * signe);

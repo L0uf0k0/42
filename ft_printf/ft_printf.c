@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 00:55:43 by malapoug          #+#    #+#             */
-/*   Updated: 2024/09/28 11:26:50 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:21:34 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ int arg_count(char *s)
 	return (count);
 }
 
-int print_cases(char type, ...)
+int print_cases(char type, void *ptr)
 {
-	va_list arg, arg2;
-	va_start(arg, 1);
-	va_copy(arg2, arg);
+	if (!ptr)
+		return (NULL);
 	switch (type)
 	{
 		case 'c':
-			write(1, arg, 1);
+			write(1, ptr, 1);
 		case 's':
-			write(1, arg, ft_strlen((char *)arg2));
+			write(1, ptr, ft_strlen((char *)ptr);
 		//case 'p':
-		//case 'd':
+		case 'd':
+			ft_putnbr((int)ptr);
 		//case 'i':
 		//case 'u':
 		//case 'x':
@@ -61,13 +61,14 @@ int ft_printf(const char *str, ...)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == %)
+		{
+			if (!print_case(str[i + 1], va_arg(args, void *)))
+				return (NULL);
 		i += 2;
 		write(1, &str[i], 1);
 		i++;
 	}
-	return (1);
+	return (1);//total de char imprimes"
 }
 
-
-int main()
-{}

@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:06:06 by malapoug          #+#    #+#             */
-/*   Updated: 2024/09/27 12:17:18 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:53:23 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned char	*ptr;
+	char	*ptr;
 
-	ptr = 0;
+	ptr = NULL;
 	while (*s)
 	{
-		if (*s == c)
-			ptr = (unsigned char *)s;
+		if (*s == (char)c)
+			ptr = (char *)s;
 		s++;
 	}
-        if (c == '\0')
-		ptr++;
-        return ((char *)ptr);
+	if ((char)c == '\0')
+		ptr = (char *)s;
+	return ((char *)ptr);
 }
