@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:27:53 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/01 13:16:18 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:42:22 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,25 @@ char	*ft_insert(int n, int c)
 	i = 0;
 	while (n >= 10)
 	{
-		buffer[i] = (n % 10) + 48;
+		buffer[i++] = (n % 10);
 		n /= 10;
-		i++;
 	}
-	buffer[i++] = n + 48;
+	buffer[i++] = n;
 	if (c == '-')
-		buffer[i++] = '-';
+		buffer[i++] = -1;
 	tot = i;
 	i = 0;
-	ptr = malloc(sizeof(char) * (tot + 2));
+	ptr = malloc(sizeof(char) * (tot + 1));
 	if (!ptr)
 		return (0);
-	while (i++ < tot)
-		ptr[i] = buffer[tot - i - 1];
+	while (i < tot)
+	{
+		if (buffer[tot - i - 1] == -1)
+			ptr[i] = '-';
+		else
+			ptr[i] = buffer[tot - i - 1] + 48;
+		i++;
+	}
 	ptr[i] = '\0';
 	return (ptr);
 }

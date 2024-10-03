@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:03:14 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/01 12:41:34 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:54:32 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_putnbr_fd(int n, int fd)
 		write(fd, "-", 1);
 		n *= -1;
 	}
-	if (n > 10)
+	if (n >= 10)
 		ft_putnbr_fd(n / 10, fd);
 	c = (n % 10) + 48;
 	write(fd, &c, 1);
