@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftsplit.c                                          :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:52:31 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/02 17:23:16 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:06:31 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_w(const char *s, char c)
+static int	count_w(const char *s, char c)
 {
 	int	i;
 	int	count;
@@ -35,10 +35,10 @@ int	count_w(const char *s, char c)
 	return (count);
 }
 
-char	*ft_malloc_w(char *s, char c)
+static char	*ft_malloc_w(char *s, char c)
 {
 	char	*arr;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (s[i] && s[i] != c)
@@ -49,7 +49,7 @@ char	*ft_malloc_w(char *s, char c)
 	return (arr);
 }
 
-void	ft_free_arr(char **arr, int i)
+static void	ft_free_arr(char **arr, int i)
 {
 	while (i > 0)
 		free(arr[i--]);
@@ -59,7 +59,7 @@ void	ft_free_arr(char **arr, int i)
 char	**ft_split(const char *s, char c)
 {
 	char	**arr;
-	int	i;
+	int		i;
 
 	i = 0;
 	arr = (char **)malloc((count_w(s, c) + 1) * sizeof(char *));

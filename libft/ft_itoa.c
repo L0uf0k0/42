@@ -6,33 +6,17 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:27:53 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/03 12:42:22 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:05:51 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_insert(int n, int c)
+static char	*transvaser(int *buffer, char *ptr, int tot)
 {
-	char	*ptr;
-	int		buffer[13];
-	int		tot;
-	int		i;
+	int	i;
 
 	i = 0;
-	while (n >= 10)
-	{
-		buffer[i++] = (n % 10);
-		n /= 10;
-	}
-	buffer[i++] = n;
-	if (c == '-')
-		buffer[i++] = -1;
-	tot = i;
-	i = 0;
-	ptr = malloc(sizeof(char) * (tot + 1));
-	if (!ptr)
-		return (0);
 	while (i < tot)
 	{
 		if (buffer[tot - i - 1] == -1)
@@ -43,6 +27,27 @@ char	*ft_insert(int n, int c)
 	}
 	ptr[i] = '\0';
 	return (ptr);
+}
+
+static char	*ft_insert(int n, int c)
+{
+	char	*ptr;
+	int		buffer[13];
+	int		tot;
+
+	tot = 0;
+	while (n >= 10)
+	{
+		buffer[tot++] = (n % 10);
+		n /= 10;
+	}
+	buffer[tot++] = n;
+	if (c == '-')
+		buffer[tot++] = -1;
+	ptr = malloc(sizeof(char) * (tot + 1));
+	if (!ptr)
+		return (0);
+	return (transvaser(buffer, ptr, tot));
 }
 
 char	*ft_itoa(int n)
@@ -57,3 +62,11 @@ char	*ft_itoa(int n)
 		ptr = ft_insert(n, 'a');
 	return (ptr);
 }
+
+/*
+int main()
+{
+	printf("%s", ft_itoa(234566));
+}
+
+*/

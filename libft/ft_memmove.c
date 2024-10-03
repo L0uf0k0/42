@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:59:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/02 19:55:56 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:41:56 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char	*ptrs;
 	unsigned char	*ptrd;
-	size_t		i;
+	size_t			i;
 
 	if ((dest == NULL && src == NULL) || n == 0)
 		return (dest);
