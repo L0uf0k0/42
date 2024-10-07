@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 00:55:43 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/03 19:21:34 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:58:57 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int print_cases(char type, void *ptr)
 			write(1, ptr, 1);
 		case 's':
 			write(1, ptr, ft_strlen((char *)ptr);
-		//case 'p':
+		case 'p':
+			ft_print_p(va_arg(args, void *)); 
 		case 'd':
 			ft_putnbr((int)ptr);
 		//case 'i':
@@ -69,6 +70,11 @@ int ft_printf(const char *str, ...)
 		write(1, &str[i], 1);
 		i++;
 	}
-	return (1);//total de char imprimes"
+	return (1);//total de char imprimes
 }
 
+int main()
+{
+	printf("Originale: %d", 123);
+	ft_printf("Mienne: %d", 123);
+}
