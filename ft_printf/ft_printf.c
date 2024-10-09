@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 00:55:43 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/05 13:58:57 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:21:18 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,18 @@ int print_cases(char type, void *ptr)
 		case 's':
 			write(1, ptr, ft_strlen((char *)ptr);
 		case 'p':
-			ft_print_p(va_arg(args, void *)); 
+			ft_print_p(ptr); 
 		case 'd':
 			ft_putnbr((int)ptr);
-		//case 'i':
+		case 'i':
+			ft_putnbr((int)ptr);
 		//case 'u':
-		//case 'x':
-		//case 'X':
-		//case '%':
+		case 'x':
+			ft_print_hex((int)ptr);
+		case 'X':
+			ft_print_hex((int)ptr);
+		case '%':
+			write(1, "%", 1);
 	}
 	return (1);
 }
