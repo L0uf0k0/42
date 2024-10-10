@@ -6,79 +6,81 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 00:55:43 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/09 15:21:18 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:30:39 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include "libft/libft.h"
+#include "ft_printf.h"
 
-int arg_count(char *s)
+int print_cases(char type, va_list args)
 {
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		if (s[i - 1] == '%' && (s[i - 1] || i == 0))
-			count++;
-	}
-	return (count);
-}
-
-int print_cases(char type, void *ptr)
-{
-	if (!ptr)
-		return (NULL);
+	char	c;
 	switch (type)
 	{
 		case 'c':
-			write(1, ptr, 1);
+			c = (char)va_arg(args, int);
+			write(1, &c, 1);
+			break;
 		case 's':
-			write(1, ptr, ft_strlen((char *)ptr);
+			ft_putstr(va_arg(args, char *));
+			break;
 		case 'p':
-			ft_print_p(ptr); 
+			ft_print_p(va_arg(args, void *));
+			break;
 		case 'd':
-			ft_putnbr((int)ptr);
+			ft_putnbr(va_arg(args, int));
+			break;
 		case 'i':
-			ft_putnbr((int)ptr);
+			ft_putnbr(va_arg(args, int));
+			break;
 		//case 'u':
 		case 'x':
-			ft_print_hex((int)ptr);
+			ft_print_hex(va_arg(args, unsigned int), type);
+			break;
 		case 'X':
-			ft_print_hex((int)ptr);
+			ft_print_hex(va_arg(args, unsigned int), type);
+			break;
 		case '%':
 			write(1, "%", 1);
+			break;
+		default:
+			return (0);
 	}
 	return (1);
 }
 
-int ft_printf(const char *str, ...)
+int ft_printf(const char *format, ...)
 {
-	int	count;
 	int	i;
 
-	count = arg_count((char *)str);
+	//count = arg_count((char *)str);
 	va_list(args);
-	va_start(args, count);
+	va_start(args, format);
 	i = 0;
-	while (str[i])
+	while (format[i])
 	{
-		if (str[i] == %)
+		if (format[i] == '%' && format[i + 1])
 		{
-			if (!print_case(str[i + 1], va_arg(args, void *)))
-				return (NULL);
-		i += 2;
-		write(1, &str[i], 1);
-		i++;
+			if (!print_cases(format[i + 1], args))
+				return (0);
+			i += 2;
+		}
+		else
+		{
+			write(1, &format[i], 1);
+			i++;
+		}
 	}
+	va_end(args);
 	return (1);//total de char imprimes
 }
+/*
+int main() {
+    ft_printf("Hello %s! Your score is %d%%.\n", "Alice", 95);
+    ft_printf("Hex: %x, Pointer: %p\n", 255, (void *)0x7ffeed);
+    printf("Hello %s! Your score is %d%%.\n", "Alice", 95);
+    printf("Hex: %x, Pointer: %p\n", 255, (void *)0x7ffeed);
+    return 0;
 
-int main()
-{
-	printf("Originale: %d", 123);
-	ft_printf("Mienne: %d", 123);
 }
+*/

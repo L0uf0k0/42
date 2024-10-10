@@ -6,15 +6,11 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:34:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/09 15:17:50 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:04:03 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include <stdint.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "ft_printf.h"
 void ft_print_hex(unsigned int n, int type)
 {
 	int	digs;
@@ -33,7 +29,7 @@ void ft_print_hex(unsigned int n, int type)
 	}
 	
 }
-
+/*
 int main()
 {
 	int p = -10000000;
@@ -42,3 +38,4 @@ int main()
 	ft_print_hex(p, 'x');
 	printf("\n%x\n", d);
 }
+*/
