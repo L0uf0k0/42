@@ -6,17 +6,18 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:34:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/10 12:03:34 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:24:38 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-void ft_print_p(void *p)
+
+void	ft_print_p(void *p)
 {
 	uintptr_t	add;
-	int		buffer[20];
-	int		i;
-	int		digs;
+	int			buffer[20];
+	int			i;
+	int			digs;
 
 	add = (uintptr_t)p;
 	i = 19;
@@ -37,7 +38,6 @@ void ft_print_p(void *p)
 		write(1, &buffer[i], 1);
 		i++;
 	}
-	
 }
 /*
 int main()

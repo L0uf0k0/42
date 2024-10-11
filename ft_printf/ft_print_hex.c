@@ -6,12 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:34:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/10 12:04:03 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:06:24 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-void ft_print_hex(unsigned int n, int type)
+
+void	ft_print_hex(unsigned int n, int type)
 {
 	int	digs;
 	int	to_print;
@@ -25,9 +26,7 @@ void ft_print_hex(unsigned int n, int type)
 			to_print = (type - 23) + (digs - 10);
 		ft_print_hex((n / 16), type);
 		write (1, &to_print, 1);
-
 	}
-	
 }
 /*
 int main()
