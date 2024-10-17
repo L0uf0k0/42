@@ -15,7 +15,6 @@
 char	*cut_line(char *arr)
 {
 	char	*line;
-	char	*temp;
 	int		i;
 
 	i = 0;
@@ -46,7 +45,7 @@ char	*get_line(int fd, char *arr)
 		return (NULL);
 	while (!ft_strchr(arr, '\n') && count != 0)
 	{
-		count = read(fd, newline, BUFFER_SIZE);
+		count = read(fd, new_line, BUFFER_SIZE);
 		if (count < 0)
 			return (NULL);
 		new_line[count] = '\0';
