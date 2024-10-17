@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:40:53 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/16 08:55:57 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:09:16 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # endif
 
 char	*get_next_line(int fd);
-int	ft_strlen(char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_strlen(char *str);
 
 #endif

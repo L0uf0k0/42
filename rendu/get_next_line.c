@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:38:49 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/16 09:48:25 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:08:52 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ char	*cut_line(char *arr)
 {
 	char	*line;
 	char	*temp;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (arr[i] && arr[i] != '\n')
 		i++;
-	line = (char*)malloc(sizeof(char) * (i + 2));
+	line = (char *)malloc(sizeof(char) * (i + 2));
 	i = 0;
 	while (arr[i] && arr[i] != '\n')
 	{
 		line[i] = arr[i];
 		i++;
 	}
-	if(arr[i] == '\n')
+	if (arr[i] == '\n')
 		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
@@ -38,7 +38,7 @@ char	*get_line(int fd, char *arr)
 {
 	char	*new_line;
 	char	*temp;
-	int	count;
+	int		count;
 
 	count = 1;
 	new_line = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -62,6 +62,21 @@ char	*get_line(int fd, char *arr)
 	return (arr);
 }
 
+char	*update_arr(char *arr)
+{
+	char	*new;
+	int		i;
+
+	i = 0;
+	while (*arr && *arr != '\n')
+		arr++;
+	while (arr[i] && arr[i] != '\n')
+		i++;
+	new = (char *)malloc(sizeof(char) * (i + 1));
+	ft_strlcpy(new, arr, i);
+	return (new);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*arr;
@@ -73,5 +88,6 @@ char	*get_next_line(int fd)
 	if (!arr)
 		return (NULL);
 	temp = cut_line(arr);
+	arr = update_arr(arr);
 	return (temp);
 }

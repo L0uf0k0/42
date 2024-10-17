@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:38:57 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/16 08:40:46 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:06:44 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	ptr[i] = '\0';
 	return (ptr);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+
+	if (size == 0)
+		return (ft_strlen((char *)src));
+	i = 0;
+	while (i < size - 1 && src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen((char *)src));
 }
