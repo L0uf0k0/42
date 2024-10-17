@@ -20,6 +20,7 @@
 #  define BUFFER_SIZE 10
 # endif
 
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(char *str);
