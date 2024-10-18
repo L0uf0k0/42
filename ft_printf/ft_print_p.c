@@ -19,7 +19,8 @@ int	ft_print_p(void *p)
 	int			i;
 	int			digs;
 	int			count;
-
+	if (!p)
+		return (ft_putstr("(nil)"));
 	add = (uintptr_t)p;
 	i = 19;
 	buffer[i--] = '\0';
@@ -32,8 +33,8 @@ int	ft_print_p(void *p)
 			buffer[i--] = ('a' + (digs - 10));
 		add /= 16;
 	}
-	count = (19 - ++i) + write(1, "0x", 2);
-	while (buffer[i++])
+	count = (19 - i) + write(1, "0x", 2);
+	while (buffer[++i])
 		write(1, &buffer[i], 1);
 	return (count);
 }
