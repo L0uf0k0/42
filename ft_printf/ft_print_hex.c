@@ -19,6 +19,8 @@ int	ft_print_hex(unsigned int n, int type)
 	int	count;
 
 	count = 0;
+	if (n == 0)
+		return (ft_putstr("0"));
 	if (n > 0)
 	{
 		digs = n % 16;
