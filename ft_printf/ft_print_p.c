@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:34:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/17 15:57:20 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:17:30 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_print_p(void *p)
 	int			i;
 	int			digs;
 	int			count;
+
 	if (!p)
 		return (ft_putstr("(nil)"));
 	add = (uintptr_t)p;
