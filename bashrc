@@ -142,6 +142,8 @@ alias gp='git push'
 alias gco='git checkout'
 alias gl='git log --oneline --graph --decorate'
 
+alias De='cd ~/Desktop'
+
 # Recherche et ouverture de fichiers ou de dossiers
 function fe() {
   local result=$(find . -name "*$1*" -print -quit)  # Trouver le premier résultat correspondant
@@ -195,8 +197,7 @@ welcome
 # Ajouter automatiquement sudo si tu l'as oublié
 alias please='sudo $(history -p !!)'
 
-alias gc='git clone'
-alias gm='gc git@github.com:L0uf0k0/42.git MAIN'
+alias gm='git clone git@github.com:L0uf0k0/42.git MAIN'
 alias l='git@github.com:L0uf0k0/42.git'
 
 clb() {
