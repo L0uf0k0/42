@@ -156,7 +156,7 @@ function fe() {
 
 # Recherche dans tout le système et ouverture de fichiers ou dossiers
 function feg() {
-  local result=$( find / -name "*$1*" -print -quit 2>/dev/null)  # Trouver le premier résultat dans tout le système
+  local result=$( find ~ -name "*$1*" -print -quit 2>/dev/null)  # Trouver le premier résultat dans tout le système
   if [ -d "$result" ]; then  # Si c'est un dossier
     cd "$result" && ls  # Ouvrir le dossier et lister son contenu
   elif [ -f "$result" ]; then  # Si c'est un fichier
