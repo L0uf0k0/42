@@ -13,27 +13,25 @@ set clipboard=unnamedplus
 autocmd Filetype c inoremap <F2> void ft_()<CR>{<CR><Tab><CR>}<C-d>
 autocmd Filetype c inoremap <F3> while (i < 0)<CR>{<CR><Tab><CR>i++;<CR>}<C-d>
 autocmd Filetype c inoremap <F4> int main()<CR>{<CR><Tab>ft_();<CR>}<C-d>
-nnoremap <G-Up> gg
-nnoremap <G-Down> G
-nnoremap <G-Left> ^
-nnoremap <G-Right> g
 
 colorscheme desert "torte elflord industry zenburn
+set splitright         " Ouvrir les fenêtres verticalement à droite
 
-function! RunNorminette()
-  if &filetype == 'c'
-    " Ouvre une fenêtre en vsplit
-    "vsplit
+nmap <leader>n :terminal norminette %<CR>
 
-    " Ouvre un terminal dans le vsplit et exécute norminette sur le fichier actuel
-    execute 'terminal norminette %'
-  else
-    echo "Ce n'est pas un fichier C"
-  endif
-endfunction
+autocmd BufWritePre * %s/\s\+$//e  " Supprime les espaces en fin de ligne avant de sauvegarder
 
-" Mappe une commande pour lancer la fonction
-command! Norminette call RunNorminette()
-nmap <leader>n :call RunNorminette()<CR>
+set list  " Affiche les espaces et tabulations
+set listchars=tab:·\ ,trail:•  " Définissez les symboles pour tabulations et espaces
+
+"inoremap ( ()<Left>  " Auto-ferme les parenthèses
+"inoremap { {}<Left>  " Auto-ferme les accolades
+"inoremap [ []<Left>  " Auto-ferme les crochets
+"nnoremap <leader>c :s/^/\/\//<CR>  " Commente une ligne en ajoutant "//"
+"nnoremap <leader>u :s/^\/\///<CR>  " Décommente une ligne en supprimant "//"
+"nnoremap <leader>c :w<CR>:!gcc % -o %:r && ./%:r<CR>  " Compile et exécute le programme C
+"Plug 'preservim/tagbar'
+"nnoremap <leader>t :TagbarToggle<CR>  " Ouvre/ferme la Tagbar
+
 
 
