@@ -210,5 +210,5 @@ clb() {
 
 
 function reboot() {
-	reset && source ~/.bashrc
+	reset && source ~/.bashrc && cd ~
 }
