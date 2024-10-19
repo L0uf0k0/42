@@ -142,7 +142,7 @@ alias gp='git push'
 alias gco='git checkout'
 alias gl='git log --oneline --graph --decorate'
 
-alias De='cd ~/Desktop'
+alias DE='cd ~/Desktop'
 
 # Recherche et ouverture de fichiers ou de dossiers
 function fe() {
