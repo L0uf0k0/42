@@ -36,13 +36,14 @@ int	print_cases(char type, va_list args)
 	else if (type == '%')
 		count += write(1, "%", 1);
 	else
-		return (0);
+		return (-12);
 	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	int	count;
+	int	temp;
 
 	va_list(args);
 	va_start(args, format);
@@ -51,7 +52,10 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%' && *(format + 1))
 		{
-			count += print_cases(*(format + 1), args);
+			temp = print_cases(*(format + 1), args);
+			if (temp == -12)
+				return (0);
+			count += temp;
 			format += 2;
 		}
 		else
