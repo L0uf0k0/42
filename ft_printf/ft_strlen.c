@@ -6,11 +6,11 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:28:10 by malapoug          #+#    #+#             */
-/*   Updated: 2024/09/25 18:45:26 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/20 14:41:52 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	ft_strlen(char *str)
 {

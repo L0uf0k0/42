@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:07:06 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/18 21:27:46 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/20 14:39:52 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 int	ft_print_p(void *p);
 int	ft_print_hex(unsigned int n, int typen, int cond);
-int	ft_putchar(char c);
 int	ft_putnbr(int n);
 int	ft_putunbr(unsigned int n);
 int	ft_putstr(char *str);

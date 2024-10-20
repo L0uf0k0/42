@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 00:55:43 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/18 21:40:10 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/20 14:43:50 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,16 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-/*
+
 int main() {
-    ft_printf("Hello %s! Your score is %u%%.\n", "Alice", -1);
+	int i = 42;
+    ft_printf("Hello %s! Your score is %u%%.\n", "", -1);
     printf("%d\n", ft_printf("Hex: %x, Pointer: %p\n", 0x0, (void *)0x0));
-    printf("Hello %s! Your score is %u%%.\n", "Alice", -1);
+    printf("Hello %s! Your score is %u%%.\n", "", -1);
     printf("%d\n", printf("Hex: %x, Pointer: %p\n", 0x0, (void *)0x0));
+    ft_printf("%s%s %d %x %p.\n", "tg sale ", "gay", i, i, &i);
+    printf("%s%s %d %x %p.\n", "tg sale ", "gay", i, i, &i);
     return 0;
 
 }
-*/
+
