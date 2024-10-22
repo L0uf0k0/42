@@ -6,13 +6,13 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 12:43:19 by malapoug          #+#    #+#              #
-#    Updated: 2024/10/21 10:13:10 by malapoug         ###   ########.fr        #
+#    Updated: 2024/10/22 13:36:09 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = gcc
-CFLAGS = -fsanitize=address -g3 -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRCS = ft_putnbr_mod.c ft_putunbr_mod.c ft_putstr_mod.c ft_strlen.c ft_printf.c ft_print_p.c ft_print_hex.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -f

@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:34:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/18 21:17:30 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:31:59 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_print_p(void *p)
 	int			count;
 
 	if (!p)
-		return (ft_putstr("(nil)"));
+		return (ft_putstr("0x0"));
 	add = (uintptr_t)p;
 	i = 19;
 	buffer[i--] = '\0';
@@ -34,7 +34,7 @@ int	ft_print_p(void *p)
 			buffer[i--] = ('a' + (digs - 10));
 		add /= 16;
 	}
-	count = (19 - i) + write(1, "0x", 2);
+	count = (18 - i) + write(1, "0x", 2);
 	while (buffer[++i])
 		write(1, &buffer[i], 1);
 	return (count);
