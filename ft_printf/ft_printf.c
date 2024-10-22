@@ -69,7 +69,6 @@ int	ft_printf(const char *format, ...)
 }
 /*
 int main() {
-	int i = 42;
     ft_printf("Hello %s! Your score is %u%%.\n", "", -1);
     printf("%d\n", ft_printf("Hex: %x, Pointer: %p\n", 0x0, (void *)0x0));
     printf("Hello %s! Your score is %u%%.\n", "", -1);
