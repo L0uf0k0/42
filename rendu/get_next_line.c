@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:38:49 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/17 17:08:52 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/22 21:28:13 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ char	*get_line(int fd, char *arr)
 	{
 		count = read(fd, new_line, BUFFER_SIZE);
 		if (count < 0)
-			return (NULL);
+			return (free_and_null(new_line));
 		new_line[count] = '\0';
 		temp = ft_strjoin(arr, new_line);
 		if (!temp)
 		{
+			free(arr);
 			free(new_line);
 			return (NULL);
 		}
@@ -67,12 +68,18 @@ char	*update_arr(char *arr)
 	int		i;
 
 	i = 0;
-	while (*arr && *arr != '\n')
-		arr++;
 	while (arr[i] && arr[i] != '\n')
 		i++;
-	new = (char *)malloc(sizeof(char) * (i + 1));
-	ft_strlcpy(new, arr, i);
+	if (!arr[i])
+	{
+		free(arr);
+		return (NULL);
+	}
+	new = (char *)malloc(sizeof(char) * (ft_strlen(arr + i + 1) + 1));
+	if (!new)
+		return (NULL);
+	ft_strlcpy(new, arr + i + 1, ft_strlen(arr + i + 1) + 1);
+	free(arr);
 	return (new);
 }
 

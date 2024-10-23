@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:38:57 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/17 17:06:44 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/22 21:33:28 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		size;
 	int		i;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	size = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
 	ptr = (char *)malloc(size * sizeof(char));
@@ -51,6 +53,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 
+	if (!src || !dst)
+		return (0);
 	if (size == 0)
 		return (ft_strlen((char *)src));
 	i = 0;
@@ -65,6 +69,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == (char)c)
@@ -74,4 +80,12 @@ char	*ft_strchr(const char *s, int c)
 	if ((char)c == '\0')
 		return ((char *)s);
 	return (0);
+}
+
+char	*free_and_null(char *arr)
+{
+	if (!arr)
+		return (NULL);
+	free (arr);
+	return (NULL);
 }
