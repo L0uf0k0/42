@@ -24,6 +24,9 @@ autocmd BufWritePre * %s/\s\+$//e  " Supprime les espaces en fin de ligne avant 
 set list  " Affiche les espaces et tabulations
 set listchars=tab:·\ ,trail:•  " Définissez les symboles pour tabulations et espaces
 
+nnoremap \j :12,$s/    /\t/g<CR>
+nnoremap \k :15,$g/^$/d<CR>
+
 "inoremap ( ()<Left>  " Auto-ferme les parenthèses
 "inoremap { {}<Left>  " Auto-ferme les accolades
 "inoremap [ []<Left>  " Auto-ferme les crochets

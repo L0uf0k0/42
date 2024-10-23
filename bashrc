@@ -137,12 +137,13 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 # Alias pour git
 alias gs='git status'
 alias ga='git add'
-alias gc='git commit'
-alias gp='git push'
+alias gco='git commit'
+alias gpu='git push'
 alias gco='git checkout'
-alias gl='git log --oneline --graph --decorate'
+alias gl='git log --oneline --graph --decorate --pretty -n 5'
 
-alias DE='cd ~/Desktop'
+alias gccf='gcc -fsanitize=address -g3 -Wall -Wextra -Werror'
+alias rb='source ~/.bashrc'
 
 # Recherche et ouverture de fichiers ou de dossiers
 function fe() {
@@ -158,7 +159,7 @@ function fe() {
 
 # Recherche dans tout le système et ouverture de fichiers ou dossiers
 function feg() {
-  local result=$( find ~ -name "*$1*" -print -quit 2>/dev/null)  # Trouver le premier résultat dans tout le système
+  local result=$( find / -name "*$1*" -print -quit 2>/dev/null)  # Trouver le premier résultat dans tout le système
   if [ -d "$result" ]; then  # Si c'est un dossier
     cd "$result" && ls  # Ouvrir le dossier et lister son contenu
   elif [ -f "$result" ]; then  # Si c'est un fichier
@@ -168,6 +169,8 @@ function feg() {
  fi
 }
 
+alias vimrc='feg .vimrc'
+alias bashrc='feg .bashrc'
 
 # Afficher un message de bienvenue ou une citation aléatoire
 function welcome() {
@@ -209,7 +212,12 @@ clb() {
     git clone -b "$branch_name" "git@github.com:L0uf0k0/42.git" "$branch_name"
 }
 
+alias DE='cd Desktop'
+alias D='cd ~'
+alias bat='batcat'
 
 function reboot() {
 	reset && source ~/.bashrc && cd ~
 }
+
+background_opacity 0.8
