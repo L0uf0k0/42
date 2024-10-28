@@ -6,17 +6,17 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/26 01:15:42 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/28 01:43:01 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*extract_line(char **buffer)
+static char	 *extract_line(char **buffer)
 {
 	char	*newline;
 	char	*temp;
-	int		len;
+	int		 len;
 
 	if (!*buffer || !**buffer)
 		return (NULL);
@@ -26,19 +26,26 @@ static char	*extract_line(char **buffer)
 	newline = ft_strdup(*buffer);
 	if (!newline)
 		return (NULL);
+	if (ft_strchr(*buffer, '\n'))
+		newline[len + 1] = '\0';
 	if ((*buffer)[len] == '\n')
 		len++;
 	temp = ft_strdup(*buffer + len);
+	if (!temp)
+	{
+		free(newline);
+		return (NULL);
+	}
 	free(*buffer);
 	*buffer = temp;
 	return (newline);
 }
 
-static int	read_to_buffer(int fd, char **buffer)
+static int	  read_to_buffer(int fd, char **buffer)
 {
 	char	*temp;
 	char	*read_buffer;
-	ssize_t	read_size;
+	ssize_t read_size;
 
 	read_buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!read_buffer)
@@ -60,17 +67,30 @@ static int	read_to_buffer(int fd, char **buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
-	int			result;
+	static char	 *buffer;
+	int			 result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	result = read_to_buffer(fd, &buffer);
 	if (result == -1 || !buffer)
 	{
-		free(buffer);
-		buffer = NULL;
+		if (result)
+			free(buffer);
 		return (NULL);
 	}
 	return (extract_line(&buffer));
 }
+
+/*
+#include <stdio.h>
+#include <fcntl.h>
+int main()
+{
+	int fd = open("get_next_line.c", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+
+}
+*/

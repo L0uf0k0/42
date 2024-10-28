@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:07:23 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/26 01:20:44 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/28 01:46:32 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strlen(const char *s)
 {
 	int	len;
 
+	if (!s)
+		return (0);
 	len = 0;
 	while (s && s[len])
 		len++;
@@ -24,6 +26,10 @@ int	ft_strlen(const char *s)
 
 char	*ft_strchr(const char *s, int c)
 {
+
+	if (!s)
+		return (NULL);
+
 	while (*s)
 	{
 		if (*s == (char)c)
@@ -39,9 +45,11 @@ char	*ft_strdup(const char *s)
 	int		len;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	len = ft_strlen(s);
-	dup = malloc((len + 1) * sizeof(char));
+	dup = (char *)malloc((len + 1) * sizeof(char));
 	if (!dup)
 		return (NULL);
 	while (s[i])
