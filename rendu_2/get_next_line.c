@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/28 01:43:01 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/28 21:17:53 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static char	 *extract_line(char **buffer)
 	char	*temp;
 	int		 len;
 
+	temp = NULL;
 	if (!*buffer || !**buffer)
 		return (NULL);
 	len = 0;
@@ -32,10 +33,7 @@ static char	 *extract_line(char **buffer)
 		len++;
 	temp = ft_strdup(*buffer + len);
 	if (!temp)
-	{
-		free(newline);
 		return (NULL);
-	}
 	free(*buffer);
 	*buffer = temp;
 	return (newline);
@@ -88,6 +86,9 @@ char	*get_next_line(int fd)
 int main()
 {
 	int fd = open("get_next_line.c", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
