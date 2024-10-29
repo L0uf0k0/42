@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/28 21:17:53 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:14:32 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (buffer == NULL)
+		buffer = ft_strdup("");
 	result = read_to_buffer(fd, &buffer);
 	if (result == -1 || !buffer)
 	{

@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/28 21:51:13 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:21:23 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static char	*function_name(int fd, char *buf, char *backup)
 	{
 		read_line = read(fd, buf, BUFFER_SIZE);
 		if (read_line == -1)
+		{
+			free (backup);
 			return (0);
+		}
 		else if (read_line == 0)
 			break ;
 		buf[read_line] = '\0';
