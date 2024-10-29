@@ -1,4 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+# ~/.bashrc: executed by bash for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -216,8 +216,10 @@ alias DE='cd Desktop'
 alias D='cd ~'
 alias bat='batcat'
 
+alias 42u='"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" "https://profile.intra.42.fr/"'
+alias gu='"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" "https://github.com/L0uf0k0/42"'
 function reboot() {
 	reset && source ~/.bashrc && cd ~
 }
 
-background_opacity 0.8
+alias 45='sleep 2 && systemctl suspend'
