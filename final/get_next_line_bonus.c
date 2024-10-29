@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/29 18:49:55 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:50:53 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,22 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buf;
-	static char	*backup;
+	static char	*backup[1024];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
 	{
-		free(backup);
-		backup = NULL;
+		free(backup[fd]);
+		backup[fd] = NULL;
 		return (0);
 	}
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (0);
-	line = read_buffer(fd, buf, backup);
+	line = read_buffer(fd, buf, backup[fd]);
 	free(buf);
 	if (!line)
 		return (NULL);
-	backup = extract(line);
+	backup[fd] = extract(line);
 	return (line);
 }
 
