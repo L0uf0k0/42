@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:07:23 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/29 14:23:10 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:40:31 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strlen(const char *s)
 	if (!s)
 		return (0);
 	len = 0;
-	while (s && s[len])
+	while (s[len])
 		len++;
 	return (len);
 }
@@ -68,6 +68,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		len2;
 	int		i;
 
+	if (!s2)
+		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	i = -1;

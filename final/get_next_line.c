@@ -6,13 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/29 14:21:23 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:03:40 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*function_name(int fd, char *buf, char *backup)
+static char	*read_buffer(int fd, char *buf, char *backup)
 {
 	int		read_line;
 	char	*char_temp;
@@ -29,10 +29,10 @@ static char	*function_name(int fd, char *buf, char *backup)
 		else if (read_line == 0)
 			break ;
 		buf[read_line] = '\0';
-		if (!backup)
-			backup = ft_strdup("");
 		char_temp = backup;
 		backup = ft_strjoin(char_temp, buf);
+		if (!backup)//
+			return (NULL);//
 		free(char_temp);
 		char_temp = NULL;
 		if (ft_strchr (buf, '\n'))
@@ -72,9 +72,8 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (0);
-	line = function_name(fd, buf, backup);
+	line = read_buffer(fd, buf, backup);
 	free(buf);
-	buf = NULL;
 	if (!line)
 		return (NULL);
 	backup = extract(line);
@@ -86,7 +85,7 @@ char	*get_next_line(int fd)
 #include <fcntl.h>
 int main()
 {
-	int fd = open("get_next_line.c", O_RDONLY);
+	int fd = open("read_error.txt", O_RDONLY);
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
