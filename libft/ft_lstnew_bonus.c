@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 12:28:10 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/31 13:07:20 by malapoug         ###   ########.fr       */
+/*   Created: 2024/10/31 13:28:24 by malapoug          #+#    #+#             */
+/*   Updated: 2024/10/31 13:38:36 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+t_list *ft_lstnew(void *content)
 {
-	int	i;
+	t_list	*new;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = (void *)content;
+	new->next = NULL;
+
+	return (new);
 }

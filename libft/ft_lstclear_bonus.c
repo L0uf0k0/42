@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 12:28:10 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/31 13:07:20 by malapoug         ###   ########.fr       */
+/*   Created: 2024/10/31 14:43:49 by malapoug          #+#    #+#             */
+/*   Updated: 2024/10/31 15:13:46 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (!lst || !(*lst) || !del)
+		return ;
+	if ((*lst)->next)
+		ft_lstclear(&(*lst)->next, (*del));
+	del((*lst)->content);
+	free(*lst);
+	*lst = NULL;
 }

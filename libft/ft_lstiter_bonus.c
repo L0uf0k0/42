@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 12:28:10 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/31 13:07:20 by malapoug         ###   ########.fr       */
+/*   Created: 2024/10/31 14:51:04 by malapoug          #+#    #+#             */
+/*   Updated: 2024/10/31 15:16:35 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	i;
+	t_list	list;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	list = *lst;
+	while (*list)
+	{
+		(*list)->content = *f(list);
+		if ((*list)->next)
+			list = list->next;
+		else
+			break;
+	}
+
 }
