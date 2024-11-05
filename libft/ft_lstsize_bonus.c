@@ -6,18 +6,23 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:02:39 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/31 14:09:14 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:56:15 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int	count;
 
-	count = 0;
-	if (lst->next)
-		count += ft_lstsize(lst->next);
+	if (!lst)
+		return (0);
+	count = 1;
+	while (lst->next)
+	{
+		count += 1;
+		lst = lst->next;
+	}
 	return (count);
 }

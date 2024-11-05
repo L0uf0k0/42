@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:51:04 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/31 15:16:35 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:58:19 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	list;
+	t_list	*list;
 
-	list = *lst;
-	while (*list)
+	if (!lst || !(*f))
+		return ;
+	list = lst;
+	while (list)
 	{
-		(*list)->content = *f(list);
-		if ((*list)->next)
-			list = list->next;
-		else
-			break;
+		(*f)(list->content);
+		list = (list)->next;
 	}
-
 }
