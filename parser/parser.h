@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/08 02:28:50 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:30:28 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 typedef struct s_list
 {
 	int		*data;
-	struct s_list	*prev;// a faire
 	struct s_list	*next;
 }	t_list;
 
@@ -35,11 +34,12 @@ char    *ft_substr(char const *s, unsigned int start, size_t len);
 int	ft_strlen(const char *str);
 
 //parser_utils.h
-t_list  *ft_lstnew(int *data);
+t_list  *ft_lstnew(int data);
+t_list	*ft_lstlast(t_list *lst);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 
 //parser.c
-int     list_constructor(t_list *base, t_list *new);
+int     list_constructor(t_list **base, t_list *new);
 t_list  *parser(char *str);
 
 #endif
