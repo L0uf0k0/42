@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:03:46 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/07 23:23:16 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/08 02:30:36 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,25 @@ int	list_constructor(t_list *base, t_list *new)
 t_list	*parser(char *str)
 {
 	t_list	*list;
+	char	**arr;
 	int	*temp;
-	int	signe;
+	int	i;
 
+	i = 0;
 	list = NULL;
-	while (*str)
+	temp = malloc(11 * sizeof(int));
+	arr = ft_split(str, ' ');
+	while (arr[i])
 	{
-		signe = 1;
-		temp = 0;
-		while (ft_isdigit(*str) || *str == '-')// checker ?
+		*temp = ft_atoi(arr[i]);
+		if (!list_constructor(list, ft_lstnew(temp)))
 		{
-			if (*str == '-')
-			{
-				signe = -1;
-				str++;
-			}
-			*temp = ((*temp) * 10) + (*str - '0');// error right here
-			if (!ft_isdigit(*str + 1))
-			{
-				*temp *= signe;
-				//if (!
-				list_constructor(list, ft_lstnew(temp));//)
-				//	free_list(list); // a faire
-				str++;
-			}
-			//if *str == \0 ?
+			ft_lstclear(&list, free);
+			break;
 		}
-		str++;
+		i++;
 	}
+	ft_free_arr(arr, i);
 	return (list);
 }
 
@@ -61,10 +52,10 @@ t_list	*parser(char *str)
 
 int main ()
 {
-	t_list *list = parser("12");
+	t_list *list = parser("12 123 1234");
 	while (list)
 	{
 		printf("%d", *(list->data));
-		//list = list->next;
+		list = list->next;
 	}
 }
