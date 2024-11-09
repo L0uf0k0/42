@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:33:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 01:38:18 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/09 14:09:45 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	validater(char *str)
 	{
 		if (!ft_isdigit(str[i]) && str[i] != ' ')
 		{
-			ft_putstr("Only numbers and spaces please!");
+			ft_putstr("Only numbers and spaces please!\n");
 			return (0);
 		}
 		i++;

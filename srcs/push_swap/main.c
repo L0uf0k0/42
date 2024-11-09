@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 00:52:12 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 01:40:22 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/09 14:09:20 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main (int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_putstr("Only one argument please (\"1 2 3\")");
+		ft_putstr("Only one argument please (\"1 2 3\")\n");
 		return (-1);
 	}
 	if (!validater(argv[1]))
@@ -30,7 +30,7 @@ int main (int argc, char *argv[])
 	if (!checker(list))
 	{
 		//free la liste
-		ft_putstr("Only differents numbers please!");
+		ft_putstr("Only differents numbers please!\n");
 		return (-1);
 	}
         while (list)
