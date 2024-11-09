@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 00:52:12 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 14:09:20 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:27:41 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main (int argc, char *argv[])
 		ft_putstr("Only differents numbers please!\n");
 		return (-1);
 	}
+	ft_rev_rotate(&list);
         while (list)
         {
                 printf("%d\n", *(int *)(list->data));
