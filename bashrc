@@ -197,11 +197,12 @@ Bienvenue, $(whoami)!
 }
 welcome
 
-# Ajouter automatiquement sudo si tu l'as oublié
+# Ajouter automatiquemen sudo si tu l'as oublié
 alias please='sudo $(history -p !!)'
 
 alias gm='git clone git@github.com:L0uf0k0/42.git MAIN'
 alias l='git@github.com:L0uf0k0/42.git'
+alias gs='git status'
 
 clb() {
     if [ "$#" -ne 1 ]; then
@@ -222,4 +223,5 @@ function reboot() {
 	reset && source ~/.bashrc && cd ~
 }
 
-alias 45='sleep 2 && systemctl suspend'
+alias re='clear'
+alias rf ='rm -Rf'
