@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:03:46 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/08 15:43:06 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/09 00:52:10 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,3 @@ t_list	*parser(char *str)
 	return (list);
 }
 
-#include<stdio.h>
-
-int main ()
-{
-	t_list *list = parser("0 1 2 3 4 5 6 7 8 9 10");
-	while (list)
-	{
-		printf("%d\n", *(int *)(list->data));
-		list = list->next;
-	}
-}

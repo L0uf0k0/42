@@ -1,0 +1,52 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
+#    Updated: 2024/11/09 00:58:27 by malapoug         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = push_swapi
+
+CC = cc
+
+AR = ar -crs
+
+CFLAGS = -Wall -Wextra -Werror
+
+SRCS = push_swap/main.c\
+	calculs/how_many_moves.c\
+	parser/ft_atoi.c\
+	parser/ft_split.c\
+	parser/ft_substr.c\
+	parser/parser.c\
+	parser/parser_utils.c\
+	validater/ft_putstr.c\
+	validater/validater.c
+
+OBJS = $(SRCS:.c=.o)
+
+RM = rm -f
+
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
