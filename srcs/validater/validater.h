@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:50:14 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 01:27:17 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/09 14:30:15 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //struct
 typedef struct s_list
 {
-        int             *data;
+        int            *data;
         struct s_list   *next;
 }       t_list;
 

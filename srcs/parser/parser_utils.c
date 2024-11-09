@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:16:31 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/08 15:32:34 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/09 14:31:07 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_isdigit(int c)
 t_list	*ft_lstnew(int data)
 {
 	t_list	*new;
-	int		*temp;
+	int	*temp;
 
 	temp = malloc(sizeof(int) * 11);
 	if (!temp)
