@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 15:27:16 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/10 00:07:24 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_list
 void	ft_swap(t_list **list);
 void	ft_rotate(t_list **list);
 void	ft_rev_rotate(t_list **list);
+void	ft_push(t_list **lst1, t_list **lst2);
+void	process(t_list **lst1, t_list **lst2);
 
 //utils
 int     validater(char *str);

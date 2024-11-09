@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:48:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 15:31:42 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/09 23:40:56 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,21 @@ void	ft_rev_rotate(t_list **list)
 		temp = temp->prev;
 	}
 }
+#include <unistd.h>
+void	ft_push(t_list **lst1, t_list **lst2)
+{
+	if (!*lst2)
+	{
+		*lst2 = *lst1;
+		*lst1 = (*lst1)->next;
+		(*lst1)->prev = NULL;
+		(*lst2)->next = NULL;
+		return ;
+	}
+	(*lst2)->prev = *lst1;
+	*lst1 = (*lst1)->next;
+	(*lst1)->prev = NULL;
+	(*lst2)->prev->next = (*lst2);
+	*lst2 = (*lst2)->prev;
 
+}
