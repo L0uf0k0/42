@@ -6,13 +6,13 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:48:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 14:31:17 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:11:40 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	ft_swap(t_list **list, char l)
+void	ft_swap(t_list **list, int l)
 {
 	int	temp;
 
@@ -20,29 +20,29 @@ void	ft_swap(t_list **list, char l)
 	*((*list)->data) = *((*list)->next->data);
 	*((*list)->next->data) = temp;
 	if(l == 'a')
-		ft_putchar("sa\n");
-	else
-		ft_putchar("sb\n");
+		ft_putstr("sa\n");
+	else if (l == 'b')
+		ft_putstr("sb\n");
 }
 
-void	ft_rotate(t_list **list)
+void	ft_rotate(t_list **list, int l)
 {
 	t_list	*temp;
 
 	temp = (*list);
 	while (temp->next)
 	{
-		ft_swap(&temp);
+		ft_swap(&temp, l);
 		temp = temp->next;
 	}
 	if(l == 'a')
-		ft_putchar("ra\n");
-	else
-		ft_putchar("rb\n");
+		ft_putstr("ra\n");
+	else if (l == 'b')
+		ft_putstr("rb\n");
 
 }
 
-void	ft_rev_rotate(t_list **list)
+void	ft_rev_rotate(t_list **list, int l)
 {
 	t_list	*temp;
 
@@ -50,35 +50,43 @@ void	ft_rev_rotate(t_list **list)
 	temp = temp->prev;
 	while (temp)
 	{
-		ft_swap(&temp);
+		ft_swap(&temp, l);
 		temp = temp->prev;
 	}
 	if(l == 'a')
-		ft_putchar("rra\n");
-	else
-		ft_putchar("rrb\n");
+		ft_putstr("rra\n");
+	else if (l == 'b')
+		ft_putstr("rrb\n");
 
 }
 
-void	ft_push(t_list **lst1, t_list **lst2)
+void	ft_push(t_list **lst1, t_list **lst2, int l)
 {
+	if (!*lst1)
+		return(ft_putstr("pa or pb null\n"));
 	if (!*lst2)
 	{
 		*lst2 = *lst1;
 		*lst1 = (*lst1)->next;
 		(*lst1)->prev = NULL;
 		(*lst2)->next = NULL;
-		return ;
 	}
-	(*lst2)->prev = *lst1;
-	*lst1 = (*lst1)->next;
-	(*lst1)->prev = NULL;
-	(*lst2)->prev->next = (*lst2);
-	*lst2 = (*lst2)->prev;
-	if(l == 'a')
-		ft_putchar("pa\n");
 	else
-		ft_putchar("pb\n");
+	{
+		(*lst2)->prev = *lst1;
+		if ((*lst1)->next)
+		{
+			*lst1 = (*lst1)->next;
+			(*lst1)->prev = NULL;
+		}
+		else
+			*lst1 = NULL;
+		(*lst2)->prev->next = (*lst2);
+		*lst2 = (*lst2)->prev;
+	}
+	if(l == 'a')
+		ft_putstr("pa\n");
+	else if (l == 'b')
+		ft_putstr("pb\n");
 }
 
-faire les rrr rr et ss enfin les doubles quoi
