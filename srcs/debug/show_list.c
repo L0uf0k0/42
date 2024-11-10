@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validater.h                                        :+:      :+:    :+:   */
+/*   show_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 23:50:14 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 19:45:10 by malapoug         ###   ########.fr       */
+/*   Created: 2024/11/10 22:00:56 by malapoug          #+#    #+#             */
+/*   Updated: 2024/11/10 22:16:40 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VALIDATER_H
-# define VALIDATER_H
+#include"push_swap.h"
+#include<stdio.h>
 
-# include<unistd.h>
-//struct
-typedef struct s_list
+void show_list(t_list **lst1, t_list **lst2)
 {
-        int            *data;
-        struct s_list   *next;
-	struct s_list	*prev;
-}       t_list;
+	t_list	*temp1;
+	t_list	*temp2;
 
-int	valid_num(char *str);
-int	ft_isdigit(int c);
-int	check_dub(t_list *list);
-void	ft_putstr(char *s);
-
-#endif
+	temp1 = *lst1;
+	temp2 = *lst2;
+	printf("Liste 1:\n");
+	while (temp1)
+	{
+		printf("%d\n", (*(temp1->data)));
+		temp1 = temp1->next;
+	}
+	printf("\n\nListe 2:\n");
+	while (temp2)
+	{
+		printf("%d\n", (*(temp2->data)));
+		temp2 = temp2->next;
+	}
+	printf("\n\n\n");
+}

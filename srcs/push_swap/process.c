@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:52:03 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 17:50:24 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/10 23:19:48 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,68 @@ void ft_choose(t_list **lst1, t_list **lst2, char *str)
 		ft_rrr(lst1, lst2);
 }
 
+int	checker(t_list **lst1, t_list **lst2)
+{
+	t_list	*lst;
+	int	temp;
+
+	if (!*lst1)
+		return (1);
+	temp = *((*lst1)->data);
+	lst = *lst1;
+	while (lst)
+	{
+		if (*lst2 || (*(lst->data) < temp))
+			return (0);
+		temp = *(lst->data);
+		lst = lst->next;
+
+	}
+	return (1);
+}
+
+int	 avarage(t_list **lst)
+{
+	t_list  *temp;
+	int	 res;
+	int	 count;
+
+	temp = *lst;
+	res = 0;
+	count = 0;
+	while (temp)
+	{
+		res += *(temp->data);
+		temp = temp->next;
+		count++;
+	}
+	return (res / count);
+}
+
+void	first_sort(t_list **lst1, t_list **lst2, int avarage)
+{
+	int	 size;
+
+	size = ft_lstsize(*lst1);
+	while (*lst1 && size > 0)
+	{
+		if (*((*lst1)->data) > avarage)
+			ft_push(lst1, lst2, 'b');
+		else
+			ft_rotate(lst1, 'a');
+		size--;
+	}
+}
+
 void	process(t_list **lst1, t_list **lst2)
 {
 	char	*str;
-	ft_push(lst1, lst2, 'b');
-	ft_push(lst1, lst2, 'b');
-	str = calcul(lst1, lst2);
-	ft_choose(lst1, lst2, str);
 
+	first_sort(lst1, lst2, avarage(lst1));
+	while (!checker(lst1, lst2))
+	{
+		str = calcul(lst1, lst2);
+		ft_choose(lst1, lst2, str);
+	}
+	ft_putstr("Ended successfully\n");
 }

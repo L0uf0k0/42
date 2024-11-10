@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 14:39:38 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:44:35 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	ft_strlen(const char *str);
 t_list  *ft_lstnew(int data);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
+int	ft_lstsize(t_list *lst);
 
 //parser.c
 int     list_constructor(t_list **base, t_list *new);

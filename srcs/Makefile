@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/11/10 17:22:16 by malapoug         ###   ########.fr        #
+#    Updated: 2024/11/10 22:06:16 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,15 @@ SRCS = push_swap/main.c\
 	push_swap/process.c\
 	push_swap/push_swap_utils.c\
 	push_swap/push_swap_utils_doubles.c\
-	push_swap/how_many_moves.c\
+	push_swap/calculs.c\
 	parser/ft_atoi.c\
 	parser/ft_split.c\
 	parser/ft_substr.c\
 	parser/parser.c\
 	parser/parser_utils.c\
 	validater/ft_putstr.c\
-	validater/validater.c
+	validater/validater.c\
+	push_swap/show_list.c\
 
 OBJS = $(SRCS:.c=.o)
 

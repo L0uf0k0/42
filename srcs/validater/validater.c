@@ -6,13 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:33:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 14:22:28 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:44:54 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"validater.h"
 
-int	validater(char *str)
+int	valid_num(char *str)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int	validater(char *str)
 	return (1);
 }
 
-int	checker(t_list *list)
+int	check_dub(t_list *list)
 {
 	t_list	*lst;
 

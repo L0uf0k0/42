@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:48:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 16:11:40 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:54:34 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_rotate(t_list **list, int l)
 	temp = (*list);
 	while (temp->next)
 	{
-		ft_swap(&temp, l);
+		ft_swap(&temp, 'c');
 		temp = temp->next;
 	}
 	if(l == 'a')
@@ -50,7 +50,7 @@ void	ft_rev_rotate(t_list **list, int l)
 	temp = temp->prev;
 	while (temp)
 	{
-		ft_swap(&temp, l);
+		ft_swap(&temp, 'c');
 		temp = temp->prev;
 	}
 	if(l == 'a')

@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:16:31 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 15:29:04 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:44:08 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,19 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	del((*lst)->data);
 	free(*lst);
 	*lst = NULL;
+}
+
+int	ft_lstsize(t_list *lst)
+{
+	int	count;
+
+	if (!lst)
+		return (0);
+	count = 1;
+	while (lst->next)
+	{
+		count += 1;
+		lst = lst->next;
+	}
+	return (count);
 }
