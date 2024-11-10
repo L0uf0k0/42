@@ -6,8 +6,15 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 15:18:29 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:24:00 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//int	calculs
+#include"push_swap.h"
+
+char	*calcul(t_list **lst1, t_list **lst2)
+{
+	(void)lst1;
+	(void)lst2;
+	return ("rra");
+}

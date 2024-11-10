@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/11/10 15:35:02 by malapoug         ###   ########.fr        #
+#    Updated: 2024/11/10 17:22:16 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = push_swap/main.c\
 	push_swap/process.c\
 	push_swap/push_swap_utils.c\
 	push_swap/push_swap_utils_doubles.c\
-	calculs/how_many_moves.c\
+	push_swap/how_many_moves.c\
 	parser/ft_atoi.c\
 	parser/ft_split.c\
 	parser/ft_substr.c\
