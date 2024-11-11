@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:52:03 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 23:19:48 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:27:17 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	checker(t_list **lst1, t_list **lst2)
 	lst = *lst1;
 	while (lst)
 	{
-		if (*lst2 || (*(lst->data) < temp))
+		if (*lst2 || !(*lst1) || (*(lst->data) < temp))
 			return (0);
 		temp = *(lst->data);
 		lst = lst->next;
@@ -81,25 +81,28 @@ void	first_sort(t_list **lst1, t_list **lst2, int avarage)
 	int	 size;
 
 	size = ft_lstsize(*lst1);
-	while (*lst1 && size > 0)
+	while (*lst1 && size > 3)
 	{
 		if (*((*lst1)->data) > avarage)
+		{
 			ft_push(lst1, lst2, 'b');
+			ft_rotate(lst2, 'b');
+		}
 		else
-			ft_rotate(lst1, 'a');
+			ft_push(lst1, lst2, 'b');
 		size--;
 	}
 }
 
 void	process(t_list **lst1, t_list **lst2)
 {
-	char	*str;
-
-	first_sort(lst1, lst2, avarage(lst1));
+	if (ft_lstsize(*lst1) > 6 && !checker(lst1, lst2))
+		first_sort(lst1, lst2, avarage(lst1));
 	while (!checker(lst1, lst2))
 	{
-		str = calcul(lst1, lst2);
-		ft_choose(lst1, lst2, str);
+		calcul(lst1, lst2);
+		//ft_choose(lst1, lst2, str);
 	}
+	show_list(lst1, lst2);
 	ft_putstr("Ended successfully\n");
 }

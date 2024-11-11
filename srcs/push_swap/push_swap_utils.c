@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:48:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 21:54:34 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:42:24 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ void	ft_rev_rotate(t_list **list, int l)
 void	ft_push(t_list **lst1, t_list **lst2, int l)
 {
 	if (!*lst1)
-		return(ft_putstr("pa or pb null\n"));
-	if (!*lst2)
+		return(ft_putstr("pa or pb null\n"));// a enlever
+	if (!*lst2 && *lst1)
 	{
 		*lst2 = *lst1;
 		*lst1 = (*lst1)->next;
 		(*lst1)->prev = NULL;
 		(*lst2)->next = NULL;
 	}
-	else
+	else if (*lst2 && *lst1)
 	{
 		(*lst2)->prev = *lst1;
 		if ((*lst1)->next)
