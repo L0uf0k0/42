@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:33:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 19:44:54 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:32:11 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	valid_num(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && str[i] != ' '
-			&& str[i] != '-' && str[i] != '+')
+			&& str[i] != '-' && str[i] != '+' && str[i] != '\n')
 		{
 			ft_putstr("Only numbers and spaces please!\n");
 			return (0);
