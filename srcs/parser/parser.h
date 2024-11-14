@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 20:44:35 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:48:15 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 //struct
 typedef struct s_list
 {
-	int	*data;
 	struct s_list	*next;
 	struct s_list	*prev;
+	int	needed;
+	int	*data;
 }	t_list;
 
 //ft_split.c

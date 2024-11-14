@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/11 23:46:45 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:48:03 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
 //struct
 typedef struct s_list
 {
-	int	*data;
 	struct s_list	*next;
 	struct s_list	*prev;
+	int	*data;
+	int	needed;
 }	t_list;
 
 void	ft_swap(t_list **list, int l);
 void    process(t_list **lst1, t_list **lst2);
-char    *calcul(t_list **lst1, t_list **lst2);
+void    calcul(t_list **lst1, t_list **lst2);
 int	checker(t_list **lst1, t_list **lst2, int size);
 void	ft_choose(t_list **lst1, t_list **lst2, char *str);
 void	ft_rotate(t_list **list, int l);
