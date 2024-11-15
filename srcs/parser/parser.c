@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:03:46 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 14:39:12 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:31:31 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	list_constructor(t_list **base, t_list *new)
 		new->prev = ft_lstlast(*base);
 		ft_lstlast(*base)->next = new;
 	}
+	new->cost = 99;
+	new->sens = 11;
 	return (1);
 }
 

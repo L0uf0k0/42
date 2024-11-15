@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:52:03 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/13 21:12:51 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/15 15:42:08 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ void	process(t_list **lst1, t_list **lst2)
 	int	size;
 
 	size = ft_lstsize(*lst1);
-	if (ft_lstsize(*lst1) < 4)
+	if (size == 3)
 		sort3(lst1);
 	show_list(lst1, lst2);
-	(void)size;
 	while (!checker(lst1, lst2, size))
 		calcul(lst1, lst2);
 	ft_putstr("Ended successfully\n");
