@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/15 15:42:59 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/16 19:03:23 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define PARSER_H
 
 # include<stdlib.h>
-#include<unistd.h>
+# include<unistd.h>
 //struct
 typedef struct s_list
 {
 	struct s_list	*next;
 	struct s_list	*prev;
+	int	data;
 	int	cost;
-	int	*data;
 	int	sens;
 }	t_list;
 

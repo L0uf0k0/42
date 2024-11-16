@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:50:14 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/15 14:30:50 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:17:38 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ typedef struct s_list
 {
         struct s_list   *next;
 	struct s_list	*prev;
-        int            *data;
+        int            data;
         int            cost;
 	int	sens;
 }       t_list;
 
 int	valid_num(char *str);
 int	ft_isdigit(int c);
-int	check_dub(t_list *list);
+int	check_dub(t_list **list);
 void	ft_putstr(char *s);
 
 #endif

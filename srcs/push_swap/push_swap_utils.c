@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:48:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/11 15:42:24 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:19:32 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_swap(t_list **list, int l)
 {
 	int	temp;
 
-	temp = *((*list)->data);
-	*((*list)->data) = *((*list)->next->data);
-	*((*list)->next->data) = temp;
+	temp = (*list)->data;
+	(*list)->data = (*list)->next->data;
+	(*list)->next->data = temp;
 	if(l == 'a')
 		ft_putstr("sa\n");
 	else if (l == 'b')

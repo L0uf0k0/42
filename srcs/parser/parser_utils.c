@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:16:31 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 20:44:08 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:58:20 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,45 @@ int	ft_isdigit(int c)
 {
 	return (c >= 48 && c <= 57);
 }
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*ptr;
+	size_t			i;
+
+	i = 0;
+	ptr = (unsigned char *)s;
+	while (i < n)
+	{
+		ptr[i] = (unsigned char)c;
+		i++;
+	}
+	return (s);
+}
+void	*ft_calloc(size_t num_elements, size_t element_size)
+{
+	void	*arr;
+	int		size;
+
+	size = num_elements * element_size;
+	arr = malloc(size);
+	if (!arr)
+		return (0);
+	ft_memset(arr, 0, size);
+	return (arr);
+}
 
 t_list	*ft_lstnew(int data)
 {
 	t_list	*new;
-	int	*temp;
 
-	temp = malloc(sizeof(int) * 11);
-	if (!temp)
-		return (NULL);
-	*temp = data;
-	new = malloc(sizeof(t_list));
+	new = (t_list *)calloc(1, sizeof(t_list));
 	if (!new)
-	{
-		free(temp);
 		return (NULL);
-	}
-	new->data = temp;
+	new->data = data;
 	new->next = NULL;
 	new->prev = NULL;
+	new->cost = 100;
+	new->sens = 11;
 	return (new);
 }
 
@@ -58,7 +78,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	if ((*lst)->next)
 		ft_lstclear(&(*lst)->next, (*del));
-	del((*lst)->data);
+	del(&(*lst)->data);
 	free(*lst);
 	*lst = NULL;
 }

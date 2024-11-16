@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 00:52:12 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/15 15:47:35 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:17:11 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main (int argc, char *argv[])
 	lst1 = parser(argv[1]);
 	if (!lst1)
 		return (-1); //free
-	if (!check_dub(lst1))
+	if (!check_dub(&lst1))
 	{
 		//free la liste
 		ft_putstr("Only differents numbers please!\n");

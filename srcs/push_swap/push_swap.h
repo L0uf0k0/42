@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/15 15:43:13 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:17:14 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_list
 {
 	struct s_list	*next;
 	struct s_list	*prev;
-	int	*data;
+	int	data;
 	int	cost;
 	int	sens;
 }	t_list;
@@ -42,7 +42,7 @@ t_list	*parser(char *str);
 t_list	*ft_lstlast(t_list *list);
 void	ft_putstr(char *s);
 int	 valid_num(char *str);
-int	check_dub(t_list *list);
+int	check_dub(t_list **list);
 int	ft_lstsize(t_list *lst);
 void	sort3(t_list **lst1);
 

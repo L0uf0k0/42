@@ -6,11 +6,12 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:33:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/15 15:48:55 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/16 19:01:37 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"validater.h"
+#include<stdio.h>
 
 int	valid_num(char *str)
 {
@@ -35,20 +36,22 @@ int	valid_num(char *str)
 	return (1);
 }
 
-int	check_dub(t_list *list)
+int	check_dub(t_list **list)
 {
-	t_list	*lst;
+	t_list	*temp1;
+	t_list	*temp2;
 
-	while (list)
+	temp1 = *list;
+	while (temp1)
 	{
-		lst = list->next;
-		while (lst)
+		temp2 = temp1->next;
+		while (temp2)
 		{
-			if (*(list->data) == *(lst->data))
+			if (temp1->data == temp2->data)
 				return (0);
-			lst = lst->next;
+			temp2 = temp2->next;
 		}
-		list = list->next;
+		temp1 = temp1->next;
 	}
 	return (1);
 }

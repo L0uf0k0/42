@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:00:56 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/10 22:16:40 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:21:49 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void show_list(t_list **lst1, t_list **lst2)
 	printf("Liste 1:\n");
 	while (temp1)
 	{
-		printf("%d\n", (*(temp1->data)));
+		printf("%d\n", temp1->data);
 		temp1 = temp1->next;
 	}
 	printf("\n\nListe 2:\n");
 	while (temp2)
 	{
-		printf("%d\n", (*(temp2->data)));
+		printf("%d\n", temp2->data);
 		temp2 = temp2->next;
 	}
 	printf("\n\n\n");
