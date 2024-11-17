@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/17 13:12:41 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/17 23:46:46 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	pass_a_to_b(t_list **lst1, t_list **lst2, t_list *cheapest)
 	ft_push(lst1, lst2, 'b');
 }
 
-void	calcul(t_list **lst1, t_list **lst2)
+void	calcul(t_list **lst1, t_list **lst2, int size)
 {
 	t_list	*cheapest;
 
@@ -117,6 +117,6 @@ void	calcul(t_list **lst1, t_list **lst2)
 	else
 	{
 		sort3(lst1);
-		push_back(lst1, lst2);
+		push_back(lst1, lst2, size);
 	}
 }

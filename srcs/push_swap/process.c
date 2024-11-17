@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:52:03 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/17 13:34:10 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/17 23:45:31 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	sort3(t_list **lst1)
 	}
 }
 
-void	push_back(t_list **lst1, t_list **lst2)
+void	push_back(t_list **lst1, t_list **lst2, int size)
 {
 	int count;
 	char	rot;
 	t_list	*temp;
 
-	while (!checker(lst1, lst2, ft_lstsize(*lst1) + ft_lstsize(*lst2)))
+	while (!checker(lst1, lst2, size))
 	{
 		rot = 'f';
 		count = 0;
@@ -91,7 +91,7 @@ void	sort4(t_list **lst1, t_list **lst2)
 {
 	ft_push(lst1, lst2, 'b');
 	sort3(lst1);
-	push_back(lst1, lst2);
+	push_back(lst1, lst2, 4);
 }
 
 void	process(t_list **lst1, t_list **lst2)
@@ -107,7 +107,7 @@ void	process(t_list **lst1, t_list **lst2)
 		sort4(lst1, lst2);
 	while (!checker(lst1, lst2, size))
 	{
-		calcul(lst1, lst2);
+		calcul(lst1, lst2, size);
 	}
 	show_list(lst1, lst2);
 	ft_putstr("Ended successfully\n");//free la liste
