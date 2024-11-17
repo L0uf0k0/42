@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/17 00:58:21 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/17 13:17:35 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	 valid_num(char *str);
 int	check_dub(t_list **list);
 int	ft_lstsize(t_list *lst);
 void	sort3(t_list **lst1);
+int     find_dist(t_list **lst1, t_list **lst2, t_list *node);
 
 //debug
 void	show_list(t_list **lst1, t_list **lst2);
