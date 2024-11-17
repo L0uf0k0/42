@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:52:03 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/17 01:19:41 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/17 12:49:45 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	push_back(t_list **lst1, t_list **lst2)
 {
 	while (!checker(lst1, lst2, ft_lstsize(*lst1) + ft_lstsize(*lst2)))
 	{
-		if (*lst2 && (*lst2)->data < (*lst1)->data && (*lst2)->data > ft_lstlast(*lst1)->data)
+		if (*lst2 && (((*lst2)->data < (*lst1)->data && (*lst2)->data > ft_lstlast(*lst1)->data)
+		|| ((*lst2)->data < (*lst1)->data && (*lst1)->data < ft_lstlast(*lst1)->data)))
 			ft_push(lst2, lst1, 'a');
 		else
 			ft_rotate(lst1, 'a');

@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/17 01:30:36 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/17 12:57:20 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	find_dist_b(t_list **lst2, t_list *node, int ret_a)
 	count = 0;
 	ret = (ret_a * 10) + 1;
 	median = ft_lstsize(*lst2) / 2;
-	while (temp2 && node->data > temp2->data && node->prev->data < temp2->data)
+	while (temp2 && node->prev && node->data > temp2->data && node->prev->data < temp2->data)
 	{
 		count++;
 		temp2 = temp2->next;
