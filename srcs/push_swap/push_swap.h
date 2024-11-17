@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/16 18:17:14 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/17 00:58:21 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_rev_rotate(t_list **list, int l);
 void	ft_push(t_list **lst1, t_list **lst2, int l);
 void	calcul(t_list **lst1, t_list **lst2);
 int	checker(t_list **lst1, t_list **lst2, int size);
+void	push_back(t_list **lst1, t_list **lst2);
 
 void	ft_ss(t_list **lst1, t_list **lst2);
 void	ft_rr(t_list **lst1, t_list **lst2);

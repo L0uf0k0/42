@@ -6,11 +6,12 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/15 15:35:32 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/17 01:30:36 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
+#include<stdio.h>
 
 int	find_dist_b(t_list **lst2, t_list *node, int ret_a)
 {
@@ -28,7 +29,7 @@ int	find_dist_b(t_list **lst2, t_list *node, int ret_a)
 		count++;
 		temp2 = temp2->next;
 	}
-	if (count > median)
+	if (count > median && ret / 10 == 2)
 	{
 		ret += 1;
 		count = median - count;
@@ -59,7 +60,7 @@ int	find_dist(t_list **lst1, t_list **lst2, t_list *node)
 		ret = 2;
 		count = median - count;
 	}
-	node->cost = count;
+	node->cost += count;
 	return(find_dist_b(lst2, node, ret));
 }
 
@@ -87,14 +88,14 @@ t_list	*find_cheapest(t_list **lst1, t_list **lst2)
 
 void	pass_a_to_b(t_list **lst1, t_list **lst2, t_list *cheapest)
 {
-	while(*lst1 != cheapest)
+	while(!cheapest && *lst1 != cheapest)
 	{
 		if ((cheapest->sens) / 10 == 1)
 			ft_rotate(lst1, 'a');
 		else
 			ft_rev_rotate(lst1, 'a');
 	}
-	while (cheapest->data > (*lst2)->data && cheapest->prev->data < (*lst2)->data)
+	while (!cheapest && cheapest->data > (*lst2)->data && cheapest->prev->data < (*lst2)->data)
 	{
 		if ((cheapest->sens) % 10 == 1)
 			ft_rotate(lst2, 'b');
@@ -116,7 +117,6 @@ void	calcul(t_list **lst1, t_list **lst2)
 	else
 	{
 		sort3(lst1);
-		while(*lst2)
-			ft_push(lst2, lst1, 'b');
+		push_back(lst1, lst2);
 	}
 }
