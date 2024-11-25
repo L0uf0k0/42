@@ -6,12 +6,12 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/17 23:46:46 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:45:00 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
-#include<stdio.h>
+//#include<stdio.h>
 
 int	find_dist_b(t_list **lst2, t_list *node, int ret_a)
 {
@@ -24,7 +24,7 @@ int	find_dist_b(t_list **lst2, t_list *node, int ret_a)
 	count = 0;
 	ret = (ret_a * 10) + 1;
 	median = ft_lstsize(*lst2) / 2;
-	while (temp2 && node->prev && node->data > temp2->data && node->prev->data < temp2->data)
+	while (temp2 && (((node)->data < (temp2)->data && (((temp2)->data < ft_lstlast(temp2)->data && (node)->data < ft_lstlast(temp2)->data) || (node)->data > ft_lstlast(temp2)->data)) || ((node)->data > ft_max(temp2) && ft_lstlast(temp2)->data == ft_max(temp2))))
 	{
 		count++;
 		temp2 = temp2->next;
@@ -32,7 +32,7 @@ int	find_dist_b(t_list **lst2, t_list *node, int ret_a)
 	if (count > median && ret / 10 == 2)
 	{
 		ret += 1;
-		count = median - count;
+		count = count - median;
 	}
 	node->cost += count + 1;
 	node->sens = ret;
@@ -58,9 +58,9 @@ int	find_dist(t_list **lst1, t_list **lst2, t_list *node)
 	if (count > median)
 	{
 		ret = 2;
-		count = median - count;
+		count = count - median;
 	}
-	node->cost += count;
+	node->cost = count;
 	return(find_dist_b(lst2, node, ret));
 }
 
@@ -83,6 +83,7 @@ t_list	*find_cheapest(t_list **lst1, t_list **lst2)
 			cheapest = temp1;
 		temp1 = temp1->next;
 	}
+
 	return (cheapest);
 }
 
@@ -95,7 +96,7 @@ void	pass_a_to_b(t_list **lst1, t_list **lst2, t_list *cheapest)
 		else
 			ft_rev_rotate(lst1, 'a');
 	}
-	while (!cheapest && cheapest->data > (*lst2)->data && cheapest->prev->data < (*lst2)->data)
+	while (*lst2 && (((cheapest)->data < (*lst2)->data && (((*lst2)->data < ft_lstlast(*lst2)->data && (cheapest)->data < ft_lstlast(*lst2)->data) || (cheapest)->data > ft_lstlast(*lst2)->data)) || ((cheapest)->data > ft_max(*lst2) && ft_lstlast(*lst2)->data == ft_max(*lst2))))
 	{
 		if ((cheapest->sens) % 10 == 1)
 			ft_rotate(lst2, 'b');
@@ -109,6 +110,8 @@ void	calcul(t_list **lst1, t_list **lst2, int size)
 {
 	t_list	*cheapest;
 
+	ft_push(lst1, lst2, 'b');
+	ft_push(lst1, lst2, 'b');
 	if (*lst1 && ft_lstsize(*lst1) > 3)
 	{
 		cheapest = find_cheapest(lst1, lst2);

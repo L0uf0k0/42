@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:52:03 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/17 23:45:31 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:49:40 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,20 @@ void	sort3(t_list **lst1)
 	}
 }
 
+int ft_max(t_list *lst)
+{
+	int	max;
+
+	max = lst->data;
+	while (lst)
+	{
+		if (lst->data > max)
+			max = lst->data;
+		lst = lst->next;
+	}
+	return (max);
+}
+
 void	push_back(t_list **lst1, t_list **lst2, int size)
 {
 	int count;
@@ -78,7 +92,7 @@ void	push_back(t_list **lst1, t_list **lst2, int size)
 			}
 		if (count > ft_lstsize(*lst1) / 2 )
 			rot = 'b';
-		if (*lst2 && (((*lst2)->data < (*lst1)->data && (*lst2)->data > ft_lstlast(*lst1)->data) || ((*lst2)->data < (*lst1)->data && (*lst1)->data < ft_lstlast(*lst1)->data)))
+		if (*lst2 && (((*lst2)->data < (*lst1)->data && (((*lst1)->data < ft_lstlast(*lst1)->data && (*lst2)->data < ft_lstlast(*lst1)->data) || (*lst2)->data > ft_lstlast(*lst1)->data)) || ((*lst2)->data > ft_max(*lst1) && ft_lstlast(*lst1)->data == ft_max(*lst1))))
 			ft_push(lst2, lst1, 'a');
 		else if (rot == 'f')
 			ft_rotate(lst1, 'a');
@@ -109,6 +123,6 @@ void	process(t_list **lst1, t_list **lst2)
 	{
 		calcul(lst1, lst2, size);
 	}
-	show_list(lst1, lst2);
+	//show_list(lst1, lst2);
 	ft_putstr("Ended successfully\n");//free la liste
 }
