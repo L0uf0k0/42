@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/25 15:37:15 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/29 13:09:46 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_list
 	struct s_list	*prev;
 	int	data;
 	int	cost;
-	int	sens;
 }	t_list;
 
 void	ft_swap(t_list **list, int l);
@@ -48,6 +47,9 @@ int	check_dub(t_list **list);
 int	ft_lstsize(t_list *lst);
 void	sort3(t_list **lst1);
 int     find_dist(t_list **lst1, t_list **lst2, t_list *node);
+
+void rad_sort(t_list **lst1, t_list **lst2, int size);
+void index_list(t_list *lst);
 
 //debug
 void	show_list(t_list **lst1, t_list **lst2);

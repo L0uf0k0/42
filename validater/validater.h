@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:50:14 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/25 16:55:45 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:38:28 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_list
 	struct s_list	*prev;
         int	data;
         int	cost;
-	int	sens;
 }       t_list;
 
 int	valid_num(char *str);

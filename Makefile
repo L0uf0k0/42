@@ -6,11 +6,11 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/11/28 15:42:39 by malapoug         ###   ########.fr        #
+#    Updated: 2024/11/29 13:07:12 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = push_swapi
 
 CC = gcc
 

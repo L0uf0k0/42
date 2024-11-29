@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:16:31 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/25 16:57:17 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:41:06 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ t_list	*ft_lstnew(int data)
 	new->next = NULL;
 	new->prev = NULL;
 	new->cost = 0;
-	new->sens = 11;
 	return (new);
 }
 

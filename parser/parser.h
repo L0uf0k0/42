@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/16 19:03:23 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:38:19 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_list
 	struct s_list	*prev;
 	int	data;
 	int	cost;
-	int	sens;
 }	t_list;
 
 //ft_split.c
