@@ -6,11 +6,11 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:46:22 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/08 02:10:09 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:14:59 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"parser.h"
+#include "push_swap.h"
 
 int	count_w(const char *s, char c)
 {
@@ -63,7 +63,7 @@ char	**ft_split(const char *s, char c)
 
 	i = 0;
 	arr = (char **)malloc((count_w(s, c) + 1) * sizeof(char *));
-	if (!arr ||!s)
+	if (!arr || !s)
 		return (NULL);
 	while (*s)
 	{

@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validater.h                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 23:50:14 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/29 12:38:28 by malapoug         ###   ########.fr       */
+/*   Created: 2024/11/29 17:31:16 by malapoug          #+#    #+#             */
+/*   Updated: 2024/11/29 17:52:05 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VALIDATER_H
-# define VALIDATER_H
+#include "push_swap.h"
 
-# include<unistd.h>
-//struct
-typedef struct s_list
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-        struct s_list   *next;
-	struct s_list	*prev;
-        int	data;
-        int	cost;
-}       t_list;
+	char	*ptr;
+	int		size;
+	int		i;
 
-int	valid_num(char *str);
-int	ft_isdigit(int c);
-int	check_dub(t_list **list);
-void	ft_putstr(char *s);
-
-#endif
+	i = 0;
+	size = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
+	ptr = (char *)malloc(size * sizeof(char));
+	if (!ptr)
+		return (0);
+	while (*s1)
+	{
+		ptr[i++] = *s1;
+		s1++;
+	}
+	while (*s2)
+	{
+		ptr[i++] = *s2;
+		s2++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}

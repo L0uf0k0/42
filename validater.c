@@ -6,12 +6,29 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:33:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/16 19:01:37 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:42:54 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"validater.h"
-#include<stdio.h>
+#include "push_swap.h"
+
+int	checker(t_list **lst1, t_list **lst2, int size)
+{
+	t_list	*lst;
+	int		temp;
+
+	if (ft_lstsize(*lst1) != size || ft_lstsize(*lst2) > 0)
+		return (0);
+	lst = *lst1;
+	while (lst && lst->next)
+	{
+		temp = lst->data;
+		lst = lst->next;
+		if (lst->data < temp)
+			return (0);
+	}
+	return (1);
+}
 
 int	valid_num(char *str)
 {

@@ -6,11 +6,11 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/11/29 13:07:12 by malapoug         ###   ########.fr        #
+#    Updated: 2024/11/30 16:23:42 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swapi
+NAME = push_swap
 
 CC = gcc
 
@@ -20,19 +20,21 @@ AR = ar -crs
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = push_swap/main.c\
-	push_swap/process.c\
-	push_swap/push_swap_utils.c\
-	push_swap/push_swap_utils_doubles.c\
-	push_swap/calculs.c\
-	parser/ft_atoi.c\
-	parser/ft_split.c\
-	parser/ft_substr.c\
-	parser/parser.c\
-	parser/parser_utils.c\
-	validater/ft_putstr.c\
-	validater/validater.c\
-	push_swap/show_list.c
+SRCS = main.c\
+	process.c\
+	hard_sort.c\
+	push_swap_utils.c\
+	calculs.c\
+	ft_atoi.c\
+	ft_split.c\
+	ft_substr.c\
+	ft_strjoin.c\
+	parser.c\
+	parser_utils.c\
+	lst_actions.c\
+	ft_putstr.c\
+	validater.c\
+	show_list.c
 
 OBJS = $(SRCS:.c=.o)
 
