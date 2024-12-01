@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:48:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/30 16:13:53 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/01 16:00:07 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 void	ft_swap(t_list **list, int l)
 {
-	int	temp;
+	t_list *first;
+	t_list *second;
 
-	temp = (*list)->data;
-	(*list)->data = (*list)->next->data;
-	(*list)->next->data = temp;
+	if (!list || !(*list) || !((*list)->next)) // Vérifie si l'échange est possible
+		return;
+	first = *list;
+	second = first->next;
+	if (second->next)
+		second->next->prev = first;
+	first->next = second->next;
+	second->prev = first->prev;
+	second->next = first;
+	first->prev = second;
+	*list = second;
 	if (l == 'a')
 		ft_putstr("sa\n");
 	else if (l == 'b')
@@ -27,20 +36,42 @@ void	ft_swap(t_list **list, int l)
 
 void	ft_rotate(t_list **list, int l)
 {
-	t_list	*temp;
+	t_list *first;
+	t_list *last;
 
-	temp = (*list);
-	while (temp && temp->next)
-	{
-		ft_swap(&temp, 'c');
-		temp = temp->next;
-	}
+	if (!list || !(*list) || !((*list)->next))
+		return;
+	first = *list;
+	last = ft_lstlast(*list);
+	*list = first->next;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
 	if (l == 'a')
 		ft_putstr("ra\n");
 	else if (l == 'b')
 		ft_putstr("rb\n");
 }
 
+void	ft_rev_rotate(t_list **list, int l)
+{
+	t_list *last;
+
+	if (!list || !(*list) || !((*list)->next))
+		return;
+	last = ft_lstlast(*list);
+	last->prev->next = NULL;
+	last->next = *list;
+	(*list)->prev = last;
+	*list = last;
+	if (l == 'a')
+		ft_putstr("rra\n");
+	else if (l == 'b')
+		ft_putstr("rrb\n");
+}
+
+
+/*
 void	ft_rev_rotate(t_list **list, int l)
 {
 	t_list	*temp;
@@ -57,7 +88,7 @@ void	ft_rev_rotate(t_list **list, int l)
 	else if (l == 'b')
 		ft_putstr("rrb\n");
 }
-
+*/
 void	ft_push(t_list **lst1, t_list **lst2, int l)
 {
 	if (!*lst2 && *lst1)

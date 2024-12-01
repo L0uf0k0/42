@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/01 03:23:10 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:18:51 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int		ft_lstsize(t_list *lst);
 int		ft_isdigit(int c);
 
 //validater
-int	 push_back_cond(t_list **lst1, t_list **lst2);
+int	push_back_cond(t_list **lst1, t_list **lst2);
+int	push_back_cond_inv(t_list **lst, t_list **node);
 int		checker(t_list **lst1, t_list **lst2, int size);
 int		valid_num(char *str);
 int		check_dub(t_list **list);

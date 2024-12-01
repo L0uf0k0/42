@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:52:03 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/01 04:15:45 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:13:25 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ int	ft_min(t_list *lst)
 	return (min);
 }
 
+int	push_back_cond_inv(t_list **lst, t_list **node)
+{
+	if (!*node)
+		return (0);
+	if ((*node)->data > (*lst)->data && (*node)->data < ft_lstlast(*lst)->data
+		&& (*lst)->data < ft_lstlast(*lst)->data)
+		return (1);
+	if ((*node)->data > ft_max(*lst)
+		&& (*lst)->data == ft_max(*lst))
+		return (1);
+	if ((*node)->data < ft_min(*lst)
+		&& ft_lstlast(*lst)->data == ft_min(*lst))
+		return (1);
+	else
+		return (0);
+}
+
 int	push_back_cond(t_list **lst, t_list **node)
 {
 	if (!*node)
@@ -47,10 +64,11 @@ int	push_back_cond(t_list **lst, t_list **node)
 	if ((*node)->data < (*lst)->data && (*node)->data > ft_lstlast(*lst)->data
 		&& (*lst)->data > ft_lstlast(*lst)->data)
 		return (1);
-	else if ((*node)->data > ft_max(*lst)
+	if ((*node)->data > ft_max(*lst)
 		&& ft_lstlast(*lst)->data == ft_max(*lst))
 		return (1);
-	else if ((*node)->data < ft_min(*lst) && (*lst)->data == ft_min(*lst))
+	if ((*node)->data < ft_min(*lst)
+		&& (*lst)->data == ft_min(*lst))
 		return (1);
 	else
 		return (0);
@@ -80,15 +98,15 @@ void	process(t_list **lst1, t_list **lst2)
 		sort4(lst1, lst2);
 	else if (size == 5)
 		sort5(lst1, lst2, size);
-	if (size < 10 && !checker(lst1, lst2, size))
+	else if (size < 10 && !checker(lst1, lst2, size))
 		force_sort(lst1, lst2);
-	else
+	else if (size > 5 && !checker(lst1, lst2, size))
 	{
 		ft_push(lst1, lst2, 'b');
 		ft_push(lst1, lst2, 'b');
 		while(!checker(lst1, lst2, size))
 			calcul(lst1, lst2, size);
 	}
-	if (PRINT)
-		show_list(lst1, lst2);
+	//if (PRINT)
+		//show_list(lst1, lst2);
 }
