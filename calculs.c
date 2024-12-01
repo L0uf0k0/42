@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/01 18:44:26 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/01 20:36:39 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	find_dist_b(t_list **lst2, t_list *node, int rot_a, int cond(t_list**, t_lis
 	int	median;
 	int	rot;
 
-	if(!(lst2))
+	if (!(lst2))
 		return (rot_a * 10);
 	temp2 = *lst2;
 	count = 0;
@@ -41,7 +41,7 @@ int	find_dist_b(t_list **lst2, t_list *node, int rot_a, int cond(t_list**, t_lis
 	if (count > median)
 	{
 		rot += 1;
-		count = count - median;
+		count = ft_lstsize(*lst2) - count;
 	}
 	if (rot == 22)
 		node->cost = ft_calc_rr_r(node->cost, count);
@@ -70,7 +70,7 @@ int	find_dist(t_list **lst1, t_list **lst2, t_list *node, int cond(t_list **, t_
 	if (count > median)
 	{
 		rot = 2;
-		count = count - median;
+		count = ft_lstsize(*lst1) - count;
 	}
 	node->cost = count;
 	node->sens = rot;
@@ -92,7 +92,8 @@ t_list	*find_cheapest(t_list **lst1, t_list **lst2, int cond(t_list**, t_list**)
 	cheapest = temp1;
 	while(temp1)
 	{
-		if (temp1->cost < cheapest->cost)
+		//printf("cheap cost:			%d\n", cheapest->cost);
+		if (temp1->cost <= cheapest->cost)
 			cheapest = temp1;
 		temp1 = temp1->next;
 	}
@@ -188,6 +189,9 @@ void	push_back_algo(t_list **lst1, t_list **lst2, int size)
 		if (*lst2)
 		{
 			cheapest = find_cheapest(lst2, lst1, push_back_cond);
+			//show_list(lst1, lst2);
+			//show_cost(lst2);
+			//printf("choisi:	%d\n\n\n", cheapest->data);
 			pass_b_to_a(lst1, lst2, cheapest);
 		}
 		else

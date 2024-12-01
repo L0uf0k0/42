@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/01 17:18:51 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:54:31 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int		ft_strlen(const char *str);
 
 //debug
 void	show_list(t_list **lst1, t_list **lst2);
+void	show_cost(t_list **lst);
 
 #endif
