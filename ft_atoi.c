@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_list.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 22:00:56 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/16 18:21:49 by malapoug         ###   ########.fr       */
+/*   Created: 2024/11/08 01:53:40 by malapoug          #+#    #+#             */
+/*   Updated: 2024/11/29 13:43:12 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
-#include<stdio.h>
+#include "push_swap.h"
 
-void show_list(t_list **lst1, t_list **lst2)
+int	ft_atoi(const char *str)
 {
-	t_list	*temp1;
-	t_list	*temp2;
+	int	signe;
+	int	res;
 
-	temp1 = *lst1;
-	temp2 = *lst2;
-	printf("Liste 1:\n");
-	while (temp1)
+	signe = 1;
+	res = 0;
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		printf("%d\n", temp1->data);
-		temp1 = temp1->next;
+		signe *= (44 - *str);
+		str++;
 	}
-	printf("\n\nListe 2:\n");
-	while (temp2)
+	while (*str && *str >= '0' && *str <= '9')
 	{
-		printf("%d\n", temp2->data);
-		temp2 = temp2->next;
+		res = res * 10 + (*str) - '0';
+		str++;
 	}
-	printf("\n\n\n");
+	return (res * signe);
 }

@@ -6,16 +6,18 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 02:05:23 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/08 02:10:25 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:14:38 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"parser.h"
+#include "push_swap.h"
 
 int	ft_strlen(const char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i])
 		i++;

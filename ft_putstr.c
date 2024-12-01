@@ -6,11 +6,11 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:54:48 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/09 00:36:56 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:14:13 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"validater.h"
+#include "push_swap.h"
 
 void	ft_putstr(char *s)
 {
