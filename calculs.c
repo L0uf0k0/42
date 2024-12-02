@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/01 20:36:39 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/01 20:52:28 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ t_list	*find_cheapest(t_list **lst1, t_list **lst2, int cond(t_list**, t_list**)
 	cheapest = temp1;
 	while(temp1)
 	{
-		//printf("cheap cost:			%d\n", cheapest->cost);
-		if (temp1->cost <= cheapest->cost)
+		if (temp1->cost < cheapest->cost)
 			cheapest = temp1;
 		temp1 = temp1->next;
 	}
@@ -210,6 +209,9 @@ void	calcul(t_list **lst1, t_list **lst2, int size)
 	if (*lst1 && ft_lstsize(*lst1) > 3)
 	{
 		cheapest = find_cheapest(lst1, lst2, push_back_cond_inv);
+		//show_list(lst1, lst2);
+		//show_cost(lst1);
+		//printf("choisi:	%d\n\n\n", cheapest->data);
 		pass_a_to_b(lst1, lst2, cheapest);
 	}
 	else
