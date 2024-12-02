@@ -136,9 +136,9 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Alias pour git
 alias gs='git status'
-alias ga='git add'
-alias gco='git commit'
-alias gpu='git push'
+alias ga='git add -A'
+alias gc='git commit -m'
+alias gp='git push'
 alias gco='git checkout'
 alias gl='git log --oneline --graph --decorate --pretty -n 5'
 
@@ -197,12 +197,11 @@ Bienvenue, $(whoami)!
 }
 welcome
 
-# Ajouter automatiquemen sudo si tu l'as oublié
+# Ajouter automatiquement sudo si tu l'as oublié
 alias please='sudo $(history -p !!)'
 
 alias gm='git clone git@github.com:L0uf0k0/42.git MAIN'
 alias l='git@github.com:L0uf0k0/42.git'
-alias gs='git status'
 
 clb() {
     if [ "$#" -ne 1 ]; then
@@ -223,5 +222,14 @@ function reboot() {
 	reset && source ~/.bashrc && cd ~
 }
 
+alias rf='rm -Rf'
 alias re='clear'
-alias rf ='rm -Rf'
+
+function qs() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: sc <search>"
+        return 1
+    fi
+    local sc=$1
+   	grep "$sc" -r
+}

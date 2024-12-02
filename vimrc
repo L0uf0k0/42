@@ -26,6 +26,9 @@ set listchars=tab:·\ ,trail:•  " Définissez les symboles pour tabulations et
 
 nnoremap \j :12,$s/    /\t/g<CR>
 nnoremap \k :15,$g/^$/d<CR>
+nnoremap <C-w> :term<CR>
+tnoremap <C-q> <C-\><C-n>:bdelete!<CR>
+nnoremap <C-r> :%s///g<Left><Left><Left>
 
 "inoremap ( ()<Left>  " Auto-ferme les parenthèses
 "inoremap { {}<Left>  " Auto-ferme les accolades
