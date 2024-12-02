@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/01 20:52:28 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:25:58 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	find_dist_b(t_list **lst2, t_list *node, int rot_a, int cond(t_list**, t_lis
 	}
 	if (rot == 22)
 		node->cost = ft_calc_rr_r(node->cost, count);
+	if (rot == 11)
+		node->cost = ft_calc_rr_r(node->cost, count);
 	else
 		node->cost += count + 1;
 	node->sens = rot;
@@ -77,6 +79,23 @@ int	find_dist(t_list **lst1, t_list **lst2, t_list *node, int cond(t_list **, t_
 	return(find_dist_b(lst2, node, rot, cond));
 }
 
+/*
+void	best_range(t_list **lst)
+{
+	t_list	*temp;
+
+	if (!(*lst)->prev)
+		return ;
+	temp = (*lst)->next;
+	while (temp && temp->next)
+	{
+		temp->cost += (temp->prev->cost) + (temp->next->cost);
+		temp = temp->next;
+	}
+	ft_lstlast(*lst)->cost += (temp->prev->cost) + ((*lst)->cost);
+}
+*/
+
 t_list	*find_cheapest(t_list **lst1, t_list **lst2, int cond(t_list**, t_list**))
 {
 	t_list	*temp1;
@@ -102,17 +121,17 @@ t_list	*find_cheapest(t_list **lst1, t_list **lst2, int cond(t_list**, t_list**)
 void	pass_with_rr_r(t_list **lst1, t_list **lst2, t_list *cheapest, int cond(t_list**, t_list**))
 {
 	while (cheapest->sens == 22 && *lst1 != cheapest
-		&& !cond(lst2, lst1))
+		&& !cond(lst1, lst2))
 		ft_rrr(lst1, lst2);
 	while (cheapest->sens == 11 && *lst1 != cheapest
-		&& !cond(lst2, lst1))
+		&& !cond(lst1, lst2))
 		ft_rr(lst1, lst2);
 }
 
 void	pass_a_to_b(t_list **lst1, t_list **lst2, t_list *cheapest)
 {
 	pass_with_rr_r(lst1, lst2, cheapest, push_back_cond_inv);
-	while((*lst1) != cheapest)
+	while((*lst1) != cheapest && !push_back_cond_inv(lst2, lst1))
 	{
 		if ((cheapest->sens) / 10 == 1)
 			ft_rotate(lst1, 'a');
@@ -134,7 +153,7 @@ void	pass_b_to_a(t_list **lst1, t_list **lst2, t_list *cheapest)
 	if (!(*lst2))
 		return ;
 	pass_with_rr_r(lst2, lst1, cheapest, push_back_cond);
-	while((*lst2)->data != cheapest->data && !push_back_cond(lst1, lst2))
+	while((*lst2) != cheapest && !push_back_cond(lst1, lst2))
 	{
 		if ((cheapest->sens) / 10 == 1)
 			ft_rotate(lst2, 'b');
