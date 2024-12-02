@@ -6,19 +6,19 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:48:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/01 16:00:07 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 22:23:23 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_list **list, int l)
+void	ft_swap(t_l **list, int l)
 {
-	t_list *first;
-	t_list *second;
+	t_l	*first;
+	t_l	*second;
 
-	if (!list || !(*list) || !((*list)->next)) // Vérifie si l'échange est possible
-		return;
+	if (!list || !(*list) || !((*list)->next))
+		return ;
 	first = *list;
 	second = first->next;
 	if (second->next)
@@ -34,13 +34,13 @@ void	ft_swap(t_list **list, int l)
 		ft_putstr("sb\n");
 }
 
-void	ft_rotate(t_list **list, int l)
+void	ft_rotate(t_l **list, int l)
 {
-	t_list *first;
-	t_list *last;
+	t_l	*first;
+	t_l	*last;
 
 	if (!list || !(*list) || !((*list)->next))
-		return;
+		return ;
 	first = *list;
 	last = ft_lstlast(*list);
 	*list = first->next;
@@ -53,12 +53,12 @@ void	ft_rotate(t_list **list, int l)
 		ft_putstr("rb\n");
 }
 
-void	ft_rev_rotate(t_list **list, int l)
+void	ft_rev_rotate(t_l **list, int l)
 {
-	t_list *last;
+	t_l	*last;
 
 	if (!list || !(*list) || !((*list)->next))
-		return;
+		return ;
 	last = ft_lstlast(*list);
 	last->prev->next = NULL;
 	last->next = *list;
@@ -70,26 +70,7 @@ void	ft_rev_rotate(t_list **list, int l)
 		ft_putstr("rrb\n");
 }
 
-
-/*
-void	ft_rev_rotate(t_list **list, int l)
-{
-	t_list	*temp;
-
-	temp = ft_lstlast(*list);
-	temp = temp->prev;
-	while (temp)
-	{
-		ft_swap(&temp, 'c');
-		temp = temp->prev;
-	}
-	if (l == 'a')
-		ft_putstr("rra\n");
-	else if (l == 'b')
-		ft_putstr("rrb\n");
-}
-*/
-void	ft_push(t_list **lst1, t_list **lst2, int l)
+void	ft_push(t_l **lst1, t_l **lst2, int l)
 {
 	if (!*lst2 && *lst1)
 	{

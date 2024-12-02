@@ -6,13 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:22:28 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/30 20:14:13 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 22:22:17 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort3(t_list **lst1)
+void	sort3(t_l **lst1)
 {
 	int	temp1;
 	int	temp2;
@@ -20,8 +20,7 @@ void	sort3(t_list **lst1)
 
 	temp1 = (*lst1)->data;
 	temp2 = (*lst1)->next->data;
-	if ((*lst1)->next->next)
-		temp3 = (*lst1)->next->next->data;
+	temp3 = (*lst1)->next->next->data;
 	if (temp1 < temp2 && temp2 < temp3)
 		return ;
 	if (temp1 < temp2 && temp1 < temp3)
@@ -42,7 +41,7 @@ void	sort3(t_list **lst1)
 	}
 }
 
-void	sort5(t_list **lst1, t_list **lst2, int size)
+void	sort5(t_l **lst1, t_l **lst2, int size)
 {
 	ft_push(lst1, lst2, 'b');
 	ft_push(lst1, lst2, 'b');
@@ -50,19 +49,9 @@ void	sort5(t_list **lst1, t_list **lst2, int size)
 	push_back(lst1, lst2, size);
 }
 
-void	sort4(t_list **lst1, t_list **lst2)
+void	sort4(t_l **lst1, t_l **lst2)
 {
 	ft_push(lst1, lst2, 'b');
 	sort3(lst1);
 	push_back(lst1, lst2, 4);
-}
-
-void	force_sort(t_list **lst1, t_list **lst2)
-{
-	int	size;
-
-	size = ft_lstsize(*lst1);
-	while (ft_lstsize(*lst1) > 5)
-		ft_push(lst1, lst2, 'b');
-	sort5(lst1, lst2, size);
 }

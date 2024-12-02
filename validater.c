@@ -6,16 +6,16 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:33:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/30 16:42:54 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 22:35:40 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	checker(t_list **lst1, t_list **lst2, int size)
+int	checker(t_l **lst1, t_l **lst2, int size)
 {
-	t_list	*lst;
-	int		temp;
+	t_l	*lst;
+	int	temp;
 
 	if (ft_lstsize(*lst1) != size || ft_lstsize(*lst2) > 0)
 		return (0);
@@ -53,10 +53,10 @@ int	valid_num(char *str)
 	return (1);
 }
 
-int	check_dub(t_list **list)
+int	check_dub(t_l **list)
 {
-	t_list	*temp1;
-	t_list	*temp2;
+	t_l	*temp1;
+	t_l	*temp2;
 
 	temp1 = *list;
 	while (temp1)

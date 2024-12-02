@@ -6,13 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:03:46 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 17:43:22 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 22:36:43 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	list_constructor(t_list **base, t_list *new)
+int	list_constructor(t_l **base, t_l *new)
 {
 	if (!new)
 		return (0);
@@ -27,10 +27,10 @@ int	list_constructor(t_list **base, t_list *new)
 	return (1);
 }
 
-t_list	*parser(char *str)
+t_l	*parser(char *str)
 {
-	t_list	*list;
 	char	**arr;
+	t_l		*list;
 	int		temp;
 	int		i;
 

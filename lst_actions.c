@@ -6,17 +6,17 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:19:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/30 16:20:32 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 22:22:23 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_lstnew(int data)
+t_l	*ft_lstnew(int data)
 {
-	t_list	*new;
+	t_l	*new;
 
-	new = (t_list *)calloc(1, sizeof(t_list));
+	new = (t_l *)calloc(1, sizeof(t_l));
 	if (!new)
 		return (NULL);
 	new->data = data;
@@ -27,9 +27,9 @@ t_list	*ft_lstnew(int data)
 	return (new);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_l	*ft_lstlast(t_l *lst)
 {
-	t_list	*last;
+	t_l	*last;
 
 	last = lst;
 	if (!last)
@@ -41,7 +41,7 @@ t_list	*ft_lstlast(t_list *lst)
 	return (last);
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_l **lst, void (*del)(void *))
 {
 	if (!lst || !(*lst) || !del)
 		return ;
@@ -52,7 +52,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	*lst = NULL;
 }
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(t_l *lst)
 {
 	int	count;
 

@@ -1,50 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_list.c                                        :+:      :+:    :+:   */
+/*   min_max.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 22:00:56 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 22:23:38 by malapoug         ###   ########.fr       */
+/*   Created: 2024/12/02 22:04:28 by malapoug          #+#    #+#             */
+/*   Updated: 2024/12/02 22:22:35 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-void	show_cost(t_l **lst)
+t_l	*ft_min_address(t_l *lst)
 {
 	t_l	*temp;
+	t_l	*min;
 
-	temp = *lst;
-	printf("Costs:\n");
+	temp = lst;
+	min = temp;
 	while (temp)
 	{
-		printf("%d :	", temp->data);
-		printf("cost %d\n", temp->cost);
+		if (temp->data < min->data)
+			min = temp;
 		temp = temp->next;
 	}
+	return (min);
 }
 
-void	show_list(t_l **lst1, t_l **lst2)
+int	ft_max(t_l *lst)
 {
-	t_l	*temp1;
-	t_l	*temp2;
+	int	max;
 
-	temp1 = *lst1;
-	temp2 = *lst2;
-	printf("Liste 1:\n");
-	while (temp1)
+	max = lst->data;
+	while (lst)
 	{
-		printf("%d\n", temp1->data);
-		temp1 = temp1->next;
+		if (lst->data > max)
+			max = lst->data;
+		lst = lst->next;
 	}
-	printf("\n\nListe 2:\n");
-	while (temp2)
+	return (max);
+}
+
+int	ft_min(t_l *lst)
+{
+	int	min;
+
+	min = lst->data;
+	while (lst)
 	{
-		printf("%d\n", temp2->data);
-		temp2 = temp2->next;
+		if (lst->data < min)
+			min = lst->data;
+		lst = lst->next;
 	}
-	printf("\n\n\n");
+	return (min);
 }

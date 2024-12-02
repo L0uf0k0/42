@@ -6,15 +6,15 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 00:52:12 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/01 16:00:23 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 22:37:08 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_free_all(t_list **lst1, t_list **lst2, char *to_parse, char *str)
+int	ft_free_all(t_l **lst1, t_l **lst2, char *to_parse, char *str)
 {
-	t_list	*temp;
+	t_l	*temp;
 
 	while (*lst1)
 	{
@@ -58,9 +58,9 @@ char	*multiple_args(int ac, char **av)
 
 int	main(int ac, char *av[])
 {
-	t_list	*lst1;
-	t_list	*lst2;
 	char	*to_parse;
+	t_l		*lst1;
+	t_l		*lst2;
 
 	lst2 = NULL;
 	lst1 = NULL;
