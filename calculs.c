@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 18:25:58 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:48:28 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,10 @@ t_list	*find_cheapest(t_list **lst1, t_list **lst2, int cond(t_list**, t_list**)
 void	pass_with_rr_r(t_list **lst1, t_list **lst2, t_list *cheapest, int cond(t_list**, t_list**))
 {
 	while (cheapest->sens == 22 && *lst1 != cheapest
-		&& !cond(lst1, lst2))
+		&& !cond(lst2, &cheapest))
 		ft_rrr(lst1, lst2);
 	while (cheapest->sens == 11 && *lst1 != cheapest
-		&& !cond(lst1, lst2))
+		&& !cond(lst2, &cheapest))
 		ft_rr(lst1, lst2);
 }
 
