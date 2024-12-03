@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 22:34:26 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 23:39:40 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,7 @@ int	find_dist_b(t_l **lst2, t_l *node, int rot_a, int cond(t_l**, t_l**))
 		rot += 1;
 		count = ft_lstsize(*lst2) - count;
 	}
-	if (rot == 22)
-		node->cost = ft_calc_rr_r(node->cost, count);
-	if (rot == 11)
-		node->cost = ft_calc_rr_r(node->cost, count);
-	else
-		node->cost += count + 1;
+	check_rot(node, rot, count);
 	node->sens = rot;
 	return (rot);
 }

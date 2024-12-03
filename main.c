@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 00:52:12 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 22:37:08 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/03 00:02:23 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ char	*multiple_args(int ac, char **av)
 	int		i;
 
 	i = 1;
-	to_parse = malloc(sizeof(char *) * 1);
-	if (!to_parse)
-		return (NULL);
-	to_parse[0] = '\0';
+	to_parse = NULL;
 	while (i < ac)
 	{
 		tmp = ft_strjoin(to_parse, av[i]);

@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/02 22:28:17 by malapoug         ###   ########.fr        #
+#    Updated: 2024/12/02 23:48:00 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ debug : $(OBJS)
 	@echo $(NAME)" compiled with debug\n"
 
 %.o: %.c
-	@$(CC) -D PRINT=1 $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJS)

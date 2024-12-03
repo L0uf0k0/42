@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 22:40:23 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/02 23:48:11 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
-# ifndef PRINT
-#  define PRINT 0
-# endif
 
 //struct
 typedef struct s_l
@@ -55,6 +51,7 @@ int		ft_max(t_l *lst);
 int		ft_min(t_l *lst);
 
 //process2
+void	pass_rr_r(t_l **l1, t_l **l2, t_l *cheap, int cond(t_l**, t_l**));
 void	push_back_algo(t_l **lst1, t_l **lst2, int size);
 void	pass_rr_r(t_l **l1, t_l **l2, t_l *cheap, int cond(t_l**, t_l**));
 void	pass_a_to_b(t_l **lst1, t_l **lst2, t_l *cheapest);
@@ -72,6 +69,7 @@ void	sort5(t_l **lst1, t_l **lst2, int size);
 
 //calculs
 void	calcul(t_l **lst1, t_l **lst2, int size);
+int		ft_calc_rr_r(int cost, int count);
 int		find_dist(t_l **lst1, t_l **lst2, t_l *node, int cond(t_l **, t_l**));
 t_l		*find_cheap(t_l **lst1, t_l **lst2, int cond(t_l**, t_l**));
 
@@ -89,6 +87,7 @@ int		ft_lstsize(t_l *lst);
 int		ft_isdigit(int c);
 
 //validater
+void	check_rot(t_l *node, int rot, int count);
 int		checker(t_l **lst1, t_l **lst2, int size);
 int		valid_num(char *str);
 int		check_dub(t_l **list);

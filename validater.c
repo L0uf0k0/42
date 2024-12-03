@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:33:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 22:35:40 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/03 01:02:11 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,14 @@ int	check_dub(t_l **list)
 		temp1 = temp1->next;
 	}
 	return (1);
+}
+
+void	check_rot(t_l *node, int rot, int count)
+{
+	if (rot == 22)
+		node->cost = ft_calc_rr_r(node->cost, count);
+	if (rot == 11)
+		node->cost = ft_calc_rr_r(node->cost, count);
+	else
+		node->cost += count + 1;
 }
