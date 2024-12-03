@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 23:48:11 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/03 09:34:44 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_rev_rotate(t_l **list, int l);
 void	ft_push(t_l **lst1, t_l **lst2, int l);
 
 //push_swap_utils_doubles
+void	ft_ss(t_l **list1, t_l **lst2);
 void	ft_rr(t_l **lst1, t_l **lst2);
 void	ft_rrr(t_l **lst1, t_l **lst2);
 
