@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 22:29:30 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/03 19:27:21 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,34 @@ void	pass_b_to_a(t_l **lst1, t_l **lst2, t_l *cheap)
 	ft_push(lst2, lst1, 'a');
 }
 
-void	last_rotate_a(t_l **lst1, t_l *cheap)
+void	last_rotate(t_l **lst, t_l *cheap, int ab)
 {
-	while ((*lst1) != cheap)
+	while ((*lst) != cheap)
 	{
 		if ((cheap->sens) / 10 == 1)
-			ft_rotate(lst1, 'a');
+			ft_rotate(lst, ab);
 		else
-			ft_rev_rotate(lst1, 'a');
+			ft_rev_rotate(lst, ab);
 	}
+}
+
+void	pre_tri(t_l **lst1, t_l **lst2)
+{
+	t_l	*cheap;
+
+	if (ft_max(*lst1) > ft_max(*lst2))
+		ft_rev_rotate(lst1, 'a');
+	cheap = ft_max_address(*lst2);
+	cheap->sens = find_dist(lst2, NULL, cheap, push_cond);
+	last_rotate(lst2, cheap, 'b');
 }
 
 void	push_back_algo(t_l **lst1, t_l **lst2, int size)
 {
 	t_l	*cheap;
 
+	show_list(lst1, lst2);
+	pre_tri(lst1, lst2);
 	while (!checker(lst1, lst2, size))
 	{
 		if (*lst2)
@@ -90,7 +103,7 @@ void	push_back_algo(t_l **lst1, t_l **lst2, int size)
 		{
 			cheap = ft_min_address(*lst1);
 			cheap->sens = find_dist(lst1, NULL, cheap, push_back_cond);
-			last_rotate_a(lst1, cheap);
+			last_rotate(lst1, cheap, 'a');
 		}
 	}
 }

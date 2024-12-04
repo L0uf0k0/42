@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/03 09:34:44 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/03 19:21:18 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_rrr(t_l **lst1, t_l **lst2);
 void	process(t_l **lst1, t_l **lst2);
 
 //min_max
+t_l		*ft_max_address(t_l *lst);
 t_l		*ft_min_address(t_l *lst);
 int		ft_max(t_l *lst);
 int		ft_min(t_l *lst);
@@ -72,6 +73,7 @@ void	sort5(t_l **lst1, t_l **lst2, int size);
 void	calcul(t_l **lst1, t_l **lst2, int size);
 int		ft_calc_rr_r(int cost, int count);
 int		find_dist(t_l **lst1, t_l **lst2, t_l *node, int cond(t_l **, t_l**));
+int		find_dist_b(t_l **lst2, t_l *node, int rot_a, int cond(t_l**, t_l**));
 t_l		*find_cheap(t_l **lst1, t_l **lst2, int cond(t_l**, t_l**));
 
 //parser
