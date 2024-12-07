@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/03 19:21:18 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/07 13:21:32 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 //struct
 typedef struct s_l
 {
@@ -25,6 +28,10 @@ typedef struct s_l
 	int			cost;
 	int			sens;
 }		t_l;
+
+//main
+char	*multiple_args(int ac, char **av);
+int		ft_free_all(t_l **lst1, t_l **lst2, char *to_parse, char *str);
 
 //push_swap
 void	ft_swap(t_l **list, int l);
@@ -39,9 +46,9 @@ void	ft_rev_rotate(t_l **list, int l);
 void	ft_push(t_l **lst1, t_l **lst2, int l);
 
 //push_swap_utils_doubles
-void	ft_ss(t_l **list1, t_l **lst2);
-void	ft_rr(t_l **lst1, t_l **lst2);
-void	ft_rrr(t_l **lst1, t_l **lst2);
+void	ft_ss(t_l **list1, t_l **lst2, int c);
+void	ft_rr(t_l **lst1, t_l **lst2, int c);
+void	ft_rrr(t_l **lst1, t_l **lst2, int c);
 
 //process
 void	process(t_l **lst1, t_l **lst2);
@@ -104,6 +111,9 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_free_all(t_l **lst1, t_l **lst2, char *to_parse, char *str);
 int		ft_atoi(const char *str);
 int		ft_strlen(const char *str);
+
+//get_next_line
+char	*get_next_line(int fd);
 
 //debug
 void	show_list(t_l **lst1, t_l **lst2);

@@ -6,12 +6,46 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/29 18:50:53 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/07 17:21:38 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../push_swap.h"
 
+char	*ft_strchr(const char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	return (NULL);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*dup;
+	int		len;
+	int		i;
+
+	if (!s)
+		return (NULL);
+	i = 0;
+	len = ft_strlen(s);
+	dup = (char *)malloc((len + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
+	while (s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
 static char	*read_buffer(int fd, char *buf, char *backup)
 {
 	int		read_line;
@@ -52,7 +86,7 @@ static char	*extract(char *line)
 	if (line[count] == '\0' || line[1] == '\0')
 		return (0);
 	backup = ft_substr(line, count + 1, ft_strlen(line) - count);
-	if (*backup == '\0')
+	if (backup && *backup == '\0')
 	{
 		free(backup);
 		backup = NULL;
@@ -65,37 +99,22 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buf;
-	static char	*backup[1024];
+	static char	*backup;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
 	{
-		free(backup[fd]);
-		backup[fd] = NULL;
+		free(backup);
+		backup = NULL;
 		return (0);
 	}
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (0);
-	line = read_buffer(fd, buf, backup[fd]);
+	line = read_buffer(fd, buf, backup);
 	free(buf);
 	if (!line)
 		return (NULL);
-	backup[fd] = extract(line);
+	backup = extract(line);
 	return (line);
 }
 
-/*
-#include <stdio.h>
-#include <fcntl.h>
-int main()
-{
-	int fd = open("read_error.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-
-}
-*/
