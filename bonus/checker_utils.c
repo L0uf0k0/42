@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 00:52:12 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 12:44:53 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:11:42 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_free_all(t_l **lst1, t_l **lst2, char *to_parse, char *str)
 
 	while (*lst1)
 	{
-		temp = *lst1;
+		temp = (*lst1);
 		(*lst1) = (*lst1)->next;
 		free(temp);
 	}
@@ -45,9 +45,13 @@ char	*multiple_args(int ac, char **av)
 	while (i < ac)
 	{
 		tmp = ft_strjoin(to_parse, av[i]);
+		if (!tmp)
+			return (NULL);
 		free(to_parse);
 		to_parse = ft_strjoin(tmp, " ");
 		free(tmp);
+		if (!to_parse)
+			return (NULL);
 		i++;
 	}
 	return (to_parse);

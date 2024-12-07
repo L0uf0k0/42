@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 17:21:38 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/07 18:35:23 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*ft_strdup(const char *s)
 	dup[i] = '\0';
 	return (dup);
 }
+
 static char	*read_buffer(int fd, char *buf, char *backup)
 {
 	int		read_line;
@@ -84,7 +85,7 @@ static char	*extract(char *line)
 	while (line[count] != '\n' && line[count] != '\0')
 		count++;
 	if (line[count] == '\0' || line[1] == '\0')
-		return (0);
+		return (free(line), NULL);
 	backup = ft_substr(line, count + 1, ft_strlen(line) - count);
 	if (backup && *backup == '\0')
 	{

@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 00:52:12 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/03 00:02:23 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:06:39 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,27 @@ int	ft_free_all(t_l **lst1, t_l **lst2, char *to_parse, char *str)
 	return (1);
 }
 
-char	*multiple_args(int ac, char **av)
+char    *multiple_args(int ac, char **av)
 {
-	char	*to_parse;
-	char	*tmp;
-	int		i;
+        char    *to_parse;
+        char    *tmp;
+        int             i;
 
-	i = 1;
-	to_parse = NULL;
-	while (i < ac)
-	{
-		tmp = ft_strjoin(to_parse, av[i]);
-		free(to_parse);
-		to_parse = ft_strjoin(tmp, " ");
-		free(tmp);
-		i++;
-	}
-	return (to_parse);
+        i = 1;
+        to_parse = NULL;
+        while (i < ac)
+        {
+                tmp = ft_strjoin(to_parse, av[i]);
+                if (!tmp)
+                        return (NULL);
+                free(to_parse);
+                to_parse = ft_strjoin(tmp, " ");
+                free(tmp);
+                if (!to_parse)
+                        return (NULL);
+                i++;
+        }
+        return (to_parse);
 }
 
 int	main(int ac, char *av[])

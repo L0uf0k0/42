@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 13:21:32 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/07 18:20:41 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_l
 
 //main
 char	*multiple_args(int ac, char **av);
-int		ft_free_all(t_l **lst1, t_l **lst2, char *to_parse, char *str);
 
 //push_swap
 void	ft_swap(t_l **list, int l);

@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:23:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 13:37:44 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:10:14 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	check_instructions(t_l *lst1, t_l *lst2, int size)
 	{
 		if (ft_choose(&lst1, &lst2, instruct) == -1)
 			break ;
+		free(instruct);
 		instruct = get_next_line(0);
 	}
 	free(instruct);
@@ -65,7 +66,7 @@ void	check_instructions(t_l *lst1, t_l *lst2, int size)
 		return (ft_putstr("OK\n"));
 }
 
-int	 main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
 	char	*to_parse;
 	t_l		*lst1;
