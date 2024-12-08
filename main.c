@@ -12,9 +12,45 @@
 
 #include "pipex.h"
 
-int main(int ac, char **av)
+char	*get_path(char **envp, char *cmd)
 {
-	if (ac < 5 || access(av[1], R_OK) != 0 || access(av[ac - 1], R_OK) != 0)
-		return (write(1, "Error main case 1", 17));
+	char	**paths;
+	char	*cmd_path;
 
+	while (*envp)
+	{
+		if (ft_strncmp(*envp, "PATH=", 5) == 0)
+			break ;
+		(*envp)++;
+	}
+	paths = ft_split(*envp + 5, *":");//check
+	while (*paths)
+	{
+
+		cmd_path = ft_strjoin(*paths, cmd);
+		if (access(cmd_path, X_OK) == 0)
+			break ;
+		free(cmd_path);
+		cmd_path = NULL;
+		paths++;
+	}
+	return (cmd_path);
+}
+
+int main(int ac, char **av, char **envp)
+{
+	char	*cmd_path;
+	int	i;
+
+	if (ac < 5 || access(av[1], R_OK) != 0 || access(av[ac - 1], W_OK) != 0)
+	{
+		ft_putstr_fd("Error main case 1", 1);
+		return (1);
+	}
+	i = 1;
+	while (i < ac - 1)
+	{
+		cmd_path = get_path(envp, av[i]); //check
+		//fork here ?
+	}
 }

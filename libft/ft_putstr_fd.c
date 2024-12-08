@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 16:16:26 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/28 15:39:19 by malapoug         ###   ########.fr       */
+/*   Created: 2024/09/25 15:00:27 by malapoug          #+#    #+#             */
+/*   Updated: 2024/09/25 19:42:27 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <fcntl.h>
-#include <unistd.h>
+#include "libft.h"
 
-#ifndef PIPEX_H
-# define PIPEX_H
-
-
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	while (*s)
+	{
+		write (fd, s, 1);
+		s++;
+	}
+}

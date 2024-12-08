@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 16:16:26 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/28 15:39:19 by malapoug         ###   ########.fr       */
+/*   Created: 2024/09/14 18:02:32 by malapoug          #+#    #+#             */
+/*   Updated: 2024/09/28 00:28:52 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <fcntl.h>
-#include <unistd.h>
+#include "libft.h"
 
-#ifndef PIPEX_H
-# define PIPEX_H
+void	*ft_calloc(size_t num_elements, size_t element_size)
+{
+	void	*arr;
+	int		size;
 
-
-#endif
+	size = num_elements * element_size;
+	arr = malloc(size);
+	if (!arr)
+		return (0);
+	ft_memset(arr, 0, size);
+	return (arr);
+}

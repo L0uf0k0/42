@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 16:16:26 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/28 15:39:19 by malapoug         ###   ########.fr       */
+/*   Created: 2024/09/14 15:55:38 by malapoug          #+#    #+#             */
+/*   Updated: 2024/09/27 22:57:42 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <fcntl.h>
-#include <unistd.h>
+#include "libft.h"
 
-#ifndef PIPEX_H
-# define PIPEX_H
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+	size_t	j;
 
-
-#endif
+	if (*little == '\0')
+		return ((char *)big);
+	i = 0;
+	while (i < len && big[i])
+	{
+		j = 0;
+		while (i + j < len && big[i + j] && little[j]
+			&& big[i + j] == little[j])
+		{
+			j++;
+			if (little[j] == '\0')
+				return ((char *)(big + i));
+		}
+		i++;
+	}
+	return (0);
+}

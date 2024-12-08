@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/09 00:04:23 by malapoug          #+#    #+#              #
-#    Updated: 2024/11/26 16:15:35 by malapoug         ###   ########.fr        #
+#    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
+#    Updated: 2024/12/07 13:03:39 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,32 +14,83 @@ NAME = pipex
 
 CC = cc
 
+DEBUG = -fsanitize=address
+
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c
+SRCS =	main.c\
 
 OBJS = $(SRCS:.c=.o)
 
 RM = rm -f
 
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(cc) $(CFLAGS) -o $(NAME) $(OBJS)
+	@make -C libft/
+	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a -o $(NAME)
+	@echo $(NAME)" compiled\n"
 
-${NAME}: ${OBJ}
-	make -C srcs all
-	${CC} ${OBJ} -o ${NAME} -Lsrcs -lft
+debug : $(OBJS)
+	@make -C libft/
+	@$(CC) $(CFLAGS) $(OBJS) $(DEBUG) libft/libft.a -o $(NAME)
+	@echo $(NAME)" compiled with debug\n"
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	@make clean -C libft/
+	@$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
