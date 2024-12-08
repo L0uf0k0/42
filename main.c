@@ -40,7 +40,8 @@ char	*get_path(char **envp, char *cmd)
 int main(int ac, char **av, char **envp)
 {
 	char	*cmd_path;
-	int	i;
+	int		i;
+	int		pid;
 
 	if (ac < 5 || access(av[1], R_OK) != 0 || access(av[ac - 1], W_OK) != 0)
 	{
@@ -50,7 +51,14 @@ int main(int ac, char **av, char **envp)
 	i = 1;
 	while (i < ac - 1)
 	{
-		cmd_path = get_path(envp, av[i]); //check
-		//fork here ?
+		pid = fork();
+		if (pid == 0)
+		{
+			cmd_path = get_path(envp, av[i]); //check
+			if(exceve(cmd_path) == -1)
+				??
+
+		}
 	}
 }
+
