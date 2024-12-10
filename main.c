@@ -26,8 +26,7 @@ char	*get_path(char **envp, char *cmd)
 	paths = ft_split(*envp + 5, *":");//check
 	while (*paths)
 	{
-
-		cmd_path = ft_strjoin(*paths, cmd);
+		cmd_path = ft_strjoin(ft_strjoin(*paths, "/"), cmd);//check
 		if (access(cmd_path, X_OK) == 0)
 			break ;
 		free(cmd_path);
@@ -37,34 +36,44 @@ char	*get_path(char **envp, char *cmd)
 	return (cmd_path);
 }
 
-int	pipe_exec(char *cmd_path, char *cmd, char **envp)
+int	redirect(int pipefd[2], int fd)
+{
+	int	pipefd2[2];
+
+	if (fd == -1)
+	{
+		if (pipe(pipefd2) == -1)
+			return (ft_putstr_fd("Error in pipe", 2), -1);
+		close(pipefd2[0]);
+		dup2(pipefd[1], pipefd2[0]);//check
+		close(pipefd2[1]);
+	}
+	else
+	{
+		close(pipefd[0]);
+		dup2(pipefd[1], fd);//check
+		close(pipefd[1]);
+	}
+	return (1);
+}
+
+int	pipe_exec(char *cmd_path, char *cmd, char **envp, int	pipefd[2])
 {
 	char	**args;
-	int	pipefd[2];
 
-	args = ft_split(cmd);
-	if (pipe(pipefd) == -1)
-		return (ft_putstr_fd("Error in pipe", 2), -1);
-	if (exceve(cmd_path, args, envp) == -1)
+	redirect(pipefd, -1);
+	args = ft_split(cmd, *" ");
+	if (execve(cmd_path, args, envp) == -1)
 		return (ft_putstr_fd("Error in exec", 2), -1);//faire une fonction variadique pour free par exemple ici args?
+	return (1);
 }
 
-void	redircet(int pipefd[2])
-{
-	close(pipeft[0]);
-	dup2(pipefd[1], STDOUT_ FILEN0);
-	close(pipefd[1]);
-}
-
-int	forking_cmd(int	ac, char **av, char **envp)
+int	forking_cmd(int	ac, char **av, char **envp, int pipefd[2])
 {
 	char	*cmd_path;
 	int	pid;
 	int	i;
-	int	pipefd[2];
 
-	if (pipe(pipefd) == -1)
-		return (ft_putstr_fd("Error in pipe", 2), -1);
 	i = 1;
 	while (i < ac - 1)
 	{
@@ -73,29 +82,35 @@ int	forking_cmd(int	ac, char **av, char **envp)
 			return (-1);
 		else if (pid == 0)
 		{
-			redirect(pipefd);
 			cmd_path = get_path(envp, av[i]); //check
-			if(pipe_exec(cmd_path, av[i], envp) == -1)
+			if (pipe_exec(cmd_path, av[i], envp, pipefd) == -1)
 			{
 				free(cmd_path);
 				return (ft_putstr_fd("Error in pipe_exec", 2), -1);
 			}
 		}
 		i++;
-	}//close pipefd 0 et 1 ??
+	}
 	return (0);
 }
 
 int main(int ac, char **av, char **envp)
 {
+	int	pipefd1[2];
+	int	infile;
+	int	outfile;
 
-	if (ac < 5 || access(av[1], R_OK) != 0 || access(av[ac - 1], W_OK) != 0)
-	{
-		ft_putstr_fd("Error main case 1", 1);
-		return (1);
-	}
-	if (forking_cmd(ac, av, envp) == -1)
+	if (ac < 5)
+		return (ft_putstr_fd("Usage: file1 cmd1 ... cmd2 file2", 1), 1);
+	infile = open(av[1], O_RDONLY);
+	outfile = open(av[ac], O_WRONLY);
+	if (infile < 0 || outfile < 0)
+		ft_putnbr_fd(outfile, 2);
+	return (ft_putstr_fd("Error opening files\n", 2), 1);
+	redirect(pipefd1, infile);//check
+	if (forking_cmd(ac, av, envp, pipefd1) == -1)
 		return (ft_putstr_fd("Error in forking", 2), 1);
-
+	dup2(outfile, STDOUT_FILENO);
+	close(outfile);
 }
 
