@@ -13,6 +13,7 @@
 #include "libft/libft.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #ifndef PIPEX_H
 # define PIPEX_H

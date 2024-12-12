@@ -21,7 +21,7 @@ char	*get_path(char **envp, char *cmd)
 	{
 		if (ft_strncmp(*envp, "PATH=", 5) == 0)
 			break ;
-		(*envp)++;
+		envp++;
 	}
 	paths = ft_split(*envp + 5, *":");//check
 	while (*paths)
@@ -33,57 +33,47 @@ char	*get_path(char **envp, char *cmd)
 		cmd_path = NULL;
 		paths++;
 	}
+	//free
 	return (cmd_path);
 }
 
-int	redirect(int pipefd[2], int fd)
+void	redirect(int fd1, int fd2)
 {
-	int	pipefd2[2];
-
-	if (fd == -1)
-	{
-		if (pipe(pipefd2) == -1)
-			return (ft_putstr_fd("Error in pipe", 2), -1);
-		close(pipefd2[0]);
-		dup2(pipefd[1], pipefd2[0]);//check
-		close(pipefd2[1]);
-	}
-	else
-	{
-		close(pipefd[0]);
-		dup2(pipefd[1], fd);//check
-		close(pipefd[1]);
-	}
-	return (1);
+	dup2(fd1, fd2);//check
+	close(fd1);
 }
 
-int	pipe_exec(char *cmd_path, char *cmd, char **envp, int	pipefd[2])
+int	pipe_exec(char *cmd_path, char *cmd, char **envp)
 {
 	char	**args;
 
-	redirect(pipefd, -1);
 	args = ft_split(cmd, *" ");
+	free(args[0]);
+	args[0] = cmd_path;
 	if (execve(cmd_path, args, envp) == -1)
-		return (ft_putstr_fd("Error in exec", 2), -1);//faire une fonction variadique pour free par exemple ici args?
+		return (perror("Error in exec"), -1);//faire une fonction variadique pour free par exemple ici args?
 	return (1);
 }
 
-int	forking_cmd(int	ac, char **av, char **envp, int pipefd[2])
+int	forking_cmd(int	ac, char **av, char **envp)
 {
 	char	*cmd_path;
+	int	pipefd[2];
 	int	pid;
 	int	i;
 
-	i = 1;
+	i = 2;
 	while (i < ac - 1)
 	{
+		pipe(pipefd);
+		redirect(STDOUT_FILENO, pipefd[1]);
 		pid = fork();
 		if (pid < 0)
 			return (-1);
 		else if (pid == 0)
 		{
 			cmd_path = get_path(envp, av[i]); //check
-			if (pipe_exec(cmd_path, av[i], envp, pipefd) == -1)
+			if (pipe_exec(cmd_path, av[i], envp) == -1)
 			{
 				free(cmd_path);
 				return (ft_putstr_fd("Error in pipe_exec", 2), -1);
@@ -96,21 +86,20 @@ int	forking_cmd(int	ac, char **av, char **envp, int pipefd[2])
 
 int main(int ac, char **av, char **envp)
 {
-	int	pipefd1[2];
 	int	infile;
 	int	outfile;
 
 	if (ac < 5)
-		return (ft_putstr_fd("Usage: file1 cmd1 ... cmd2 file2", 1), 1);
+		return (ft_putstr_fd("Usage: file1 cmd1 ... cmdn file2", 1), 1);
 	infile = open(av[1], O_RDONLY);
-	outfile = open(av[ac], O_WRONLY);
+	outfile = open(av[ac - 1], O_WRONLY);
 	if (infile < 0 || outfile < 0)
-		ft_putnbr_fd(outfile, 2);
-	return (ft_putstr_fd("Error opening files\n", 2), 1);
-	redirect(pipefd1, infile);//check
-	if (forking_cmd(ac, av, envp, pipefd1) == -1)
+		perror("Error opening files\n");
+	redirect(infile, STDOUT_FILENO);
+	if (forking_cmd(ac, av, envp) == -1)
 		return (ft_putstr_fd("Error in forking", 2), 1);
-	dup2(outfile, STDOUT_FILENO);
+	redirect(STDOUT_FILENO, outfile);
 	close(outfile);
+	return (1);
 }
 
