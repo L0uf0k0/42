@@ -55,7 +55,7 @@ void	error(const char *str)
 
 void	redirect(int fd1[2], int fd2, int c)
 {
-	if (c == 'w' )
+	if (c == 'w')
 	{
 		close(fd1[0]);
 		dup2(fd1[1], fd2);
@@ -83,7 +83,7 @@ void	process(char **av, int ac, char **envp, int i, int ouf)
 			return(error("Error while piping\n"));
 		pid = fork();
 		if (pid < 0)
-			return(error("Error while forking\n%v"));
+			return(error("Error while forking\n"));
 		if (pid == 0)
 		{
 			redirect(pipefd, STDOUT_FILENO, 'w');

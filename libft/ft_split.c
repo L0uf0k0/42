@@ -51,10 +51,10 @@ static char	*ft_malloc_w(char *s, char c)
 
 void	ft_free_arr(char **arr, int i)
 {
-	while (i > 0 && arr)
+	while (i > 0)
 		free(arr[i--]);
-	if (arr)
-		free(arr);
+	free(arr[i]);
+	free(arr);
 }
 
 char	**ft_split(const char *s, char c)
