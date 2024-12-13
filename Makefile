@@ -18,7 +18,7 @@ DEBUG = -fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS =	main.c\
+SRCS =	pipex.c\
 
 OBJS = $(SRCS:.c=.o)
 

@@ -12,11 +12,22 @@
 
 #include "pipex.h"
 
+int	arr_size(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while(arr[i])
+		i++;
+	return (i);
+}
+
 char	*get_path(char **envp, char *cmd)
 {
 	char	**paths;
 	char	*cmd_path;
 
+	cmd_path = NULL;
 	while (*envp)
 	{
 		if (ft_strncmp(*envp, "PATH=", 5) == 0)
@@ -33,13 +44,11 @@ char	*get_path(char **envp, char *cmd)
 		cmd_path = NULL;
 		paths++;
 	}
-	//free
 	return (cmd_path);
 }
 
-void	error(char *str)
+void	error(const char *str)
 {
-//free all
 	perror(str);
 	exit(EXIT_FAILURE);
 }
@@ -50,13 +59,13 @@ void	redirect(int fd1[2], int fd2, int c)
 	{
 		close(fd1[0]);
 		dup2(fd1[1], fd2);
-		close(fd1[1]);//?
+		close(fd1[1]);
 	}
 	if (c == 'r')
 	{
 		close(fd1[1]);
 		dup2(fd1[0], fd2);
-		close(fd1[0]);//?
+		close(fd1[0]);
 	}
 
 }
@@ -74,7 +83,7 @@ void	process(char **av, int ac, char **envp, int i, int ouf)
 			return(error("Error while piping\n"));
 		pid = fork();
 		if (pid < 0)
-			return(error("Error while forking\n"));
+			return(error("Error while forking\n%v"));
 		if (pid == 0)
 		{
 			redirect(pipefd, STDOUT_FILENO, 'w');
@@ -88,6 +97,7 @@ void	process(char **av, int ac, char **envp, int i, int ouf)
 			waitpid(pid, NULL, 0);
 		}
 		i++;
+	ft_free_arr(args, arr_size(args));
 	}
 }
 
@@ -137,10 +147,12 @@ void	limiter(char *limiter, int ac)
 			if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
 				exit(EXIT_SUCCESS);
 			write(pipefd[1], line, ft_strlen(line));
+			free(line);
 		}
 	}
 	else
 		redirect(pipefd, STDIN_FILENO, 'r');
+	waitpid(pid, NULL, 0);
 }
 
 int	*open_f(int ac ,char **av, int fds[2], int nbr)
@@ -185,4 +197,5 @@ int	main(int ac, char **av, char **envp)
 	}
 	else
 		return (ft_putstr_fd("Usage: file1 cmd1 ... cmdn file2", 2), 1);
+	//free
 }
