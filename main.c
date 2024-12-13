@@ -37,93 +37,152 @@ char	*get_path(char **envp, char *cmd)
 	return (cmd_path);
 }
 
-void	redirect(int fd1, int fd2)
+void	error(char *str)
 {
-	if (dup2(fd1, fd2) == -1)
-		perror("Error in dup2");
-	close(fd1);
+//free all
+	perror(str);
+	exit(EXIT_FAILURE);
 }
 
-int	pipe_exec(char *cmd_path, char *cmd, char **envp)
+void	redirect(int fd1[2], int fd2, int c)
 {
-	char	**args;
-
-	args = ft_split(cmd, *" ");
-	free(args[0]);
-	args[0] = cmd_path;
-	if (execve(cmd_path, args, envp) == -1)
-		return (perror("Error in exec"), -1);//faire une fonction variadique pour free par exemple ici args?
-	return (1);
-}
-
-int	forking_cmd(int ac, char **av, char **envp, int pipefd1[2], int outfile)
-{
-	int	pipefd2[2];
-	int	*read_pipe = pipefd1;
-	int	*write_pipe = pipefd2;
-	int	pid;
-	int	i;
-	char	*cmd_path;
-
-	i = 2;
-	while (i < ac - 1)
+	if (c == 'w' )
 	{
-		// Crée un nouveau pipe pour la commande actuelle
-		if (pipe(write_pipe) == -1)
-			return (perror("Error creating pipe"), -1);
-
-		pid = fork();
-		if (pid < 0)
-			return (perror("Error forking process"), -1);
-		else if (pid == 0)
-		{
-			// Processus enfant
-			redirect(read_pipe[0], STDIN_FILENO); // Lecture depuis le pipe précédent
-			redirect(write_pipe[1], STDOUT_FILENO); // Écriture dans le pipe actuel
-
-			// Récupération et exécution de la commande
-			cmd_path = get_path(envp, av[i]);
-			if (!cmd_path || pipe_exec(cmd_path, av[i], envp) == -1)
-			{
-				free(cmd_path);
-				perror("Error in command execution");
-				exit(EXIT_FAILURE);
-			}
-		}
-		// Parent : fermeture des descripteurs inutilisés
-		close(read_pipe[0]); // Ferme la lecture du pipe précédent
-		close(write_pipe[1]); // Ferme l'écriture dans le pipe actuel
-
-		// Alterne les pipes
-		read_pipe = write_pipe;
-		write_pipe = (read_pipe == pipefd1) ? pipefd2 : pipefd1;
-
-		i++;
+		close(fd1[0]);
+		dup2(fd1[1], fd2);
+		close(fd1[1]);//?
+	}
+	if (c == 'r')
+	{
+		close(fd1[1]);
+		dup2(fd1[0], fd2);
+		close(fd1[0]);//?
 	}
 
-	// Dernière redirection : dernier pipe -> fichier de sortie
-	redirect(read_pipe[0], outfile);
-	close(read_pipe[0]);
-	return (0);
 }
 
-int main(int ac, char **av, char **envp)
+void	process(char **av, int ac, char **envp, int i, int ouf)
 {
-	int	infile;
-	int	outfile;
-	int	pipefd1[2];
+	char	**args;
+	int	pipefd[2];
+	int	pid;
 
-	if (ac < 5)
-		return (ft_putstr_fd("Usage: file1 cmd1 ... cmdn file2", 1), 1);
-	infile = open(av[1], O_RDONLY);
-	outfile = open(av[ac - 1], O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	pipe(pipefd1);
-	if (infile < 0 || outfile < 0)
-		perror("Error opening files\n");//return
-	redirect(infile, pipefd1[1]);
-	if (forking_cmd(ac, av, envp, pipefd1, outfile) == -1)
-		return (ft_putstr_fd("Error in forking", 2), 1);
-	close(outfile);
-	return (0);
+	while (i < ac - 1)
+	{
+		args = ft_split(av[i], *" ");//check
+		if (pipe(pipefd) == -1)
+			return(error("Error while piping\n"));
+		pid = fork();
+		if (pid < 0)
+			return(error("Error while forking\n"));
+		if (pid == 0)
+		{
+			redirect(pipefd, STDOUT_FILENO, 'w');
+			if (i == ac - 2)
+				dup2(ouf, STDOUT_FILENO);
+			execve(get_path(envp, args[0]), args, envp);
+		}
+		else
+		{
+			redirect(pipefd, STDIN_FILENO, 'r');
+			waitpid(pid, NULL, 0);
+		}
+		i++;
+	}
 }
 
+int	get_line(char **line)
+{
+	char	*buffer;
+	int		i;
+	int	bytes;
+	char	c;
+
+	i = 0;
+	buffer = (char *)malloc(1000);
+	if (!buffer)
+		return (-1);
+	bytes = read(0, &c, 1);
+	while (bytes && c != '\n')
+	{
+		if (c != '\n')
+			buffer[i] = c;
+		i++;
+		bytes = read(0, &c, 1);
+	}
+	buffer[i] = '\n';
+	buffer[++i] = '\0';
+	*line = buffer;
+	return (bytes);
+}
+
+void	limiter(char *limiter, int ac)
+{
+	char	*line;
+	int	pipefd[2];
+	int	pid;
+
+	if (ac < 6)
+		return (ft_putstr_fd("Usage: here_doc limiter cmd1 ... cmdn file2", 1));
+	if (pipe(pipefd) == -1)
+		return(error("Error while piping\n"));
+	pid = fork();
+	if (pid < 0)
+		return(error("Error while forking\n"));
+	if (pid == 0)
+	{
+		close(pipefd[0]);
+		while(get_line(&line))
+		{
+			if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+				exit(EXIT_SUCCESS);
+			write(pipefd[1], line, ft_strlen(line));
+		}
+	}
+	else
+		redirect(pipefd, STDIN_FILENO, 'r');
+}
+
+int	*open_f(int ac ,char **av, int fds[2], int nbr)
+{
+	if (nbr == 2)
+	{
+		fds[0] = open(av[1], O_RDONLY);
+		fds[1] = open(av[ac - 1], O_CREAT | O_TRUNC | O_WRONLY, 0777);
+		if (fds[0] < 0 || fds[1] < 0)
+			return(error("Error opening files\n"), NULL);
+	}
+	else
+	{
+		fds[0] = 0;
+		fds[1] = open(av[ac - 1], O_CREAT | O_APPEND | O_WRONLY, 0777);
+		if (fds[1] < 0)
+			return(error("Error opening files\n"), NULL);
+	}
+	return (fds);
+}
+
+int	main(int ac, char **av, char **envp)
+{
+	int	fds[2];
+	int	i;
+
+	if (ac >= 5)
+	{
+		if (ft_strncmp(av[1], "here_doc", 8) == 0)
+		{
+			i = 3;
+			open_f(ac, av, fds, 1);
+			limiter(av[2], ac);
+		}
+		else
+		{
+			i = 2;
+			dup2(*(open_f(ac, av, fds, 2)), STDIN_FILENO);
+		}
+		process(av, ac, envp, i, fds[1]);
+		close(fds[0]);
+	}
+	else
+		return (ft_putstr_fd("Usage: file1 cmd1 ... cmdn file2", 2), 1);
+}

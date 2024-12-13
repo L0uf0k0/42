@@ -45,6 +45,7 @@ clean:
 	@$(RM) $(OBJS)
 
 fclean: clean
+	@make fclean -C libft/
 	@$(RM) $(NAME)
 
 re: fclean all
