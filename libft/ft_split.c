@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	count_w(const char *s, char c)
+static int	count_w(const char *s, char c)// to_use?
 {
 	int	i;
 	int	count;
@@ -35,7 +35,7 @@ static int	count_w(const char *s, char c)
 	return (count);
 }
 
-static char	*ft_malloc_w(char *s, char c)
+static char	*ft_malloc_w(char *s, char c)// to_use?
 {
 	char	*arr;
 	int		i;

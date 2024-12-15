@@ -57,7 +57,7 @@ int	main()
 
 	img = malloc(sizeof(t_data));
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "42 FDF by malapoug");
+	mlx_win = mlx_new_window(mlx, 800, 800, "42 FDF by malapoug");
 	img->img = mlx_new_image(mlx, 1920, 1080);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length, &img->endian);
 	draw_line(img, 1, 1, 1000, 100, 0x00FF0000);
