@@ -37,7 +37,124 @@ void	int_arr_const(char *text, int*** arr)
 	arr[++y] = NULL;
 }
 
-// faire un split de split...
+char	***malloc_arr3(char ***arr, char *text);
+{
+	int	size3;
+
+	size3 = count_w(text, '\n');
+	arr = (char ***)malloc((size3 + 1) * sizeof(char **));
+	if (!arr)
+		return (NULL);
+	return (arr);
+}
+
+char	**malloc_arr2(char **arr, char *text);
+{
+	int	size2;
+
+	size2 = count_w(text, ' ');
+	arr = (char **)malloc((size2 + 1) * sizeof(char *));
+	if (!arr)
+		return (NULL);
+	return (arr);
+}
+
+int	***malloc_arr3_i(char ***arr, char **text);
+{
+	int	i;
+
+	i = 0;
+	while (text[i])
+		i++;
+	arr = (int ***)malloc((i + 1) * sizeof(int **));
+	if (!arr)
+		return (NULL);
+	return (arr);
+}
+
+int	**malloc_arr2_i(char **arr, char *text);
+{
+	int	i;
+
+	i = 0;
+	while (text[i])
+		i++;
+	arr = (int **)malloc((i + 1) * sizeof(int *));
+	if (!arr)
+		return (NULL);
+	return (arr);
+}
+
+int	arr_size(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while(arr[i])
+		i++;
+	return (i);
+}
+
+void	ft_free_arr3(void ***arr, int i, int j)
+{
+	while (i > 0 && arr)
+	{
+		while (j > 0 && arr[i])
+			free(arr[i][j--]);
+		free(arr[i--]);
+	}
+	if (arr)
+		free(arr);
+}
+
+int	***arr_atoi(int ***arr, char ***arr_txt)
+{
+	int	i;
+	int	j;
+
+
+	i = 0;
+	if (!malloc_arr3_i(arr, arr_txt))
+		return(ft_free_arr3(arr_txt));
+	while (arr_txt[i++])
+	{
+		if (!malloc_arr2_i(arr[j], arr_txt[j]))
+		{
+			ft_free_arr3(arr)
+			return(ft_free_arr3(arr_txt));
+		}
+		j = 0;
+		while (arr_txt[i][j++])
+		{
+			arr[i][j] = ft_atoi(arr_txt[i][j]);
+		}
+	}
+	ft_free_arr3(arr_txt3);
+	return (arr);
+}
+
+int	***arr_construct(int ***arr, char *text)
+{
+	char	***arr_txt3;
+	char	**arr_txt2;
+	int	i;
+
+	arr_txt2 = ft_split(text, '\n');
+	while (arr_txt2[i])
+	{
+		arr_txt3[i] = ft_split(arr_txt2[i], ' ');
+		if (!arr_txt3[i])
+		{
+			ft_free_arr3(arr_txt3);
+			break ;
+		}
+		i++;
+	}
+	ft_free_arr(arr_txt2);
+	if (!arr_txt3)
+		return (NULL);
+	return (arr_atoi(arr, arr_txt3));
+}
 
 char	*read_file( ***arr, int fd)
 {
@@ -68,39 +185,6 @@ char	*read_file( ***arr, int fd)
 	return (text);
 }
 
-//                                                                       count_w(str, sep1, sep2) ??
-
-int	***calloc_arr3(int ***arr, char *text);
-{
-	int	size3;
-
-	size3 = count_w(text, '\n');
-	arr = (int ***)malloc((size3 + 1) * sizeof(int **));
-	if (!arr)
-		return (NULL);
-	return (arr);
-}
-
-int	**calloc_arr2(int **arr, char *text);
-{
-	int	size2;
-
-	size2 = count_w(text, ' ');
-	arr = (int **)malloc((size2 + 1) * sizeof(int *));
-	if (!arr)
-		return (NULL);
-	return (arr);
-}
-
-int	*calloc_arr1(int *arr, char *text);
-{
-	arr = (int *)malloc(sizeof(int));
-	if (!arr)
-		return (NULL);
-	return (arr);
-}
-
-
 int	***parser(char *file)
 {
 	char	*text;
@@ -113,7 +197,7 @@ int	***parser(char *file)
 	text = read_file(arr, fd);
 	if (!text)
 		return (NULL);
-	if (!calloc_arr(arr, text))
+	if (!arr_construct(arr, text))
 		return (NULL);// faire fonction error pour close le fd aussi et tout free
 	close (fd);
 	return (arr);// verifier a la sortie si NULL
