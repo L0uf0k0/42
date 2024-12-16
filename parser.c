@@ -12,193 +12,103 @@
 
 #include "fdf.h"
 
-void	int_arr_const(char *text, int*** arr)
+static int	*parse_line_to_ints(char *line)
 {
-	int	x;
-	int	y;
+	char	**split;
+	int		word_count;
+	int		*row;
+	int		i;
 
-	if (text == NULL)
-	{
-		arr = NULL;
-		return ;
-	}
-	x = 0;
-	y = 0;
-	while (*text != '\0')
-	{
-		if (is_digit(*text))
-			arr[y][x] *= 10 + (*text - '0')
-		else if (*text == '\n')
-			arr[y++][++x] = NULL; // y marche ??
-		else
-			x++;
-		text++;
-	}
-	arr[++y] = NULL;
-}
-
-char	***malloc_arr3(char ***arr, char *text);
-{
-	int	size3;
-
-	size3 = count_w(text, '\n');
-	arr = (char ***)malloc((size3 + 1) * sizeof(char **));
-	if (!arr)
-		return (NULL);
-	return (arr);
-}
-
-char	**malloc_arr2(char **arr, char *text);
-{
-	int	size2;
-
-	size2 = count_w(text, ' ');
-	arr = (char **)malloc((size2 + 1) * sizeof(char *));
-	if (!arr)
-		return (NULL);
-	return (arr);
-}
-
-int	***malloc_arr3_i(char ***arr, char **text);
-{
-	int	i;
-
+	row = NULL;
 	i = 0;
-	while (text[i])
+	split = ft_split(line, ' ');
+	if (!split)
+		return (NULL);
+	word_count = arr_size(split);
+	row = malloc(sizeof(int) * word_count);
+	if (!row)
+		return (ft_free_arr(split, arr_size(split)), NULL);
+	while (i < word_count && split[i])
+	{
+		row[i] = ft_atoi(split[i]);
 		i++;
-	arr = (int ***)malloc((i + 1) * sizeof(int **));
-	if (!arr)
-		return (NULL);
-	return (arr);
-}
-
-int	**malloc_arr2_i(char **arr, char *text);
-{
-	int	i;
-
-	i = 0;
-	while (text[i])
-		i++;
-	arr = (int **)malloc((i + 1) * sizeof(int *));
-	if (!arr)
-		return (NULL);
-	return (arr);
-}
-
-int	arr_size(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while(arr[i])
-		i++;
-	return (i);
-}
-
-void	ft_free_arr3(void ***arr, int i, int j)
-{
-	while (i > 0 && arr)
-	{
-		while (j > 0 && arr[i])
-			free(arr[i][j--]);
-		free(arr[i--]);
 	}
-	if (arr)
-		free(arr);
+	ft_free_arr(split, arr_size(split));
+	return (row);
 }
 
-int	***arr_atoi(int ***arr, char ***arr_txt)
+int	**parse_text_to_3d_array(char *text, int **arr)
 {
+	char	**lines;
+	int	line_count;
 	int	i;
-	int	j;
 
-
+	lines = ft_split(text, '\n');
+	if (!lines)
+		return (NULL);
+	line_count = arr_size(lines);
+	arr = malloc(sizeof(int *) * (line_count + 1));
+	if (!arr)
+		return (ft_free_arr(lines, arr_size(lines)), NULL);
 	i = 0;
-	if (!malloc_arr3_i(arr, arr_txt))
-		return(ft_free_arr3(arr_txt));
-	while (arr_txt[i++])
+	while (i < line_count)
 	{
-		if (!malloc_arr2_i(arr[j], arr_txt[j]))
+		arr[i] = parse_line_to_ints(lines[i]);
+		if (!arr[i])
 		{
-			ft_free_arr3(arr)
-			return(ft_free_arr3(arr_txt));
-		}
-		j = 0;
-		while (arr_txt[i][j++])
-		{
-			arr[i][j] = ft_atoi(arr_txt[i][j]);
-		}
-	}
-	ft_free_arr3(arr_txt3);
-	return (arr);
-}
-
-int	***arr_construct(int ***arr, char *text)
-{
-	char	***arr_txt3;
-	char	**arr_txt2;
-	int	i;
-
-	arr_txt2 = ft_split(text, '\n');
-	while (arr_txt2[i])
-	{
-		arr_txt3[i] = ft_split(arr_txt2[i], ' ');
-		if (!arr_txt3[i])
-		{
-			ft_free_arr3(arr_txt3);
-			break ;
+			ft_free_arr_i(arr, i);
+			free(lines);
+			return (NULL);
 		}
 		i++;
 	}
-	ft_free_arr(arr_txt2);
-	if (!arr_txt3)
-		return (NULL);
-	return (arr_atoi(arr, arr_txt3));
+	ft_free_arr(lines, arr_size(lines));
+	arr[line_count] = NULL;
+	return (arr);
 }
 
-char	*read_file( ***arr, int fd)
+char	*read_file(int fd)
 {
-	char	*text;
+	char	*buffer;
+	char	*line;
 	char	*temp;
-	int	size;
 
-	text = &"\0";
-	size = -1
-	while (size != ft_strlen(text) && text)
+	line = NULL;
+	temp = NULL;
+	buffer = ft_strdup("");
+	if (!buffer)
+		return (NULL);
+	line = get_next_line(fd); // check
+	while (line)
 	{
-		size = ft_strlen(text);
-		temp =  get_next_line(fd);
+		temp = ft_strjoin(buffer, line);
+		free(buffer);
+		free(line);
 		if (!temp)
-		{
-			if (text[0])
-				free(text);
-			arr = NULL;
-			return ;
-		}
-		else
-		{
-			text = ft_strjoin(text, temp);
-			if (!text)
-				free(temp);
-		}
+			return (NULL);
+		buffer = temp;
+		line = get_next_line(fd);
 	}
-	return (text);
+	return (buffer);
 }
 
-int	***parser(char *file)
+int	**parser(const char *file)
 {
-	char	*text;
-	int	***arr;
 	int	fd;
+	char	*text;
+	int	**arr;
 
+	text = NULL;
+	arr = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (NULL);// faire fonction error pour close le fd aussi et tout free
-	text = read_file(arr, fd);
+		return (NULL);
+	text = read_file(fd);
+	close(fd);
 	if (!text)
 		return (NULL);
-	if (!arr_construct(arr, text))
-		return (NULL);// faire fonction error pour close le fd aussi et tout free
-	close (fd);
-	return (arr);// verifier a la sortie si NULL
+	arr = parse_text_to_3d_array(text, arr);
+	free(text);
+	return (arr);
 }
+

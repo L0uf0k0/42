@@ -20,6 +20,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCS =	fdf.c\
 	parser.c\
+	parser_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -31,12 +32,12 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C libft/
 	#@make -C mlx/
-	@$(CC) $(CFLAGS) $(OBJS) mlx/libmlx_Linux.a -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a mlx/libmlx_Linux.a -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 debug: $(OBJS)
 	@make -C libft/
 	#@make -C mlx/
-	@$(CC) $(CFLAGS) $(DEBUG) $(OBJS) mlx/libmlx_Linux.a -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) $(CFLAGS) $(DEBUG) $(OBJS) libft/libft.a mlx/libmlx_Linux.a -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I/usr/include -Imlx -O3  mlx/libmlx_Linux.a -c $< -o $@

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	count_w(const char *s, char c)// to_use?
+ int	count_w(const char *s, char c)// to_use?
 {
 	int	i;
 	int	count;

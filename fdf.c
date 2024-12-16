@@ -12,14 +12,6 @@
 
 #include "fdf.h"
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}				t_data;
-
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -28,40 +20,108 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_line(t_data *img, double x1, double y1, double x2, double y2, int color)
+int	create_trgb(int t, int r, int g, int b)
 {
-	double	dist;
-	double	diffX;
-	double	diffY;
-
-
-	diffX = x2 - x1;
-	diffY = y2 - y1;
-	dist = sqrt((diffX * diffX) + (diffY * diffY));
-	diffX /= dist;
-	diffY /= dist;
-	while (dist > 0)
-	{
-		my_mlx_pixel_put(img, x1, y1, color);
-		x1 += diffX;
-		y1 += diffY;
-		dist--;
-	}
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	main()
+void	draw_line(t_vars *vars, t_data *img, int x1, int y1, int x2, int y2, int color)
+{
+	int	dx;
+	int	dy;
+	int	e;
+
+	e = x2 - x1;
+	dx = e * 2;
+	dy = (y2 - y1) * 2;
+	while (x1 < x2)
+	{
+		my_mlx_pixel_put(img, x1, y1 * vars->scale, color);
+		x1++;
+		e -= dy;
+		if (e <= 0)
+		{
+			y1++;
+			e += dx;
+		}
+	}
+	my_mlx_pixel_put(img, x2 * vars->scale, y2 * vars->scale, color);
+}
+
+void	zoom(t_vars *vars)
+{
+	(void)vars;
+}
+
+int	key_hook(int key, t_vars *vars)
+{
+	if (key == 53)
+	{
+		//clear imgs
+		mlx_destroy_window(vars->mlx, vars->mlx_win);
+		return (1);
+	}
+	else if (key == 45)
+		zoom(vars);
+	else ft_putnbr_fd(key, 1);
+	return (0);
+}
+
+t_data	*drawer(t_vars *vars, int **arr)
 {
 	t_data	*img;
-	void	*mlx;
-	void	*mlx_win;
+	int	x;
+	int	y;
 
+	y = 0;
 	img = malloc(sizeof(t_data));
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 800, 800, "42 FDF by malapoug");
-	img->img = mlx_new_image(mlx, 1920, 1080);
+	img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length, &img->endian);
-	draw_line(img, 1, 1, 1000, 100, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img->img, 0, 0);
-	mlx_loop(mlx);
+	while (arr[y])
+	{
+		x = 0;
+		while (arr[y][x])
+		{
+			ft_putnbr_fd(arr[y][x], 1);
+			if (arr[y][x + 1])
+				draw_line(vars, img, x, y, (x + 1), (y), create_trgb(256, 0, 100, 200));
+			if (arr[y + 1][x])
+				draw_line(vars, img, x, y, (x), (y + 1), create_trgb(256, 0, 100, 200));
+			x++;
+		}
+		y++;
+	}
+	return (img);
+}
+
+void	windows_managment(t_vars *vars, int **arr)
+{
+	t_data	*img;
+
+	img = drawer(vars, arr);
+	mlx_put_image_to_window(vars->mlx, vars->mlx_win, img->img, 0, 0);
+}
+
+int	main(int ac, char **av)
+{
+	t_vars	*vars;
+	int	**arr;
+
+	(void)ac;
+	vars = malloc(sizeof(t_vars));
+	if (!vars)
+		return(0);
+	arr = parser(av[1]);
+	if (!arr)
+	{
+		free(vars);
+		return (0);
+	}
+	vars->mlx = mlx_init();
+	vars->mlx_win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "42 FDF by malapoug");
+	vars->scale = (WIDTH * arr_size_i(arr)) / 120;
+	windows_managment(vars, arr);
+	mlx_hook(vars->mlx_win, 2, 1L<<0, key_hook, &vars);
+	mlx_loop(vars->mlx);
 }
 
