@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/07 13:03:39 by malapoug         ###   ########.fr        #
+#    Updated: 2024/12/17 17:52:28 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ DEBUG = -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS =	pipex.c\
+	pipex_utils.c\
+	files_helper.c\
 
 OBJS = $(SRCS:.c=.o)
 
