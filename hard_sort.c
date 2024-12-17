@@ -41,13 +41,14 @@ void	sort3(t_l **lst1)
 	}
 }
 
-void	sort5(t_l **lst1, t_l **lst2, int size)
+void	sort5(t_l **lst1, t_l **lst2)
 {
 	ft_push(lst1, lst2, 'b');
 	ft_push(lst1, lst2, 'b');
 	sort3(lst1);
-	push_back(lst1, lst2, size);
+	push_back(lst1, lst2, 5);
 }
+
 
 void	sort4(t_l **lst1, t_l **lst2)
 {

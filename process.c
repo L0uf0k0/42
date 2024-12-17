@@ -24,7 +24,7 @@ void	process(t_l **lst1, t_l **lst2)
 	else if (size == 4)
 		sort4(lst1, lst2);
 	else if (size == 5)
-		sort5(lst1, lst2, size);
+		sort5(lst1, lst2);
 	else if (size > 5 && !checker(lst1, lst2, size))
 	{
 		ft_push(lst1, lst2, 'b');

@@ -73,7 +73,7 @@ int		push_cond(t_l **lst, t_l **node);
 //force_sort
 void	sort3(t_l **lst1);
 void	sort4(t_l **lst1, t_l **lst2);
-void	sort5(t_l **lst1, t_l **lst2, int size);
+void	sort5(t_l **lst1, t_l **lst2);
 
 //calculs
 void	calcul(t_l **lst1, t_l **lst2, int size);
