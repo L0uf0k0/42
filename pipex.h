@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:16:26 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/18 12:28:13 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:15:00 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 //pipex_utils
 void	error(const char *str);
+int		success(void);
 int		arr_size(char **arr);
 int		check11(char *temp, char *path);
 int		check21(char **args, char *path);

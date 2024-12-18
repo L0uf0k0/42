@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 17:33:36 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/17 17:41:10 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:15:16 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ int	check21(char **args, char *path)
 	if (!args || !path)
 		return (0);
 	return (1);
+}
+
+int	success(void)
+{
+	exit(EXIT_SUCCESS);
 }
 
 void	error(const char *str)

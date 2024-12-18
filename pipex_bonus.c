@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:15:48 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/18 16:27:03 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:13:13 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,54 @@ void	process(char **av, int ac, char **envp, int outf)
 	}
 }
 
+int	limiter(char *limiter, int ac)
+{
+	char	*line;
+	int		pipefd[2];
+	int		pid;
+
+	if (ac < 6)
+		return (error("Usage: here_doc limiter cmd1 cmd2 file2\n"), 0);
+	if (pipe(pipefd) == -1)
+		return (error("Error while piping\n"), 0);
+	pid = fork();
+	if (pid < 0)
+		return (error("Error while forking\n"), 0);
+	if (pid == 0)
+	{
+		close(pipefd[0]);
+		while (get_line(&line))
+		{
+			if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+				return (free(line), success());
+			write(pipefd[1], line, ft_strlen(line));
+			free(line);
+		}
+	}
+	else
+		redirect(pipefd, STDIN_FILENO, 'r');
+	return (waitpid(pid, NULL, 0), 1);
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	int	fds[2];
 
-	if (ac == 5)
+	if (ac >= 5)
 	{
-		dup2(*(open_f(ac, av, fds, 2)), STDIN_FILENO);
+		if (ft_strncmp(av[1], "here_doc", 8) == 0)
+		{
+			open_f(ac, av, fds, 1);
+			if (!limiter(av[2], ac))
+				return (1);
+		}
+		else
+		{
+			dup2(*(open_f(ac, av, fds, 2)), STDIN_FILENO);
+		}
 		process(av, ac, envp, fds[1]);
 		close(fds[0]);
 	}
 	else
-		return (ft_putstr_fd("Usage: file1 cmd1 cmd2 file2\n", 2), 1);
+		return (ft_putstr_fd("Usage: file1 cmd1 ... cmdn file2", 2), 1);
 }
