@@ -6,11 +6,25 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 17:46:29 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/17 17:50:17 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:27:57 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	find_envp(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+			break ;
+		i++;
+	}
+	return (i);
+}
 
 void	redirect(int fd1[2], int fd2, int c)
 {

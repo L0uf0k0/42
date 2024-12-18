@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:16:26 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/17 17:52:01 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:28:13 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		check21(char **args, char *path);
 
 //files_helper
 void	redirect(int fd1[2], int fd2, int c);
+int		find_envp(char **envp);
 int		*open_f(int ac, char **av, int fds[2], int nbr);
 int		get_line(char **line);
 

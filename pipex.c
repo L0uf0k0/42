@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:15:48 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/17 18:02:42 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:27:30 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,7 @@ char	*get_path(char **envp, char *cmd)
 	int		i;
 
 	cmd_path = NULL;
-	while (*envp)
-	{
-		if (ft_strncmp(*envp, "PATH=", 5) == 0)
-			break ;
-		envp++;
-	}
-	paths = ft_split(*envp + 5, *":");
+	paths = ft_split(envp[find_envp(envp)] + 5, *":");
 	i = 0;
 	while (paths[i])
 	{
@@ -45,7 +39,7 @@ char	*get_path(char **envp, char *cmd)
 	return (cmd_path);
 }
 
-int	child_process(char **av, int ac, char **envp, int i, int outf)
+int	child_process(char **av, char **envp, int i, int outf)
 {
 	char	**args;
 	char	*path;
@@ -64,7 +58,7 @@ int	child_process(char **av, int ac, char **envp, int i, int outf)
 	if (pid == 0)
 	{
 		redirect(pipefd, STDOUT_FILENO, 'w');
-		if (i == ac - 2)
+		if (access(av[i + 1], W_OK) == 0)
 			dup2(outf, STDOUT_FILENO);
 		execve(path, args, envp);
 	}
@@ -74,11 +68,16 @@ int	child_process(char **av, int ac, char **envp, int i, int outf)
 	return (free(path), 1);
 }
 
-void	process(char **av, int ac, char **envp, int i, int outf)
+void	process(char **av, int ac, char **envp, int outf)
 {
+	int	i;
+
+	i = 2;
+	if (ft_strncmp(av[1], "here_doc", 8) == 0)
+		i = 3;
 	while (i < ac - 1)
 	{
-		if (!child_process(av, ac, envp, i, outf))
+		if (!child_process(av, envp, i, outf))
 			return (error("Error while child process\n"));
 		i++;
 	}
@@ -91,7 +90,7 @@ int	limiter(char *limiter, int ac)
 	int		pid;
 
 	if (ac < 6)
-		return (ft_putstr_fd("Usage: here_doc limiter cmd1 cmd2 file2\n", 1), 0);
+		return (error("Usage: here_doc limiter cmd1 cmd2 file2\n"), 0);
 	if (pipe(pipefd) == -1)
 		return (error("Error while piping\n"), 0);
 	pid = fork();
@@ -116,23 +115,20 @@ int	limiter(char *limiter, int ac)
 int	main(int ac, char **av, char **envp)
 {
 	int	fds[2];
-	int	i;
 
 	if (ac >= 5)
 	{
 		if (ft_strncmp(av[1], "here_doc", 8) == 0)
 		{
-			i = 3;
 			open_f(ac, av, fds, 1);
 			if (!limiter(av[2], ac))
 				return (1);
 		}
 		else
 		{
-			i = 2;
 			dup2(*(open_f(ac, av, fds, 2)), STDIN_FILENO);
 		}
-		process(av, ac, envp, i, fds[1]);
+		process(av, ac, envp, fds[1]);
 		close(fds[0]);
 	}
 	else
