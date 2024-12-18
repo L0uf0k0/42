@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:10 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/14 17:37:19 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 22:25:50 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	draw_line(t_vars *vars, t_data *img, int x1, int y1, int x2, int y2, int co
 			e += dx;
 		}
 	}
-	my_mlx_pixel_put(img, x2 * vars->scale, y2 * vars->scale, color);
 }
 
 void	zoom(t_vars *vars)
@@ -125,3 +124,16 @@ int	main(int ac, char **av)
 	mlx_loop(vars->mlx);
 }
 
+/*
+
+     // Here I will be declaring the hooks, see below for their implementation.
+     mlx_hook(env.win, 4, 0, mouse_handler, &env);
+     // mouse_handler will be called everytime a mouse down event is emitted
+     mlx_hook(env.win, 2, 1L << 0, key_handler, &env);
+     // key_handler will be called everytime a key is pressed
+     mlx_hook(env.win, 17, 1L << 0, close_window, &env);
+     // close_window is called when we click on the red cross to close the window
+     mlx_loop_hook(env.mlx, render, &env);
+     // Since MXL loops over and over again, we can use the mlx_loop_hook
+     // to execute a function everytime MLX loops over.
+*/
