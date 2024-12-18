@@ -6,13 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:23:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 19:10:14 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:09 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_error()
+int	ft_error(void)
 {
 	ft_putstr("Error\n");
 	return (-1);
@@ -44,7 +44,7 @@ int	ft_choose(t_l **lst1, t_l **lst2, char *str)
 		ft_rrr(lst1, lst2, 'c');
 	else
 		return (ft_error());
-	return(0);
+	return (0);
 }
 
 void	check_instructions(t_l *lst1, t_l *lst2, int size)

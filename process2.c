@@ -6,21 +6,11 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 12:54:04 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:11:29 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	pass_rr_r(t_l **l1, t_l **l2, t_l *cheap, int cond(t_l**, t_l**))
-{
-	while (cheap->sens == 22 && *l1 != cheap
-		&& !cond(l2, &cheap))
-		ft_rrr(l1, l2, 0);
-	while (cheap->sens == 11 && *l1 != cheap
-		&& !cond(l2, &cheap))
-		ft_rr(l1, l2, 0);
-}
 
 void	pass_a_to_b(t_l **lst1, t_l **lst2, t_l *cheap)
 {

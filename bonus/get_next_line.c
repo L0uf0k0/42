@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 01:04:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 18:35:23 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:38 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,3 @@ char	*get_next_line(int fd)
 	backup = extract(line);
 	return (line);
 }
-

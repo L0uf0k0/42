@@ -6,13 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:54:48 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/30 16:14:13 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:50:36 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_putstr(char *s)
+void	ft_putstr(const char *s)
 {
 	while (*s)
 	{

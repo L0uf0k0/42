@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 11:57:58 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:14:10 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	calcul(t_l **lst1, t_l **lst2, int size)
 
 	if (*lst1 && ft_lstsize(*lst1) > 3)
 	{
-		//show_list(lst1, lst2);
 		cheap = find_cheap(lst1, lst2, push_cond);
 		pass_a_to_b(lst1, lst2, cheap);
 	}

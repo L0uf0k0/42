@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:22:28 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 22:22:17 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:23 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	sort5(t_l **lst1, t_l **lst2)
 	sort3(lst1);
 	push_back(lst1, lst2, 5);
 }
-
 
 void	sort4(t_l **lst1, t_l **lst2)
 {

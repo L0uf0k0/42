@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:06:15 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 18:20:41 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:12:02 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_rev_rotate(t_l **list, int l);
 void	ft_push(t_l **lst1, t_l **lst2, int l);
 
 //push_swap_utils_doubles
+void	pass_rr_r(t_l **l1, t_l **l2, t_l *cheap, int cond(t_l**, t_l**));
 void	ft_ss(t_l **list1, t_l **lst2, int c);
 void	ft_rr(t_l **lst1, t_l **lst2, int c);
 void	ft_rrr(t_l **lst1, t_l **lst2, int c);
@@ -59,7 +60,6 @@ int		ft_max(t_l *lst);
 int		ft_min(t_l *lst);
 
 //process2
-void	pass_rr_r(t_l **l1, t_l **l2, t_l *cheap, int cond(t_l**, t_l**));
 void	push_back_algo(t_l **lst1, t_l **lst2, int size);
 void	pass_rr_r(t_l **l1, t_l **l2, t_l *cheap, int cond(t_l**, t_l**));
 void	pass_a_to_b(t_l **lst1, t_l **lst2, t_l *cheapest);
@@ -103,7 +103,7 @@ int		check_dub(t_l **list);
 
 //utils
 void	ft_free_arr(char **arr, int i);
-void	ft_putstr(char *s);
+void	ft_putstr(const char *s);
 char	**ft_split(const char *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
