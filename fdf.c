@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:10 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/18 22:25:50 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/19 03:57:58 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	main(int ac, char **av)
 	}
 	vars->mlx = mlx_init();
 	vars->mlx_win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "42 FDF by malapoug");
-	vars->scale = (WIDTH * arr_size_i(arr)) / 120;
+	vars->scale = (WIDTH * arr_size_i(arr)) / 100;
 	windows_managment(vars, arr);
 	mlx_hook(vars->mlx_win, 2, 1L<<0, key_hook, &vars);
 	mlx_loop(vars->mlx);
@@ -136,4 +136,10 @@ int	main(int ac, char **av)
      mlx_loop_hook(env.mlx, render, &env);
      // Since MXL loops over and over again, we can use the mlx_loop_hook
      // to execute a function everytime MLX loops over.
+
+
+destination.x=source.x∗cos(a)+source.y∗cos(a+2)+source.z∗cos(a−2)
+destination.y=source.x∗sin(a)+source.y∗sin(a+2)+source.z∗sin(a−2)
+     destination.x = source.x + cos(angle) * source.z
+     destination.y = source.y + sin(angle) * source.z
 */

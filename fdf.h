@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/14 17:21:19 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/19 03:55:52 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 typedef struct	s_vars {
 	void	*mlx;
-	void	*mlx_win;
+	void	*win;
 	int	scale;
 }	t_vars;
 
