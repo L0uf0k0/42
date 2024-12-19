@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 03:36:34 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/19 04:19:38 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:06:57 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,38 @@ void	error(char *str)
 	ft_putstr_fd(str, 2);
 }
 
-void	put_pxl(t_data *img) //flemme fais un copie colle de l'autre fichier
+void	put_pxl(t_data *img, int x, int y, int color)
+{
+	char	*dst;
 
+	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
+	*(unsigned int*)dst = color;
+}
 
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	close_win(t_vars *vars)// a completer
+void	close_win(t_vars *vars, t_data *img)
 {
-	//clear imgs ?
+	mlx_destroy_image(vars->mlx, img->img);
 	mlx_destroy_window(vars->mlx, vars->win);
 }
 
-void	key_hook(int key, t_vars *vars)
+int	key_hook(int key, t_vars *vars)
 {
 	if (key == 53)
-		return(close_win(vars));
+		close_win(vars, img);
+	if (key == 53)
+		return ;
 	else
 	{
 		ft_putstr_fd("key: ", 1);
 		ft_putnbr_fd(key, 1);
 		ft_putstr_fd("\n", 1);
 	}
+	return (1);
 }
 
 void	hook_function(t_vars *vars)
@@ -62,17 +70,41 @@ int	win_init(t_vars *vars)
 
 }
 
+void	draw_line(t_vars *vars, t_data *img, int x1, int y1, int x2, int y2, int color)
+{
+	int	dx;
+	int	dy;
+	int	e;
+
+	e = x2 - x1;
+	dx = e * 2;
+	dy = (y2 - y1) * 2;
+	while (x1 < x2)
+	{
+		put_pxl(img, x1, y1 * vars->scale, color);
+		x1++;
+		e -= dy;
+		if (e <= 0)
+		{
+			y1++;
+			e += dx;
+		}
+	}
+}
+
 int	update_img(t_vars *vars, t_data *img)
 {
+	mlx_destroy_img(vars->mlx, img->img);
 	//drawer
 	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);// check?
+	return (1);
 }
 
 int	handle_img(t_vars *vars)
 {
 	t_data *img;
 	// if differemt ?
-	img = malloc(sizeof(t_data);
+	img = malloc(sizeof(t_data));
 	if (!img)
 		return (0);
 	if (!update_img(vars, img))
@@ -84,8 +116,10 @@ int	process(t_vars *vars, int **arr)
 {
 	if (!win_init(vars))
 		return (0);
-	handle_img(vars)
+	handle_img(vars);
 	hook_function(vars);
+	mlx_loop(vars->mlx);
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -109,7 +143,7 @@ int	main(int ac, char **av)
 	}
 	else
 		return(error("Usage: ./fdf <map.fdf>\n"), 1);
-	return (free(vars), ft_free_arr(arr, arr_size(arr)), 0);
+	return (free(vars), ft_free_arr_i(arr, arr_size(arr)), 0);// a faire
 }
 
 /*
