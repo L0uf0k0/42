@@ -17,6 +17,14 @@ void	error(char *str)
 	ft_putstr_fd(str, 2);
 }
 
+void	put_pxl(t_data *img) //flemme fais un copie colle de l'autre fichier
+
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
 void	close_win(t_vars *vars)// a completer
 {
 	//clear imgs ?
@@ -54,10 +62,29 @@ int	win_init(t_vars *vars)
 
 }
 
+int	update_img(t_vars *vars, t_data *img)
+{
+	//drawer
+	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);// check?
+}
+
+int	handle_img(t_vars *vars)
+{
+	t_data *img;
+	// if differemt ?
+	img = malloc(sizeof(t_data);
+	if (!img)
+		return (0);
+	if (!update_img(vars, img))
+		return (ft_free_t_data(img), 0);
+	return (1);
+}
+
 int	process(t_vars *vars, int **arr)
 {
 	if (!win_init(vars))
 		return (0);
+	handle_img(vars)
 	hook_function(vars);
 }
 
@@ -87,7 +114,6 @@ int	main(int ac, char **av)
 
 /*
 ----------MANQUE:----------
-img management
 drawer()
 draw_line()
 my_mlx_pixel_put()
