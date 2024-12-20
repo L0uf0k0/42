@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/19 03:55:52 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:16:09 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@
 #  define HEIGHT 800
 # endif
 
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-	int	scale;
-}	t_vars;
-
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
@@ -42,12 +36,29 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+	t_data	*img;
+	int	scale;
+	int	diffX;
+	int	diffY;
+}	t_vars;
+
+
+int	update_img(t_vars *vars, int **arr);
+
+//fdf_hook
+int		hook_function(t_vars *vars);
+int		close_win(t_vars *vars);
+int		key_hook(int key, t_vars *vars);
+
 //parser
-int	**parser(const char *file);
+int		**parser(const char *file);
 
 //parser_utils
 void	ft_free_arr_i(int **arr, int i);
-int	arr_size(char **arr);
-int	arr_size_i(int **arr);
+int		arr_size(char **arr);
+int		arr_size_i(int **arr);
 
 #endif

@@ -3,29 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/14 15:24:10 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/19 03:57:58 by malapoug         ###   ########.fr       */
+/*   Created: 2024/12/19 03:36:34 by malapoug          #+#    #+#             */
+/*   Updated: 2024/12/20 21:51:29 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	error(char *str)
+{
+	ft_putstr_fd(str, 2);
+}
+
+void	put_pxl(t_data *img, int x, int y, int color)
 {
 	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return;
+	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int*)dst = color;
 }
 
-int	create_trgb(int t, int r, int g, int b)
+int	trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	draw_line(t_vars *vars, t_data *img, int x1, int y1, int x2, int y2, int color)
+int	win_init(t_vars *vars)
+{
+	vars->mlx = mlx_init();
+	if (!vars->mlx)
+		return (0);
+	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "FDF by malapoug");
+	if (!vars->win)
+		return (0);//free
+	return (1);
+}
+
+void	init_view(t_vars *vars)
+{
+	vars->img = malloc(sizeof(t_data));
+	vars->img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
+	vars->img->addr = mlx_get_data_addr(vars->img->img, &vars->img->bpp, &vars->img->line_length, &vars->img->endian);
+	vars->scale = 10;
+	vars->diffX = WIDTH / 4;
+	vars->diffY = HEIGHT / 4;
+}
+
+void	draw_line(t_vars *vars, int x1, int y1, int x2, int y2, int color)
 {
 	int	dx;
 	int	dy;
@@ -36,7 +63,7 @@ void	draw_line(t_vars *vars, t_data *img, int x1, int y1, int x2, int y2, int co
 	dy = (y2 - y1) * 2;
 	while (x1 < x2)
 	{
-		my_mlx_pixel_put(img, x1, y1 * vars->scale, color);
+		put_pxl(vars->img, x1 + vars->diffX, y1 + vars->diffY, color);
 		x1++;
 		e -= dy;
 		if (e <= 0)
@@ -47,45 +74,23 @@ void	draw_line(t_vars *vars, t_data *img, int x1, int y1, int x2, int y2, int co
 	}
 }
 
-void	zoom(t_vars *vars)
-{
-	(void)vars;
-}
-
-int	key_hook(int key, t_vars *vars)
-{
-	if (key == 53)
-	{
-		//clear imgs
-		mlx_destroy_window(vars->mlx, vars->mlx_win);
-		return (1);
-	}
-	else if (key == 45)
-		zoom(vars);
-	else ft_putnbr_fd(key, 1);
-	return (0);
-}
-
 t_data	*drawer(t_vars *vars, int **arr)
 {
 	t_data	*img;
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
+	img = vars->img;
 	y = 0;
-	img = malloc(sizeof(t_data));
-	img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length, &img->endian);
 	while (arr[y])
 	{
 		x = 0;
 		while (arr[y][x])
 		{
-			ft_putnbr_fd(arr[y][x], 1);
 			if (arr[y][x + 1])
-				draw_line(vars, img, x, y, (x + 1), (y), create_trgb(256, 0, 100, 200));
+				draw_line(vars, x, y, (x + 1), y, trgb(256, 0, 100, 200));
 			if (arr[y + 1][x])
-				draw_line(vars, img, x, y, (x), (y + 1), create_trgb(256, 0, 100, 200));
+				draw_line(vars, x, y, x, (y + 1), trgb(256, 0, 100, 200));
 			x++;
 		}
 		y++;
@@ -93,12 +98,67 @@ t_data	*drawer(t_vars *vars, int **arr)
 	return (img);
 }
 
-void	windows_managment(t_vars *vars, int **arr)
+void	ft_free_t_data(t_data *img)
 {
-	t_data	*img;
+	if (img->img)
+		free(img->img);
+	if (img->addr)
+		free(img->addr);
+	if (img)
+		free(img);
+}
 
-	img = drawer(vars, arr);
-	mlx_put_image_to_window(vars->mlx, vars->mlx_win, img->img, 0, 0);
+void	ft_free_t_vars(t_vars *vars)
+{
+	if (vars->mlx)
+		free(vars->mlx);
+	if (vars->win)
+		free(vars->win);
+	if (vars->img)//destroy
+		ft_free_t_data(vars->img);
+	if (vars)
+		free(vars);
+}
+
+void	full_black(t_vars *vars)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 1;
+	while (x < WIDTH)
+	{
+		while (y < HEIGHT)
+		{
+			put_pxl(vars->img, x, y, trgb(256, 256, 256, 256));
+			y++;
+		}
+		x++;
+	}
+}
+
+int	update_img(t_vars *vars, int **arr)
+{
+
+	full_black(vars);
+	//drawer(vars, arr);
+	(void)arr;
+	//mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);// check?
+	return (1);
+}
+
+int	process(t_vars *vars, int **arr)
+{
+	if (!win_init(vars))
+		return (0);
+	init_view(vars);
+	update_img(vars, arr);
+	hook_function(vars);
+	if (!vars->img)
+		return (ft_free_t_vars(vars), 0);
+	mlx_loop(vars->mlx);
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -106,40 +166,30 @@ int	main(int ac, char **av)
 	t_vars	*vars;
 	int	**arr;
 
-	(void)ac;
-	vars = malloc(sizeof(t_vars));
-	if (!vars)
-		return(0);
-	arr = parser(av[1]);
-	if (!arr)
+	if (ac == 2) // ?
 	{
-		free(vars);
-		return (0);
+		vars = malloc(sizeof(t_vars));
+		if (!vars)
+			return (error(""), 1);
+		arr = parser(av[1]);
+		if (!arr)
+		{
+			free(vars);//faire une f pour free aussi les pointeurs inside
+			return (1);
+		}
+		if (!process(vars, arr))
+			return(error("Error in Process\n"), 1);
 	}
-	vars->mlx = mlx_init();
-	vars->mlx_win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "42 FDF by malapoug");
-	vars->scale = (WIDTH * arr_size_i(arr)) / 100;
-	windows_managment(vars, arr);
-	mlx_hook(vars->mlx_win, 2, 1L<<0, key_hook, &vars);
-	mlx_loop(vars->mlx);
+	else
+		return(error("Usage: ./fdf <map.fdf>\n"), 1);
+	return (free(vars), ft_free_arr_i(arr, arr_size_i(arr)), 0);// a faire
 }
 
 /*
+----------MANQUE:----------
+drawer()
+draw_line()
+my_mlx_pixel_put()
+ft_free_vars() (a faire)
 
-     // Here I will be declaring the hooks, see below for their implementation.
-     mlx_hook(env.win, 4, 0, mouse_handler, &env);
-     // mouse_handler will be called everytime a mouse down event is emitted
-     mlx_hook(env.win, 2, 1L << 0, key_handler, &env);
-     // key_handler will be called everytime a key is pressed
-     mlx_hook(env.win, 17, 1L << 0, close_window, &env);
-     // close_window is called when we click on the red cross to close the window
-     mlx_loop_hook(env.mlx, render, &env);
-     // Since MXL loops over and over again, we can use the mlx_loop_hook
-     // to execute a function everytime MLX loops over.
-
-
-destination.x=source.x∗cos(a)+source.y∗cos(a+2)+source.z∗cos(a−2)
-destination.y=source.x∗sin(a)+source.y∗sin(a+2)+source.z∗sin(a−2)
-     destination.x = source.x + cos(angle) * source.z
-     destination.y = source.y + sin(angle) * source.z
 */

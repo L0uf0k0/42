@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/19 15:55:42 by malapoug         ###   ########.fr        #
+#    Updated: 2024/12/20 18:12:23 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ DEBUG = -fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS =	fdf_new.c\
+SRCS =	fdf.c\
+	fdf_hook.c\
 	parser.c\
 	parser_utils.c\
 
