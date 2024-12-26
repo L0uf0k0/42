@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/26 19:18:54 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/26 23:23:49 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_vars {
 
 
 int	update_img(t_vars *vars, int **arr);
+int	trgb(int t, int r, int g, int b);
 
 //fdf_hook
 int		hook_function(t_vars *vars);
@@ -60,5 +61,17 @@ int		**parser(const char *file);
 void	ft_free_arr_i(int **arr, int i);
 int		arr_size(char **arr);
 int		arr_size_i(int **arr);
+
+
+
+
+
+
+
+
+
+void	init_view(t_vars *vars);
+void	put_pxl(t_data *img, int x, int y, int color);
+void	full_black(t_vars *vars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 03:36:34 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/20 21:51:29 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/26 23:30:33 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,16 @@ int	win_init(t_vars *vars)
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "FDF by malapoug");
 	if (!vars->win)
 		return (0);//free
+	vars->img = malloc(sizeof(t_data));
+	if (!vars->img)
+		return (0);//free
 	return (1);
 }
 
 void	init_view(t_vars *vars)
 {
-	vars->img = malloc(sizeof(t_data));
 	vars->img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	vars->img->addr = mlx_get_data_addr(vars->img->img, &vars->img->bpp, &vars->img->line_length, &vars->img->endian);
-	vars->scale = 10;
-	vars->diffX = WIDTH / 4;
-	vars->diffY = HEIGHT / 4;
 }
 
 void	draw_line(t_vars *vars, int x1, int y1, int x2, int y2, int color)
@@ -63,7 +62,7 @@ void	draw_line(t_vars *vars, int x1, int y1, int x2, int y2, int color)
 	dy = (y2 - y1) * 2;
 	while (x1 < x2)
 	{
-		put_pxl(vars->img, x1 + vars->diffX, y1 + vars->diffY, color);
+		put_pxl(vars->img, (x1 + vars->diffX) * vars->scale, y1 + vars->diffY, color);
 		x1++;
 		e -= dy;
 		if (e <= 0)
@@ -141,20 +140,27 @@ void	full_black(t_vars *vars)
 int	update_img(t_vars *vars, int **arr)
 {
 
-	full_black(vars);
-	//drawer(vars, arr);
-	(void)arr;
-	//mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);// check?
+	//full_black(vars);
+	drawer(vars, arr);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);// check?
 	return (1);
+}
+
+void	init(t_vars *vars)
+{
+	vars->scale = 2;
+	vars->diffX = WIDTH / 4;
+	vars->diffY = HEIGHT / 4;
 }
 
 int	process(t_vars *vars, int **arr)
 {
 	if (!win_init(vars))
 		return (0);
+	init(vars);
 	init_view(vars);
-	update_img(vars, arr);
 	hook_function(vars);
+	update_img(vars, arr);
 	if (!vars->img)
 		return (ft_free_t_vars(vars), 0);
 	mlx_loop(vars->mlx);
