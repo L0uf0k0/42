@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/20 18:12:23 by malapoug         ###   ########.fr        #
+#    Updated: 2024/12/26 19:19:32 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,15 +33,15 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C libft/
 	#@make -C mlx/
-	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a mlx/libmlx_Linux.a -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 debug: $(OBJS)
 	@make -C libft/
 	#@make -C mlx/
-	@$(CC) $(CFLAGS) $(DEBUG) $(OBJS) libft/libft.a mlx/libmlx_Linux.a -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) $(CFLAGS) $(DEBUG) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I/usr/include -Imlx -O3  mlx/libmlx_Linux.a -c $< -o $@
+	@$(CC) $(CFLAGS) -I/usr/include -Imlx -O3  minilibx-linux/libmlx_Linux.a -c $< -o $@
 
 
 clean:

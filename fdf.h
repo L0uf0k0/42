@@ -6,14 +6,14 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/20 20:16:09 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:18:54 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <math.h>
