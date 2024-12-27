@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/26 19:19:32 by malapoug         ###   ########.fr        #
+#    Updated: 2024/12/27 12:39:34 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS =	fdf.c\
 	fdf_hook.c\
 	parser.c\
 	parser_utils.c\
+	fdf_clean.c\
+	fdf_draw.c\
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,21 +6,20 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:37:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/14 17:37:38 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:38:12 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	*parse_line_to_ints(char *line)
+static int	*parse_line_to_ints(t_vars *vars, char *line)
 {
 	char	**split;
 	int		word_count;
 	int		*row;
-	int		i;
 
 	row = NULL;
-	i = 0;
+	vars->arr_w = 0;
 	split = ft_split(line, ' ');
 	if (!split)
 		return (NULL);
@@ -28,32 +27,31 @@ static int	*parse_line_to_ints(char *line)
 	row = malloc(sizeof(int) * word_count);
 	if (!row)
 		return (ft_free_arr(split, arr_size(split)), NULL);
-	while (i < word_count && split[i])
+	while (vars->arr_w < word_count && split[vars->arr_w])
 	{
-		row[i] = ft_atoi(split[i]);
-		i++;
+		row[vars->arr_w] = ft_atoi(split[vars->arr_w]);
+		vars->arr_w++;
 	}
 	ft_free_arr(split, arr_size(split));
 	return (row);
 }
 
-int	**parse_text_to_3d_array(char *text, int **arr)
+int	**parse_text_to_3d_array(t_vars *vars, char *text, int **arr)
 {
 	char	**lines;
-	int	line_count;
 	int	i;
 
 	lines = ft_split(text, '\n');
 	if (!lines)
 		return (NULL);
-	line_count = arr_size(lines);
-	arr = malloc(sizeof(int *) * (line_count + 1));
+	vars->arr_h = arr_size(lines);
+	arr = malloc(sizeof(int *) * (vars->arr_h + 1));
 	if (!arr)
 		return (ft_free_arr(lines, arr_size(lines)), NULL);
 	i = 0;
-	while (i < line_count)
+	while (i < vars->arr_h)
 	{
-		arr[i] = parse_line_to_ints(lines[i]);
+		arr[i] = parse_line_to_ints(vars, lines[i]);
 		if (!arr[i])
 		{
 			ft_free_arr_i(arr, i);
@@ -63,7 +61,7 @@ int	**parse_text_to_3d_array(char *text, int **arr)
 		i++;
 	}
 	ft_free_arr(lines, arr_size(lines));
-	arr[line_count] = NULL;
+	arr[vars->arr_h] = NULL;
 	return (arr);
 }
 
@@ -92,7 +90,7 @@ char	*read_file(int fd)
 	return (buffer);
 }
 
-int	**parser(const char *file)
+int	**parser(t_vars *vars, const char *file)
 {
 	int	fd;
 	char	*text;
@@ -107,7 +105,7 @@ int	**parser(const char *file)
 	close(fd);
 	if (!text)
 		return (NULL);
-	arr = parse_text_to_3d_array(text, arr);
+	arr = parse_text_to_3d_array(vars, text, arr);
 	free(text);
 	return (arr);
 }
