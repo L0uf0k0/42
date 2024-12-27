@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/27 12:39:34 by malapoug         ###   ########.fr        #
+#    Updated: 2024/12/27 13:59:52 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,12 @@ DEBUG = -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS =	fdf.c\
-	fdf_hook.c\
+	fdf_init.c\
 	parser.c\
 	parser_utils.c\
-	fdf_clean.c\
 	fdf_draw.c\
+	fdf_hook.c\
+	fdf_clean.c\
 
 OBJS = $(SRCS:.c=.o)
 

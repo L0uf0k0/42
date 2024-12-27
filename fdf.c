@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 12:18:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/27 13:38:35 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:21:30 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,6 @@
 void	error(char *str)
 {
 	ft_putstr_fd(str, 2);
-}
-
-int	win_init(t_vars *vars)
-{
-	vars->mlx = mlx_init();
-	if (!vars->mlx)
-		return (0);
-	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "FDF by malapoug");
-	if (!vars->win)
-		return (0);//free
-	vars->img = malloc(sizeof(t_data));
-	if (!vars->img)
-		return (0);//free
-	vars->img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-	if (!vars->img->img)
-		return (0);//free
-	vars->img->addr = mlx_get_data_addr(vars->img->img, &vars->img->bpp, &vars->img->line_length, &vars->img->endian);
-	return (1);
-}
-
-int	init(t_vars *vars)
-{
-	if (!win_init(vars))
-		return (0);
-	vars->scale = 10;
-	vars->diffX = WIDTH / 4;
-	vars->diffY = HEIGHT / 4;
-	return (1);
 }
 
 void update_img(t_vars *vars)
@@ -58,14 +30,12 @@ void update_img(t_vars *vars)
 	// Dessiner et afficher l'image
 	full_black(vars); // Efface l'écran avant de redessiner
 	drawer(vars);	 // Appelle ta fonction pour dessiner ton schéma
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, vars->diffX, vars->diffY);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
 }
-
 
 int	process(t_vars *vars)
 {
 	update_img(vars);
-	//mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);// check?
 	mlx_hook(vars->win, 2, 1L<<0, key_hook, vars); //keyboard
 	mlx_hook(vars->win, 17, 1L<<0, close_win, vars); //red cross
 	return (1);
