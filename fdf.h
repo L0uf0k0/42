@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/27 21:30:09 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/28 11:23:56 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		close_win(t_vars *vars);
 int		key_hook(int key, t_vars *vars);
 
 //fdf_clean
-void	ft_free_t_data(t_data *img);
+void	ft_free_t_data(void *mlx, t_data *img);
 void	ft_free_t_vars(t_vars *vars);
 
 

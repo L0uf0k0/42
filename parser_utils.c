@@ -25,6 +25,7 @@ void	ft_free_arr_i(int **arr, int i)
 {
 	while (i > 0 && arr)
 		free(arr[i--]);
+	free(arr[i]);
 	if (arr)
 		free(arr);
 }

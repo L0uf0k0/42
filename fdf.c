@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 12:18:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/27 18:21:30 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/28 11:30:08 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ int	main(int ac, char **av)
 	{
 		vars = malloc(sizeof(t_vars));
 		if (!vars)
-			return (error(""), 1);
+			return (1);
 		vars->arr = parser(vars, av[1]);
 		if (!vars->arr)
-			return (free(vars), 1);//faire une f pour free aussi les pointeurs inside
+			return (ft_free_t_vars(vars), 0);
 		if (!init(vars))
-			return(error("Error in Init\n"), 1);
+			return (ft_free_t_vars(vars), 0);
 		if (!process(vars))
-			return(error("Error in Process\n"), 1);
+			return (ft_free_t_vars(vars), 0);
 		mlx_loop(vars->mlx);
 	}
 	else
 		return(error("Usage: ./fdf <map.fdf>\n"), 1);
-	return (ft_free_arr_i(vars->arr, arr_size_i(vars->arr)), free(vars), 0);// a faire
+	return (ft_free_t_vars(vars), 0);
 }
 
