@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:57:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/28 11:21:13 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/28 13:20:36 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	win_init(t_vars *vars)
 	vars->img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->img->img)
 		return (0);
-	vars->img->addr = mlx_get_data_addr(vars->img->img, &vars->img->bpp, &vars->img->line_length, &vars->img->endian);
+	vars->img->addr = mlx_get_data_addr(vars->img->img, \
+		&vars->img->bpp, &vars->img->line_length, &vars->img->endian);
 	return (1);
 }
 
@@ -59,9 +60,9 @@ int	init(t_vars *vars)
 		return (0);
 	find_extrems(vars);
 	vars->scale = 10;
-	vars->z_scale = 10;
-	vars->diffX = WIDTH / 2;
-	vars->diffY = 0;
+	vars->z_scale = 1;
+	vars->diff_x = WIDTH / 2;
+	vars->diff_y = 0;
 	vars->ang_y = 0.866;
 	vars->ang_x = 0.5;
 	return (1);

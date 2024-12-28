@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 12:18:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/28 11:30:08 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:36:57 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,24 @@ void	error(char *str)
 	ft_putstr_fd(str, 2);
 }
 
-void update_img(t_vars *vars)
+void	update_img(t_vars *vars)
 {
-	// Nettoyer l'ancienne image si nécessaire
 	if (vars->img->img)
 		mlx_destroy_image(vars->mlx, vars->img->img);
-	// Créer une nouvelle image
 	vars->img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->img->img)
 		error("Failed to create new image\n");
-	vars->img->addr = mlx_get_data_addr(vars->img->img, &vars->img->bpp, &vars->img->line_length, &vars->img->endian);
-	// Dessiner et afficher l'image
-	full_black(vars); // Efface l'écran avant de redessiner
-	drawer(vars);	 // Appelle ta fonction pour dessiner ton schéma
+	vars->img->addr = mlx_get_data_addr(vars->img->img, &vars->img->bpp, \
+	&vars->img->line_length, &vars->img->endian);
+	drawer(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
 }
 
 int	process(t_vars *vars)
 {
 	update_img(vars);
-	mlx_hook(vars->win, 2, 1L<<0, key_hook, vars); //keyboard
-	mlx_hook(vars->win, 17, 1L<<0, close_win, vars); //red cross
+	mlx_hook(vars->win, 2, 1L << 0, key_hook, vars);
+	mlx_hook(vars->win, 17, 1L << 0, close_win, vars);//manque le resizeable...
 	return (1);
 }
 
@@ -45,7 +42,7 @@ int	main(int ac, char **av)
 {
 	t_vars	*vars;
 
-	if (ac == 2) // ?
+	if (ac == 2)
 	{
 		vars = malloc(sizeof(t_vars));
 		if (!vars)
@@ -60,7 +57,6 @@ int	main(int ac, char **av)
 		mlx_loop(vars->mlx);
 	}
 	else
-		return(error("Usage: ./fdf <map.fdf>\n"), 1);
+		return (error("Usage: ./fdf <map.fdf>\n"), 1);
 	return (ft_free_t_vars(vars), 0);
 }
-

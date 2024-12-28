@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:37:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/27 13:38:12 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:29:25 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	*parse_line_to_ints(t_vars *vars, char *line)
 int	**parse_text_to_3d_array(t_vars *vars, char *text, int **arr)
 {
 	char	**lines;
-	int	i;
+	int		i;
 
 	lines = ft_split(text, '\n');
 	if (!lines)
@@ -76,7 +76,7 @@ char	*read_file(int fd)
 	buffer = ft_strdup("");
 	if (!buffer)
 		return (NULL);
-	line = get_next_line(fd); // check
+	line = get_next_line(fd);
 	while (line)
 	{
 		temp = ft_strjoin(buffer, line);
@@ -92,9 +92,9 @@ char	*read_file(int fd)
 
 int	**parser(t_vars *vars, const char *file)
 {
-	int	fd;
 	char	*text;
-	int	**arr;
+	int		**arr;
+	int		fd;
 
 	text = NULL;
 	arr = NULL;
@@ -109,4 +109,3 @@ int	**parser(t_vars *vars, const char *file)
 	free(text);
 	return (arr);
 }
-
