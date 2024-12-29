@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/28 15:37:08 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/29 18:15:31 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@
 #  define HEIGHT 800
 # endif
 
+typedef struct s_br
+{
+	int		dx;
+	int		dy;
+	int		e;
+	int		e2;
+}				t_br;
+
 typedef struct s_data
 {
 	void	*img;
@@ -45,8 +53,8 @@ typedef struct s_vars
 	int		arr_w;
 	int		arr_h;
 	t_data	*img;
-	double		scale;
-	double		z_scale;
+	double	scale;
+	double	z_scale;
 	int		diff_x;
 	int		diff_y;
 	int		max_z;
@@ -74,14 +82,16 @@ void	update_img(t_vars *vars);
 //fdf_draw
 t_data	*drawer(t_vars *vars);
 void	put_pxl(t_vars *vars, int x, int y);
-void	draw_line(t_vars *vars, int x1, int y1, int x2, int y2);
 int		trgb(int t, int r, int g, int b);
 
+//bresenham
+void	bresenham(t_vars *vars, int x1, int y1, int x_y);
+
 //fdf_maths
-int	transf_x(t_vars *vars, int x, int y);
-int	transf_y(t_vars *vars, int x, int y, int z);
-int	color(t_vars *vars, int x, int y);
-int	trgb(int t, int r, int g, int b);
+int		transf_x(t_vars *vars, int x, int y);
+int		transf_y(t_vars *vars, int x, int y, int z);
+int		color(t_vars *vars, int x, int y);
+int		trgb(int t, int r, int g, int b);
 
 //fdf_hook
 int		close_win(t_vars *vars);
