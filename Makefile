@@ -6,9 +6,23 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/29 19:59:59 by malapoug         ###   ########.fr        #
+#    Updated: 2024/12/29 20:25:20 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+define HEADER
+========================================================================
+  __      _   __                                      _  _            _
+ / _|    | | / _|                                    (_)| |          | |
+| |_   __| || |_        ___   ___   _ __ ___   _ __   _ | |  ___   __| |
+|  _| / _` ||  _|      / __| / _ \ | '_ ` _ \ | '_ \ | || | / _ \ / _` |
+| |  | (_| || |       | (__ | (_) || | | | | || |_) || || ||  __/| (_| |
+|_|   \__,_||_|        \___| \___/ |_| |_| |_|| .__/ |_||_| \___| \__,_|
+                                              | |
+                                              |_|
+========================================================================
+endef
+export HEADER
 
 NAME = fdf
 
@@ -35,18 +49,18 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) done
 	@make -C libft/
 	#@make -C mlx/
 	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
-debug: $(OBJS)
+debug: $(OBJS) done
 	@make -C libft/
 	#@make -C mlx/
 	@$(CC) $(CFLAGS) $(DEBUG) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I/usr/include -Imlx -O3  minilibx-linux/libmlx_Linux.a -c $< -o $@
+	@$(CC) $(CFLAGS) -I/usr/include -Imlx -O3 -c $< -o $@
 
 
 clean:
@@ -58,6 +72,9 @@ fclean: clean
 	@make fclean -C libft/
 	#@make clean -C mlx/
 	@$(RM) $(NAME)
+
+done:
+	@echo "$$HEADER"
 
 re: fclean all
 
