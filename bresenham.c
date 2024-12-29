@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:12:47 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/29 18:15:40 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/29 19:42:41 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ void	bresenham(t_vars *vars, int x1, int y1, int x_y)
 	int		tx2;
 
 	if (x_y == 'x')
-	{
 		tx2 = transf_x(vars, x1 + 1, y1);
+	if (x_y == 'x')
 		y2 = transf_y(vars, x1 + 1, y1, vars->arr[y1][x1 + 1]);
-	}
 	else
 	{
 		tx2 = transf_x(vars, x1, y1 + 1);
@@ -65,7 +64,7 @@ void	bresenham(t_vars *vars, int x1, int y1, int x_y)
 	tx1 = transf_x(vars, x1, y1);
 	y1 = transf_y(vars, x1, y1, vars->arr[y1][x1]);
 	init_br(&br, abs(tx2 - tx1), abs(y2 - y1));
-	while (tx1 != tx2 && y1 != y2)
+	while (tx1 != tx2 || y1 != y2)
 	{
 		br.e2 = br.e;
 		put_pxl(vars, tx1, y1);

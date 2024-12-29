@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 11:00:59 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/29 18:14:54 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/29 19:08:51 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	put_pxl(t_vars *vars, int x, int y)
 		return ;
 	dst = vars->img->addr + (y * vars->img->line_length + \
 	x * (vars->img->bpp / 8));
-	*(unsigned int *)dst = trgb(2, 120, 25, 150);
+	*(unsigned int *)dst = trgb(0, vars->r, vars->g, vars->b);
 }
 
 t_data	*drawer(t_vars *vars)

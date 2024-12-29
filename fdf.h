@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/29 18:15:31 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/29 19:58:38 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <fcntl.h>
 
 # ifndef WIDTH
-#  define WIDTH 800
+#  define WIDTH 1000
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 800
+#  define HEIGHT 1000
 # endif
 
 typedef struct s_br
@@ -61,6 +61,9 @@ typedef struct s_vars
 	int		min_z;
 	double	ang_y;
 	double	ang_x;
+	int		r;
+	int		g;
+	int		b;
 }	t_vars;
 
 //parser

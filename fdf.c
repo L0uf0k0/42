@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 12:18:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/28 15:36:57 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/29 18:47:55 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av)
 			return (1);
 		vars->arr = parser(vars, av[1]);
 		if (!vars->arr)
-			return (ft_free_t_vars(vars), 0);
+			return (free(vars), 0);
 		if (!init(vars))
 			return (ft_free_t_vars(vars), 0);
 		if (!process(vars))
