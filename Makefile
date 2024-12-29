@@ -6,13 +6,13 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/29 18:14:21 by malapoug         ###   ########.fr        #
+#    Updated: 2024/12/29 19:59:59 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-CC = cc
+CC = gcc
 
 DEBUG = -fsanitize=address
 
