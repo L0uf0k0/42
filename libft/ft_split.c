@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:52:31 by malapoug          #+#    #+#             */
-/*   Updated: 2024/10/03 17:06:31 by malapoug         ###   ########.fr       */
+/*   Updated: 2024/12/31 10:50:18 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,6 @@ static char	*ft_malloc_w(char *s, char c)
 	if (!arr)
 		return (NULL);
 	return (arr);
-}
-
-static void	ft_free_arr(char **arr, int i)
-{
-	while (i > 0)
-		free(arr[i--]);
-	free(arr);
 }
 
 char	**ft_split(const char *s, char c)
