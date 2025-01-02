@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin_f.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 20:06:06 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/31 14:40:12 by malapoug         ###   ########.fr       */
+/*   Created: 2024/12/31 15:56:36 by malapoug          #+#    #+#             */
+/*   Updated: 2025/01/02 13:06:30 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strjoin_f(char *s1, char *s2)
 {
-	if (*s == '\0')
-		return (NULL);
-	while (*s)
+	char	*ptr;
+	int		size;
+	int		i;
+	int		j;
+
+	if (!s1)
+		return (ft_strdup(s2));
+	i = 0;
+	size = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
+	ptr = (char *)malloc(size * sizeof(char));
+	if (!ptr)
+		return (0);
+	while (s1[i])
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		ptr[i] = s1[i];
+		i++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (0);
+	j = 0;
+	while (s2[j])
+		ptr[i++] = s2[j++];
+	ptr[i] = '\0';
+	free(s1);
+	return (ptr);
 }
