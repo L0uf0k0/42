@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/18 17:14:10 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:19:52 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_calc_rr_r(int cost, int count)
 	return (cost + 1);
 }
 
-int	find_dist_b(t_l **lst2, t_l *node, int rot_a, int cond(t_l**, t_l**))
+int	fnd_dst_b(t_l **lst2, t_l *node, int rot_a, int cond(t_l**, t_l**))
 {
 	t_l	*temp2;
 	int	count;
@@ -47,7 +47,7 @@ int	find_dist_b(t_l **lst2, t_l *node, int rot_a, int cond(t_l**, t_l**))
 	return (rot);
 }
 
-int	find_dist(t_l **lst1, t_l **lst2, t_l *node, int cond(t_l **, t_l**))
+int	fnd_dst(t_l **lst1, t_l **lst2, t_l *node, int cond(t_l **, t_l**))
 {
 	t_l	*temp1;
 	int	count;
@@ -70,7 +70,7 @@ int	find_dist(t_l **lst1, t_l **lst2, t_l *node, int cond(t_l **, t_l**))
 	}
 	node->cost = count;
 	node->sens = rot;
-	return (find_dist_b(lst2, node, rot, cond));
+	return (fnd_dst_b(lst2, node, rot, cond));
 }
 
 t_l	*find_cheap(t_l **lst1, t_l **lst2, int cond(t_l**, t_l**))
@@ -81,7 +81,7 @@ t_l	*find_cheap(t_l **lst1, t_l **lst2, int cond(t_l**, t_l**))
 	temp1 = *lst1;
 	while (temp1)
 	{
-		find_dist(lst1, lst2, temp1, cond);
+		fnd_dst(lst1, lst2, temp1, cond);
 		temp1 = temp1->next;
 	}
 	temp1 = *lst1;

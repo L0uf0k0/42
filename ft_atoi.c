@@ -6,16 +6,16 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:53:40 by malapoug          #+#    #+#             */
-/*   Updated: 2024/11/29 13:43:12 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:13:56 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
-	int	signe;
-	int	res;
+	long long int	res;
+	int				signe;
 
 	signe = 1;
 	res = 0;
@@ -31,5 +31,7 @@ int	ft_atoi(const char *str)
 		res = res * 10 + (*str) - '0';
 		str++;
 	}
+	if ((signe * res) > 2147483647 || (res * signe) < -2147483648)
+		return (2147483649);
 	return (res * signe);
 }

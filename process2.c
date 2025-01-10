@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:29:21 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/18 17:11:29 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:20:33 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	pre_tri(t_l **lst1, t_l **lst2)
 	if (ft_max(*lst1) > ft_max(*lst2))
 		ft_rev_rotate(lst1, 'a');
 	cheap = ft_max_address(*lst2);
-	cheap->sens = find_dist(lst2, NULL, cheap, push_back_cond);
+	cheap->sens = fnd_dst(lst2, NULL, cheap, push_back_cond);
 	last_rotate(lst2, cheap, 'b');
 }
 
@@ -91,7 +91,7 @@ void	push_back_algo(t_l **lst1, t_l **lst2, int size)
 		else
 		{
 			cheap = ft_min_address(*lst1);
-			cheap->sens = find_dist(lst1, NULL, cheap, push_back_cond);
+			cheap->sens = fnd_dst(lst1, NULL, cheap, push_back_cond);
 			last_rotate(lst1, cheap, 'a');
 		}
 	}

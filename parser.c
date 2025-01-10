@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:03:46 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 17:41:20 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:15:12 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	list_constructor(t_l **base, t_l *new)
 
 t_l	*parser(char *str)
 {
-	char	**arr;
-	t_l		*list;
-	int		temp;
-	int		i;
+	char		**arr;
+	long int	temp;
+	t_l			*list;
+	int			i;
 
 	i = 0;
 	list = NULL;
@@ -43,13 +43,13 @@ t_l	*parser(char *str)
 	while (arr[i])
 	{
 		temp = ft_atoi(arr[i]);
-		if (!list_constructor(&list, ft_lstnew(temp)))
+		if (temp == 2147483649 || !list_constructor(&list, ft_lstnew(temp)))
 		{
 			ft_lstclear(&list, free);
 			break ;
 		}
 		i++;
 	}
-	ft_free_arr(arr, i);
+	ft_free_arr(arr, arr_size(arr));
 	return (list);
 }

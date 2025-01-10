@@ -6,11 +6,21 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:46:22 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/03 01:01:29 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:10:28 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	arr_size(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
 
 int	count_w(const char *s, char c)
 {
