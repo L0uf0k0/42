@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/07 13:03:39 by malapoug         ###   ########.fr        #
+#    Updated: 2025/01/11 19:09:30 by malapoug         ###   LAUSANNE.ch        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,9 +65,10 @@ bonus : $(OBJSB)
 	@$(CC) $(CFLAGS) $(OBJSB) -o $(NAMEB)
 	@echo $(NAME)" compiled with bonus\n"
 
-bonusd : $(OBJSB)
-	@$(CC) $(CFLAGS) $(OBJSB) $(DEBUG) -o $(NAMEB)
+bonusd :
+	$(CC) $(CFLAGS) $(SRCSB) $(DEBUG) -o $(NAMEB)
 	@echo $(NAME)" compiled with bonus debug\n"
+
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 

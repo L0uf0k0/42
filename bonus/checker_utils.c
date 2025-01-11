@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 00:52:12 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/07 19:11:42 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:44:20 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ft_free_all(t_l **lst1, t_l **lst2, char *to_parse, char *str)
 	{
 		temp = (*lst1);
 		(*lst1) = (*lst1)->next;
-		free(temp);
 	}
 	while (*lst2)
 	{

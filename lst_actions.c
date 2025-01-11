@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:19:52 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/02 22:22:23 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:11:09 by malapoug         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_l	*ft_lstnew(int data)
 {
 	t_l	*new;
 
-	new = (t_l *)calloc(1, sizeof(t_l));
+	new = (t_l *)malloc(sizeof(t_l));
 	if (!new)
 		return (NULL);
 	new->data = data;
@@ -47,7 +47,6 @@ void	ft_lstclear(t_l **lst, void (*del)(void *))
 		return ;
 	if ((*lst)->next)
 		ft_lstclear(&(*lst)->next, (*del));
-	del(&(*lst)->data);
 	free(*lst);
 	*lst = NULL;
 }

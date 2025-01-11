@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:23:18 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/18 17:09:09 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:43:07 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,42 @@ int	ft_error(void)
 	return (-1);
 }
 
-int	ft_choose(t_l **lst1, t_l **lst2, char *str)
+int	ft_choose2(t_l **lst1, t_l **lst2, char *s)
 {
-	if (str[0] == 's' && str[1] == 'a')
-		ft_swap(lst1, 'c');
-	else if (str[0] == 's' && str[1] == 'b')
-		ft_swap(lst2, 'c');
-	else if (str[0] == 's' && str[1] == 's')
-		ft_ss(lst1, lst2, 'c');
-	else if (str[0] == 'p' && str[1] == 'a')
-		ft_push(lst2, lst1, 'c');
-	else if (str[0] == 'p' && str[1] == 'b')
-		ft_push(lst1, lst2, 'c');
-	else if (str[0] == 'r' && str[1] == 'a')
-		ft_rotate(lst1, 'c');
-	else if (str[0] == 'r' && str[1] == 'b')
-		ft_rotate(lst2, 'c');
-	else if (str[0] == 'r' && str[1] == 'r' && str[2] == '\0')
+	if (s[0] == 'r' && s[1] == 'r' && s[2] == '\0')
 		ft_rr(lst1, lst2, 'c');
-	else if (str[0] == 'r' && str[1] == 'r' && str[2] == 'a')
+	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'a'
+		&& (s[3] == '\n' || s[3] == '\0'))
 		ft_rev_rotate(lst1, 'c');
-	else if (str[0] == 'r' && str[1] == 'r' && str[2] == 'b')
+	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'b'
+		&& (s[3] == '\n' || s[3] == '\0'))
 		ft_rev_rotate(lst2, 'c');
-	else if (str[0] == 'r' && str[1] == 'r' && str[2] == 'r')
+	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'r'
+		&& (s[3] == '\n' || s[3] == '\0'))
 		ft_rrr(lst1, lst2, 'c');
 	else
-		return (ft_error());
+		return (ft_error(), -1);
+	return (0);
+}
+
+int	ft_choose(t_l **lst1, t_l **lst2, char *s)
+{
+	if (s[0] == 's' && s[1] == 'a' && (s[2] == '\n' || s[2] == '\0'))
+		ft_swap(lst1, 'c');
+	else if (s[0] == 's' && s[1] == 'b' && (s[2] == '\n' || s[2] == '\0'))
+		ft_swap(lst2, 'c');
+	else if (s[0] == 's' && s[1] == 's' && (s[2] == '\n' || s[2] == '\0'))
+		ft_ss(lst1, lst2, 'c');
+	else if (s[0] == 'p' && s[1] == 'a' && (s[2] == '\n' || s[2] == '\0'))
+		ft_push(lst2, lst1, 'c');
+	else if (s[0] == 'p' && s[1] == 'b' && (s[2] == '\n' || s[2] == '\0'))
+		ft_push(lst1, lst2, 'c');
+	else if (s[0] == 'r' && s[1] == 'a' && (s[2] == '\n' || s[2] == '\0'))
+		ft_rotate(lst1, 'c');
+	else if (s[0] == 'r' && s[1] == 'b' && (s[2] == '\n' || s[2] == '\0'))
+		ft_rotate(lst2, 'c');
+	else
+		return (ft_choose2(lst1, lst2, s));
 	return (0);
 }
 
@@ -55,7 +65,7 @@ void	check_instructions(t_l *lst1, t_l *lst2, int size)
 	while (instruct)
 	{
 		if (ft_choose(&lst1, &lst2, instruct) == -1)
-			break ;
+			return (free(instruct));
 		free(instruct);
 		instruct = get_next_line(0);
 	}
@@ -81,12 +91,12 @@ int	main(int ac, char *av[])
 	else
 		to_parse = av[1];
 	if (!valid_num(to_parse))
-		return (ft_free_all(&lst1, &lst2, to_parse, "Error"));
+		return (ft_free_all(&lst1, &lst2, to_parse, "Error\n"));
 	lst1 = parser(to_parse);
 	if (!lst1)
-		return (ft_free_all(&lst1, &lst2, to_parse, "Error"));
+		return (ft_free_all(&lst1, &lst2, to_parse, "Error\n"));
 	if (!check_dub(&lst1))
-		return (ft_free_all(&lst1, &lst2, to_parse, "Error"));
+		return (ft_free_all(&lst1, &lst2, to_parse, "Error\n"));
 	check_instructions(lst1, lst2, ft_lstsize(lst1));
 	ft_free_all(&lst1, &lst2, to_parse, "");
 }

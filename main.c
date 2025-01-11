@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:07:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/18 17:10:41 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:42:44 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int	main(int ac, char *av[])
 	else
 		to_parse = av[1];
 	if (!valid_num(to_parse))
-		return (ft_free_all(&lst1, &lst2, to_parse, "Error"));
+		return (ft_free_all(&lst1, &lst2, to_parse, "Error\n"));
 	lst1 = parser(to_parse);
 	if (!lst1)
-		return (ft_free_all(&lst1, &lst2, to_parse, "Error"));
+		return (ft_free_all(&lst1, &lst2, to_parse, "Error\n"));
 	if (!check_dub(&lst1))
-		return (ft_free_all(&lst1, &lst2, to_parse, "Error"));
+		return (ft_free_all(&lst1, &lst2, to_parse, "Error\n"));
 	process(&lst1, &lst2);
 	ft_free_all(&lst1, &lst2, to_parse, "");
 }
