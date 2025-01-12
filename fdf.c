@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 12:18:50 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/29 18:47:55 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/12 13:00:05 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	process(t_vars *vars)
 {
 	update_img(vars);
 	mlx_hook(vars->win, 2, 1L << 0, key_hook, vars);
-	mlx_hook(vars->win, 17, 1L << 0, close_win, vars);//manque le resizeable...
+	mlx_hook(vars->win, 17, 1L << 0, close_win, vars);
 	return (1);
 }
 

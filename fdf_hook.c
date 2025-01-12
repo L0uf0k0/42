@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:14:28 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/29 19:55:09 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/12 12:58:00 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	close_win(t_vars *vars)
 void	reset(t_vars *vars)
 {
 	vars->scale = 10;
-	vars->z_scale = 1;
+	vars->z_scale = vars->scale / 4;
 	vars->diff_x = WIDTH / 2;
 	vars->diff_y = 0;
 	vars->ang_y = 0.866;
@@ -64,14 +64,14 @@ int	key_hook(int key, t_vars *vars)
 	if (key == 65451)
 	{
 		vars->scale++;
-		vars->z_scale += 0.1;
+		vars->z_scale = vars->scale / 4;
 	}
 	else if (key == 99)
 		vars->b++;
 	else if (key == 65453 && vars->scale > 3)
 	{
 		vars->scale--;
-		vars->z_scale -= 0.1;
+		vars->z_scale = vars->scale / 4;
 	}
 	else if (key == 65361)
 	{
