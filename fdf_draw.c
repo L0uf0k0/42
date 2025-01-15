@@ -6,13 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 11:00:59 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 15:10:22 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:07:30 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	put_pxl(t_vars *vars, int x, int y)
+void	put_pxl(t_vars *vars, t_br br, int x, int y)
 {
 	char	*dst;
 
@@ -20,7 +20,7 @@ void	put_pxl(t_vars *vars, int x, int y)
 		return ;
 	dst = vars->img->addr + (y * vars->img->line_length + \
 	x * (vars->img->bpp / 8));
-	*(unsigned int *)dst = vars->arr[y][x];
+	*(unsigned int *)dst =trgb(45, 78, 21, 45); // vars->arr[br.tx][br.ty];
 }
 
 t_data	*drawer(t_vars *vars)

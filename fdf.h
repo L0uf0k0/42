@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/12 12:56:52 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:43:22 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_br
 {
 	int		dx;
 	int		dy;
+	int		tx;
+	int		ty;
 	int		e;
 	int		e2;
 }				t_br;
@@ -84,7 +86,7 @@ void	update_img(t_vars *vars);
 
 //fdf_draw
 t_data	*drawer(t_vars *vars);
-void	put_pxl(t_vars *vars, int x, int y);
+void	put_pxl(t_vars *vars, t_br br, int x, int y);
 int		trgb(int t, int r, int g, int b);
 
 //bresenham
