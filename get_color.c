@@ -12,6 +12,32 @@
 
 #include "fdf.h"
 
+unsigned int hex_to_uint(const char *hex_str) {
+    unsigned int result = 0;
+
+    // Si la chaîne commence par "0x" ou "0X", on la saute
+    if (hex_str[0] == '0' && (hex_str[1] == 'x' || hex_str[1] == 'X')) {
+        hex_str += 2;
+    }
+
+    while (*hex_str) {
+        result *= 16; // Décale à gauche en base 16
+        if (*hex_str >= '0' && *hex_str <= '9') {
+            result += *hex_str - '0';
+        } else if (*hex_str >= 'a' && *hex_str <= 'f') {
+            result += *hex_str - 'a' + 10;
+        } else if (*hex_str >= 'A' && *hex_str <= 'F') {
+            result += *hex_str - 'A' + 10;
+        } else {
+            // Caractère invalide dans la chaîne hexadécimale
+            return 0;
+        }
+        hex_str++;
+    }
+
+    return result;
+}
+
 unsigned int	get_color(t_vars *vars, t_br br)
 {
 	int	i;
