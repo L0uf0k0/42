@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:57:21 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/12 12:58:34 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:34:11 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,5 @@ int	init(t_vars *vars)
 	vars->diff_y = 0;
 	vars->ang_y = 0.866;
 	vars->ang_x = 0.5;
-	vars->r = 100;
-	vars->g = 0;
-	vars->b = 150;
 	return (1);
 }

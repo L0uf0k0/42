@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 15:43:22 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:34:00 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_vars
 	void	*mlx;
 	void	*win;
 	int		**arr;
+	char		**char_lines;
 	int		arr_w;
 	int		arr_h;
 	t_data	*img;
@@ -63,9 +64,6 @@ typedef struct s_vars
 	int		min_z;
 	double	ang_y;
 	double	ang_x;
-	int		r;
-	int		g;
-	int		b;
 }	t_vars;
 
 //parser

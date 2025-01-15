@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:37:33 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/28 15:29:25 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:28:21 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	**parse_text_to_3d_array(t_vars *vars, char *text, int **arr)
 		}
 		i++;
 	}
-	ft_free_arr(lines, arr_size(lines));
+	vars->char_lines = lines;
 	arr[vars->arr_h] = NULL;
 	return (arr);
 }
