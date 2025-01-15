@@ -6,13 +6,13 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:52:31 by malapoug          #+#    #+#             */
-/*   Updated: 2024/12/28 12:43:56 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:02:06 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_w(const char *s, char c)// to_use?
+int	count_w(const char *s, char c)
 {
 	int	i;
 	int	count;
@@ -35,7 +35,7 @@ int	count_w(const char *s, char c)// to_use?
 	return (count);
 }
 
-static char	*ft_malloc_w(char *s, char c)// to_use?
+static char	*ft_malloc_w(char *s, char c)
 {
 	char	*arr;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:14:28 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/12 12:58:00 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:08:00 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	key_hook2(int key, t_vars *vars)
 
 int	key_hook(int key, t_vars *vars)
 {
-	if (key == 53)
+	if (key == 65307)
 		close_win(vars);
 	if (key == 65451)
 	{

@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2024/12/31 11:07:38 by malapoug         ###   ########.fr        #
+#    Updated: 2025/01/15 15:03:17 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,14 +49,12 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS) done
+$(NAME): $(OBJS)
 	@make -C libft/
-	#@make -C mlx/
 	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
-debug: $(OBJS) done
+debug: $(OBJS)
 	@make -C libft/
-	#@make -C mlx/
 	@$(CC) $(CFLAGS) $(DEBUG) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
@@ -65,12 +63,10 @@ debug: $(OBJS) done
 
 clean:
 	@make clean -C libft/
-	#@make clean -C mlx/
 	@$(RM) $(OBJS)
 
 fclean: clean
 	@make fclean -C libft/
-	#@make clean -C mlx/
 	@$(RM) $(NAME)
 
 done:
