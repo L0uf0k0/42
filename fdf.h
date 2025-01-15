@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 17:07:59 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:54:48 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_vars
 	t_data	*img;
 	double	scale;
 	double	z_scale;
+	int		color;
 	int		diff_x;
 	int		diff_y;
 	int		max_z;

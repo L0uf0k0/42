@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:14:28 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 16:34:32 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:05:49 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ int	close_win(t_vars *vars)
 
 void	reset(t_vars *vars)
 {
+	vars->color = 0;
 	vars->scale = 10;
-	vars->z_scale = vars->scale / 4;
+	vars->z_scale = vars->scale / 2;
 	vars->diff_x = WIDTH / 2;
 	vars->diff_y = 0;
 	vars->ang_y = 0.866;
@@ -46,8 +47,8 @@ int	key_hook2(int key, t_vars *vars)
 		vars->ang_x += 0.1;
 	else if (key == 114)
 		reset(vars);
-	ft_putstr_fd("\nkey: ", 1);
-	ft_putnbr_fd(key, 1);
+	else if (key == 99)
+		vars->color = !vars->color;
 	if (vars->img->img)
 		update_img(vars);
 	return (1);
@@ -60,12 +61,12 @@ int	key_hook(int key, t_vars *vars)
 	if (key == 65451)
 	{
 		vars->scale++;
-		vars->z_scale = vars->scale / 4;
+		vars->z_scale = vars->scale / 2;
 	}
 	else if (key == 65453 && vars->scale > 3)
 	{
 		vars->scale--;
-		vars->z_scale = vars->scale / 4;
+		vars->z_scale = vars->scale / 2;
 	}
 	else if (key == 65361)
 	{

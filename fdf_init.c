@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:57:21 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 16:34:11 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:55:13 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ int	init(t_vars *vars)
 	if (!win_init(vars))
 		return (0);
 	find_extrems(vars);
+	vars->color = 0;
 	vars->scale = 10;
-	vars->z_scale = vars->scale / 4;
+	vars->z_scale = vars->scale / 2;
 	vars->diff_x = WIDTH / 2;
 	vars->diff_y = 0;
 	vars->ang_y = 0.866;
