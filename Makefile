@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2025/01/15 15:03:17 by malapoug         ###   ########.fr        #
+#    Updated: 2025/01/15 17:08:25 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS =	fdf.c\
 	parser.c\
 	parser_utils.c\
 	fdf_draw.c\
+	get_color.c\
 	bresenham.c\
 	fdf_maths.c\
 	fdf_hook.c\

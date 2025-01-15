@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 16:34:00 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:07:59 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ void	update_img(t_vars *vars);
 t_data	*drawer(t_vars *vars);
 void	put_pxl(t_vars *vars, t_br br, int x, int y);
 int		trgb(int t, int r, int g, int b);
+
+//get_color
+
+unsigned int	get_color(t_vars *vars, t_br br);
 
 //bresenham
 void	bresenham(t_vars *vars, int x1, int y1, int x_y);

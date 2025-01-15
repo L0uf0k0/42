@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 11:00:59 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 16:33:30 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:57:27 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ void	put_pxl(t_vars *vars, t_br br, int x, int y)
 		return ;
 	dst = vars->img->addr + (y * vars->img->line_length + \
 	x * (vars->img->bpp / 8));
-	if (1)
-		*(unsigned int *)dst = 0xFFFFFFFF;
-	else//vars->arr[br.ty][br.tx];
-		*(unsigned int *)dst = 0xFFFFFFFF;
-	(void)br;
+	*(unsigned int *)dst = (get_color(vars, br));
 }
 
 t_data	*drawer(t_vars *vars)
