@@ -6,7 +6,7 @@
 #    By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 00:28:46 by malapoug          #+#    #+#              #
-#    Updated: 2025/01/15 17:08:25 by malapoug         ###   ########.fr        #
+#    Updated: 2025/01/16 15:16:46 by malapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,10 +53,12 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C libft/
 	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	@echo "FDF compiled!\n"
 
 debug: $(OBJS)
 	@make -C libft/
 	@$(CC) $(CFLAGS) $(DEBUG) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	@echo "FDF compiled with debug!\n"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I/usr/include -Imlx -O3 -c $< -o $@

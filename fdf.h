@@ -6,7 +6,7 @@
 /*   By: malapoug <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:24:19 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 17:54:48 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:58:12 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_vars
 	void	*mlx;
 	void	*win;
 	int		**arr;
-	char		**char_lines;
+	char	**char_lines;
 	int		arr_w;
 	int		arr_h;
 	t_data	*img;
@@ -68,45 +68,45 @@ typedef struct s_vars
 }	t_vars;
 
 //parser
-int		**parser(t_vars *vars, const char *file);
+int				**parser(t_vars *vars, const char *file);
 
 //parser_utils
-void	ft_free_arr_i(int **arr, int i);
-int		arr_size(char **arr);
-int		arr_size_i(int **arr);
+void			ft_free_arr_i(int **arr, int i);
+int				arr_size(char **arr);
+int				arr_size_i(int **arr);
 
 //fdf_init
-void	find_extrms(t_vars *vars);
-int		win_init(t_vars *vars);
-int		init(t_vars *vars);
+void			find_extrms(t_vars *vars);
+int				win_init(t_vars *vars);
+int				init(t_vars *vars);
 
 //main
-void	update_img(t_vars *vars);
+void			update_img(t_vars *vars);
 
 //fdf_draw
-t_data	*drawer(t_vars *vars);
-void	put_pxl(t_vars *vars, t_br br, int x, int y);
-int		trgb(int t, int r, int g, int b);
+t_data			*drawer(t_vars *vars);
+void			put_pxl(t_vars *vars, t_br br, int x, int y);
+int				trgb(int t, int r, int g, int b);
 
 //get_color
 
 unsigned int	get_color(t_vars *vars, t_br br);
 
 //bresenham
-void	bresenham(t_vars *vars, int x1, int y1, int x_y);
+void			bresenham(t_vars *vars, int x1, int y1, int x_y);
 
 //fdf_maths
-int		transf_x(t_vars *vars, int x, int y);
-int		transf_y(t_vars *vars, int x, int y, int z);
-int		color(t_vars *vars, int x, int y);
-int		trgb(int t, int r, int g, int b);
+int				transf_x(t_vars *vars, int x, int y);
+int				transf_y(t_vars *vars, int x, int y, int z);
+int				color(t_vars *vars, int x, int y);
+int				trgb(int t, int r, int g, int b);
 
 //fdf_hook
-int		close_win(t_vars *vars);
-int		key_hook(int key, t_vars *vars);
+int				close_win(t_vars *vars);
+int				key_hook(int key, t_vars *vars);
 
 //fdf_clean
-void	ft_free_t_data(void *mlx, t_data *img);
-void	ft_free_t_vars(t_vars *vars);
+void			ft_free_t_data(void *mlx, t_data *img);
+void			ft_free_t_vars(t_vars *vars);
 
 #endif

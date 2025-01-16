@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:12:47 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/15 15:39:04 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:56:01 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	bresenham(t_vars *vars, int x1, int y1, int x_y)
 		tx2 = transf_x(vars, x1, y1 + 1);
 		y2 = transf_y(vars, x1, y1 + 1, vars->arr[y1 + 1][x1]);
 	}
-	br_x_y(&br , x1, y1);
+	br_x_y(&br, x1, y1);
 	tx1 = transf_x(vars, x1, y1);
 	y1 = transf_y(vars, x1, y1, vars->arr[y1][x1]);
 	init_br(&br, abs(tx2 - tx1), abs(y2 - y1));
