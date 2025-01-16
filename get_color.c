@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:41:52 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/16 15:14:32 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:10:08 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ unsigned int	get_color(t_vars *vars, t_br br)
 		return (0xFFFFFFF);
 	k = find_j_k(vars, br, i, &j);
 	temp = ft_substr(vars->char_lines[br.ty] + i + j, 1, k - 1);
-	if (!temp)
+	if (!temp || *temp == '\0')
 		return (0xFFFFFF);
 	res = ft_atoui(temp);
 	return (free(temp), res);
