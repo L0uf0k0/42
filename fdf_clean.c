@@ -6,7 +6,7 @@
 /*   By: malapoug <malapoug@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 10:59:04 by malapoug          #+#    #+#             */
-/*   Updated: 2025/01/16 14:51:55 by malapoug         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:08:56 by malapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	ft_free_t_vars(t_vars *vars)
 	if (vars->char_lines)
 		ft_free_arr(vars->char_lines, arr_size(vars->char_lines));
 	if (vars->win)
+	{
+		mlx_destroy_display(vars->mlx);
 		mlx_destroy_window(vars->mlx, vars->win);
+	}
 	if (vars->mlx)
 		free(vars->mlx);
 	if (vars)
